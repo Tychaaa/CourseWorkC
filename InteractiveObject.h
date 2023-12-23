@@ -17,7 +17,7 @@ public:
     // Конструктор
     InteractiveObject();
     // Конструктор с параметрами
-    InteractiveObject(string& n, string& desc);
+    InteractiveObject(const string& n, const string& desc);
     // Деструктор
     ~InteractiveObject();
 

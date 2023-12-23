@@ -3,8 +3,11 @@
 // Конструктор
 Location::Location() : name(""), description("") {}
 
-// Конструктор с параметрами
-Location::Location(string& n, string& desc) : name(n), description(desc) {}
+// Конструктор с параметрами 1
+Location::Location(const string& n, const string& desc) : name(n), description(desc) {}
+
+// Конструктор с параметрами 2
+Location::Location(const string& n, const string& desc, const vector<InteractiveObject*>& objs) : name(n), description(desc), objects(objs) {}
 
 // Деструктор
 Location::~Location() {}
@@ -19,6 +22,10 @@ void Location::onEnter()
     for (size_t i = 0; i < objects.size(); ++i) {
         options.push_back(objects[i]->getDescription());
     }
+
+    /*
+    * TODO: Составить список фраз для NPC
+    */
 
     Screen::displayOptions(options);
 
@@ -40,4 +47,10 @@ void Location::handleUserInput(char userInput)
         Screen::displayText("Неверный ввод. Пожалуйста, выберите существующий вариант.");
         handleUserInput(Input::getUserInput());
     }
+}
+
+// Метод для добавления интерактивных объектов
+void Location::addInteractiveObject(InteractiveObject* object)
+{
+    objects.push_back(object);
 }

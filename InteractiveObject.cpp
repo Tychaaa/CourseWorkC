@@ -4,7 +4,7 @@
 InteractiveObject::InteractiveObject() : name(""), description("") {}
 
 // Конструктор с параметрами
-InteractiveObject::InteractiveObject(string& n, string& desc) : name(n), description(desc) {}
+InteractiveObject::InteractiveObject(const string& n, const string& desc) : name(n), description(desc) {}
 
 // Деструктор
 InteractiveObject::~InteractiveObject() {}

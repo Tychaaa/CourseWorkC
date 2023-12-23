@@ -4,7 +4,7 @@
 NPC::NPC() : InteractiveObject() {}
 
 // Конструктор с параметрами
-NPC::NPC(string& n, string& desc) : InteractiveObject(n, desc) {}
+NPC::NPC(const string& n, const string& desc) : InteractiveObject(n, desc) {}
 
 // Деструктор
 NPC::~NPC() {}
@@ -12,7 +12,7 @@ NPC::~NPC() {}
 // Функция для взаимодействия с не игровым персонажем
 void NPC::interact()
 {
-	Screen::displayText("NPC говорит: " + getDescription());
+	Screen::displayText(getName() + " говорит: " + getDescription());
 	
 	/*
 	* TODO: Логика взаимодействия с NPC

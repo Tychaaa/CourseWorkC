@@ -22,8 +22,10 @@ public:
 
     // Конструктор
     Location();
-    // Конструктор с параметрами
-    Location(string& n, string& desc);
+    // Конструктор с параметрами 1
+    Location(const string& n, const string& desc);
+    // Конструктор с параметрами 2
+    Location(const string& n, const string& desc, const vector<InteractiveObject*>& objs);
     // Деструктор
     ~Location();
 
@@ -32,4 +34,7 @@ public:
 
     // Обработка ввода от пользователя
     void handleUserInput(char userInput);
+
+    // Новый метод для добавления интерактивных объектов
+    void addInteractiveObject(InteractiveObject* object);
 };

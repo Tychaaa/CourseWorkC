@@ -33,4 +33,3 @@ public:
     // Обработка ввода от пользователя
     void handleUserInput(char userInput);
 };
-

@@ -8,5 +8,6 @@ class Input
 {
 public:
 
+    // Метод для получения ввода от пользователя
     static char getUserInput();
 };

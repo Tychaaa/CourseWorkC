@@ -1,6 +1,6 @@
 #include "Screen.h"
 
-void Screen::displayText(string& text)
+void Screen::displayText(const string& text)
 {
 	cout << text << endl;
 }

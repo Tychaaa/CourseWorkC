@@ -9,7 +9,7 @@ class Screen
 {
 public:
 
-    static void displayText(string& text);
+    static void displayText(const string& text);
 
     static void displayOptions(vector<string>& options);
 };

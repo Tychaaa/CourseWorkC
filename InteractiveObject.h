@@ -5,8 +5,8 @@
 using namespace std;
 
 // Базовый класс для интерактивных объектов
-class InteractiveObject {
-
+class InteractiveObject 
+{
 private:
 
     string name;             // Имя объекта

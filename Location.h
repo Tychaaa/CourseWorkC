@@ -14,9 +14,9 @@ class Location
 {
 private:
 
-    string name;
-    string description;
-    vector<InteractiveObject*> objects;
+    string name;                          // Название локации
+    string description;                   // Описание локации
+    vector<InteractiveObject*> objects;   // Список объектов для взаимодействия
 
 public:   
 

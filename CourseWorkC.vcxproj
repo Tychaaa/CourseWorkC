@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Action.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="InteractiveObject.cpp" />
     <ClCompile Include="Location.cpp" />
@@ -135,6 +136,7 @@
     <ClCompile Include="Screen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Action.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="InteractiveObject.h" />
     <ClInclude Include="Location.h" />

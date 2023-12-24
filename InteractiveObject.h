@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include "Action.h"
 
 using namespace std;
 
@@ -19,7 +20,7 @@ public:
     // Конструктор с параметрами
     InteractiveObject(const string& n, const string& desc);
     // Деструктор
-    ~InteractiveObject();
+    virtual ~InteractiveObject();
 
     // Геттеры
     string getName();
@@ -30,5 +31,11 @@ public:
     void setDescription(string& desc);
 
     // Виртуальная функция для взаимодействия
-    virtual void interact() = 0;  
+    virtual void interact() = 0;
+
+    // Виртуальная функция, возвращающая варианты действий
+    virtual vector<Action> getAvailableActions() const = 0;
+
+    // Виртуальная функция для обработки выбранного действия
+    virtual void performAction(Action& action) = 0;
 };

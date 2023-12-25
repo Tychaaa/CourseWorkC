@@ -7,6 +7,10 @@
 class NPC :
     public InteractiveObject
 {
+private:
+
+    vector<string>talkPhrases;
+
 public:
 
     // Перечисление для возможных действий NPC

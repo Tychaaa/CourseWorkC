@@ -73,21 +73,6 @@ void Location::onEnter()
     }
 }
 
-// Обработка ввода от пользователя
-void Location::handleUserInput(char userInput)
-{
-    size_t choice = userInput - '0';
-
-    if (choice > 0 && choice <= objects.size()) {
-        // Пользователь выбрал действие, взаимодействуем с объектом
-        objects[choice - 1]->interact();
-    }
-    else {
-        Screen::displayText("Неверный ввод. Пожалуйста, выберите существующий вариант.");
-        handleUserInput(Input::getUserInput());
-    }
-}
-
 // Метод для добавления интерактивных объектов
 void Location::addInteractiveObject(InteractiveObject* object)
 {

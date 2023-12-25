@@ -17,44 +17,35 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
-    prodTitle();
+    // Устанавливаем заголовок окна консоли
+    SetConsoleTitle(L"Blades of Destiny");
 
     mainMenu();
 
-    // Создаем объекты
-    Location town("г.Барнаул", "Маленький городок, в котором наш герой начинает свое приключение");
-    Location forest("АлтГТУ", "Темный лес... Первое препятствие, которое должен преодолеть наш герой перед становлением легендой ");
+    cout << "\nДобро пожаловать в увлекательный мир приключений!\n";
+    this_thread::sleep_for(chrono::milliseconds(1000));
 
-    NPC guide("Тьютор Санечка", "Санечка первый человек, которого вы встретили в этом новом для вас мире\nОн приветствует вас своей доброй улыбкой");
-    NPC artem("Артёмка", "На данный момент совершенно не знакомый вам человек,\nно в будущем ваш верный соратник и друг");
-    NPC vasya("Вася", "Человек, на первый взгляд показавшийся вам другом.\nНо так ли это?");
+    cout << "\nВы оказались в загадочном мире, полном тайн и опасностей.\n";
+    this_thread::sleep_for(chrono::milliseconds(1500));
 
-    // Добавляем объект в локацию
-    town.addInteractiveObject(&guide);
-    town.addInteractiveObject(&artem);
+    cout << "\nТемный лес, городские переулки, древние руины — перед вами открыты неисследованные земли.\n";
+    this_thread::sleep_for(chrono::milliseconds(1500));
 
-    forest.addInteractiveObject(&artem);
-    forest.addInteractiveObject(&vasya);
+    cout << "\nОднако, перед тем как начать свое приключение, вам нужно создать своего героя.\n";
+    this_thread::sleep_for(chrono::milliseconds(1500));
 
-    // Запускаем игру
-    while (true) {
-        cout << "Выберите локацию (1 - г.Барнаул, 2 - АлтГТУ, 0 - Выйти из игры): ";
-        char locationChoice = Input::getUserInput();
+    // Задержка и создание главного героя
+    cout << "\nСекундочку, мы подготовили для вас несколько вопросов...\n";
+    this_thread::sleep_for(chrono::milliseconds(2000));
 
-        switch (locationChoice) {
-        case '1':
-            town.onEnter();
-            break;
-        case '2':
-            forest.onEnter();
-            break;
-        case '0':
-            return 0;
-        default:
-            cout << "Неверный выбор. Пожалуйста, выберите существующий вариант." << endl;
-            break;
-        }
-    }
+    Character mainCharacter = createMainCharacter();
+
+    cout << "\nТеперь вы готовы начать свое приключение! Удачи, " << mainCharacter.getName() << "!\n";
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    // Ожидаем нажатия клавиши перед продолжением
+    cout << "\nНажмите Enter, чтобы продолжить...";
+    cin.get();
 
     return 0;
 }

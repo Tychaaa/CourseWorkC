@@ -1,11 +1,18 @@
 #pragma once
+#define ESCAPE 27
+
 #include <iostream>
 #include <Windows.h>
-#pragma comment(lib, "winmm")
+#include <conio.h>
+#include <cstdlib>  // Для использования функции exit()
 #include <vector>
 #include <string>
 #include <chrono>
 #include <thread>
+
+#include "Character.h"
+#include "Weapon.h"
+#include "Magic.h"
 
 using namespace std;
 
@@ -17,3 +24,6 @@ void prodTitle();
 
 // Функция для вывода главного меню игры
 void mainMenu();
+
+// Функция для создания главного героя
+Character createMainCharacter();

@@ -70,25 +70,25 @@ void prodTitle()
         this_thread::sleep_for(chrono::milliseconds(100));
     }
 
-    Sleep(2000);
+    Sleep(1000);
 }
 
 // Функция для вывода главного меню игры
 void mainMenu()
 {
-    gameTitle();
-
-    cout << "Главное меню:\n" << endl;
-    this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "1. Начать игру" << endl;
-    this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "2. Авторы" << endl;
-    this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "3. Выйти из игры" << endl;
-
     int choice;
 
     do {
+
+        gameTitle();
+
+        cout << "Главное меню:\n" << endl;
+        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << "1. Начать игру" << endl;
+        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << "2. Авторы" << endl;
+        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << "3. Выйти из игры" << endl;
 
         cout << "\nВыберите опцию: ";
         cin >> choice;
@@ -96,19 +96,64 @@ void mainMenu()
         switch (choice) {
         case 1:
             // Начать игру
-            startGame();
             break;
         case 2:
             // Показать информацию об авторах
             prodTitle();
+
+            cout << "Тимофей Тычков - студент 2 курса АлтГТУ группы ПИ-23" << endl;
+            this_thread::sleep_for(chrono::milliseconds(100));
+            cout << "Артём Шевцов - студент 2 курса АлтГТУ группы ПИ-23\n" << endl;
+            this_thread::sleep_for(chrono::milliseconds(100));
+
+            cout << "Игра выполнена в рамках курсовой работы за 2 курс" << endl;
+            this_thread::sleep_for(chrono::milliseconds(100));
+            cout << "на тему \"Текстовая RPG в консоли\" на языке C++\n" << endl;
+            this_thread::sleep_for(chrono::milliseconds(100));
+
+            cout << "По любым вопросам, предложениям или баг репортам" << endl;
+            this_thread::sleep_for(chrono::milliseconds(100));
+            cout << "обращайтесь на почту timofeytychkov@gmail.com" << endl;
+            this_thread::sleep_for(chrono::milliseconds(100));
+
+            cout << "\nЧтобы продолжить нажмите любую кнопку" << endl;
+            _getch();
             break;
         case 3:
             // Выйти из игры
             cout << "\nДо свидания! Спасибо за игру.\n";
+            exit(0);  // Завершить программу
             break;
         default:
             cout << "\nНеверный выбор. Пожалуйста, выберите существующий вариант.\n";
             break;
         }
-    } while (choice != 3);  // Цикл продолжается, пока пользователь не выберет "Выйти из игры"
+    } while (choice != 1);  // Цикл продолжается, пока пользователь не выберет "Начать игру"
+}
+
+// Функция для создания главного героя
+Character createMainCharacter()
+{
+    Weapon* sword = new Weapon("Меч Храбреца", 20, 5);
+    Magic* fireball = new Magic("Огненная Вспышка", 30, 10);
+
+    cin.ignore();
+
+    // Вводим имя героя
+    cout << "\nВведите имя героя: ";
+    string name;
+    getline(cin, name);
+
+    // Создаем героя с базовыми параметрами
+    Character mainCharacter(name, 100, 50, 50, sword, fireball);
+
+    // Выводим информацию о герое
+    cout << "\nСоздан главный герой:\n";
+    cout << "Имя: " << mainCharacter.getName() << endl;
+    cout << "Уровень: " << mainCharacter.getLevel() << endl;
+    cout << "Здоровье: " << mainCharacter.getHealth() << endl;
+    cout << "Мана: " << mainCharacter.getMana() << endl;
+    cout << "Выносливость: " << mainCharacter.getStamina() << endl;
+
+    return mainCharacter;
 }

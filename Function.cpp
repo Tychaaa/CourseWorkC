@@ -76,11 +76,39 @@ void prodTitle()
 // Функция для вывода главного меню игры
 void mainMenu()
 {
+    gameTitle();
+
     cout << "Главное меню:\n" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "1. Начать игру" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "2. Настройки" << endl;
+    cout << "2. Авторы" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "3. Выйти из игры" << endl;
+
+    int choice;
+
+    do {
+
+        cout << "\nВыберите опцию: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            // Начать игру
+            startGame();
+            break;
+        case 2:
+            // Показать информацию об авторах
+            prodTitle();
+            break;
+        case 3:
+            // Выйти из игры
+            cout << "\nДо свидания! Спасибо за игру.\n";
+            break;
+        default:
+            cout << "\nНеверный выбор. Пожалуйста, выберите существующий вариант.\n";
+            break;
+        }
+    } while (choice != 3);  // Цикл продолжается, пока пользователь не выберет "Выйти из игры"
 }

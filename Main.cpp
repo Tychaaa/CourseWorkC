@@ -14,8 +14,6 @@ int main() {
 
     prodTitle();
 
-    gameTitle();
-
     mainMenu();
 
     // Создаем объекты

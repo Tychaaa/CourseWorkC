@@ -3,6 +3,11 @@
 
 #include "Location.h"
 #include "NPC.h"
+#include "Arsenal.h"
+#include "Character.h"
+#include "Magic.h"
+#include "Weapon.h"
+#include "Monster.h"
 #include "Function.h"
 
 using namespace std;

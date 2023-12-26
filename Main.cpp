@@ -27,9 +27,13 @@ int main() {
     SetConsoleTitle(L"Blades of Destiny");
 
 
-    Character mainCharacter = createMainCharacter();
+    //Character mainCharacter = createMainCharacter();
 
     //introduction(mainCharacter);
+
+
+
+
 
     return 0;
 }

@@ -301,63 +301,6 @@ Character createMainCharacter()
     vector<string> classes = { "Воин", "Маг", "Вор", "Бродяга", "Жрец", "Рыцарь" };
     cout << "\nРассказчик: \"- Теперь скажи мне, в чём твоё призвание?\"\n" << endl;
 
-    // Выводим таблицу с характеристиками классов
-    cout << "+----+-------------+---------------+---------------+---------------+-------------------------+" << endl;
-    Sleep(100);
-    cout << "| #  |    Класс    |   Здоровье    | Выносливость  |    Мана        |        Оружие      |" << endl;
-    Sleep(100);
-    cout << "+----+-------------+---------------+---------------+---------------+-------------------------+" << endl;
-
-    for (int i = 0; i < classes.size(); ++i) {
-        // Получаем характеристики класса
-        string className = classes[i];
-        auto equipment = createEquipment(className);
-        Weapon* weapon = equipment.first;
-        Magic* magic = equipment.second;
-
-        // Выводим информацию в таблице
-        cout << "| " << setw(2) << i + 1 << " |" << setw(15) << left << className;
-
-        // Выводим характеристики в зависимости от класса
-        if (className == "Воин") {
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 120;
-            cout << setw(15) << left << 80;
-        }
-        else if (className == "Маг") {
-            cout << setw(15) << left << 80;
-            cout << setw(15) << left << 80;
-            cout << setw(15) << left << 150;
-        }
-        else if (className == "Вор") {
-            cout << setw(15) << left << 90;
-            cout << setw(15) << left << 90;
-            cout << setw(15) << left << 110;
-        }
-        else if (className == "Бродяга") {
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 110;
-        }
-        else if (className == "Жрец") {
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 90;
-            cout << setw(15) << left << 110;
-        }
-        else if (className == "Рыцарь") {
-            cout << setw(15) << left << 140;
-            cout << setw(15) << left << 100;
-            cout << setw(15) << left << 100;
-        }
-
-        // Выводим информацию об оружии и магии
-        cout << setw(25) << left << weapon->getName() << " (Урон: " << weapon->getDamage() << ", Стоимость: " << weapon->getCost() << ")";
-        cout << setw(25) << left << magic->getName() << " (Урон: " << magic->getDamage() << ", Стоимость: " << magic->getCost() << ")" << "|" << endl;
-    }
-
-    // Закрываем таблицу
-    cout << "+----+---------------+---------------+---------------+-------------------------+-------------------------+" << endl;
-
 
     int choice;
     cout << "\nВаш выбор: ";

@@ -120,9 +120,12 @@ void Character::setLevel(int newLevel)
     level = newLevel;
 }
 
-void Character::setExperience(int newExp)
-{
-    experience = newExp;
+void Character::setExperience(int newExp) {
+    experience += newExp;
+    while (experience >= 100) {
+        levelUp();
+        experience -= 100; // Уменьшаем опыт на 100 после повышения уровня
+    }
 }
 
 void Character::setClassType(string newClass)

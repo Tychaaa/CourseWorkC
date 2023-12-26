@@ -1,7 +1,7 @@
 #include "CombatSystem.h"
 
 void CombatSystem::initiateCombat(Character& player, Character& enemy) {
-    std::cout << "Бой начинается!" << std::endl;
+    cout << "Бой начинается!" << std::endl;
     displayCharacterInfo(player, enemy);
 
     // После вывода информации нужно вызвать методы для ходов игрока и противника
@@ -14,9 +14,9 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy) {
 }
 
 void CombatSystem::playerTurn(Character& player, Character& enemy) {
-    std::cout << "Выберите действие для героя:" << std::endl;
-    std::cout << "1. Атаковать мечом (dmg: " << player.getWeapon()->getDamage() << "  stm: -" << player.getWeapon()->getCost() << ")\n";
-    std::cout << "2. Использовать магию (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
+    cout << "Выберите действие для героя:" << std::endl;
+    cout << "1. Атаковать мечом (dmg: " << player.getWeapon()->getDamage() << "  stm: -" << player.getWeapon()->getCost() << ")\n";
+    cout << "2. Использовать магию (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
 
     int choice;
     std::cin >> choice;
@@ -28,7 +28,7 @@ void CombatSystem::playerTurn(Character& player, Character& enemy) {
         player.castSpell(enemy);
     }
     else {
-        std::cout << "Промах!" << std::endl;
+        cout << "Промах!" << std::endl;
     }
 }
 

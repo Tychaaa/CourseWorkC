@@ -1,12 +1,13 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <random>
 
-#include "Monster.h"
+#include "Character.h"
 
 using namespace std;
 
-class Wolf : public Monster {
+class Wolf : public Character {
 public:
     Wolf(); // Конструктор
     Wolf(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic);
@@ -18,7 +19,8 @@ public:
     void attack(Character& target) override; // Переопределенная функция для атаки
 };
 
-class Ogre : public Monster {
+
+class Ogre : public Character {
 public:
     Ogre(); // Конструктор
     Ogre(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic);

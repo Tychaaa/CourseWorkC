@@ -97,7 +97,7 @@ void Character::setMagic(Magic* newMagic)
 
 void Character::attack(Character& target) {
     if (weapon) {
-        std::cout << name << " атакует " << target.name << ", использу€ " << weapon->getName() << ".\n";
+        cout << name << " атакует " << target.name << ", использу€ " << weapon->getName() << ".\n";
         target.takeDamage(weapon->getDamage());
         decreaseStamina(weapon->getCost());
     }

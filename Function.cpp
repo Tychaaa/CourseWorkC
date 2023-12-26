@@ -96,7 +96,6 @@ void mainMenu()
         switch (choice) {
         case 1:
             // Начать игру
-            startGame();
             break;
         case 2:
             // Показать информацию об авторах

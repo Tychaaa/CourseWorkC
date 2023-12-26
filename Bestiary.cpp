@@ -1,21 +1,22 @@
 #include "Bestiary.h"
 
-Wolf::Wolf() : Monster() {
-    // Инициализация по умолчанию или специфичная для волка
+Wolf::Wolf() : Character() {
 }
 
 Wolf::Wolf(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : Monster(name, health, stamina, mana, weapon, magic) {
-    // Инициализация волка с заданными параметрами
+    : Character(name, health, stamina, mana, weapon, magic) {
 }
 
 Wolf::~Wolf() {
-    // Деструктор волка, если нужно освободить какие-то ресурсы
 }
 
 void Wolf::bite(Character& target) {
-    // Реализация функции укуса волка
-    // ...
+    // Реализация функции удара когтями волка
+    // Например:
+    int damage = 15; // Задаем урон удара когтями
+    cout << this->getName() << " кусает " << target.getName() << "!\n";
+    target.takeDamage(damage);
+    decreaseStamina(15);
 }
 
 void Wolf::clawAttack(Character& target) {
@@ -24,63 +25,76 @@ void Wolf::clawAttack(Character& target) {
     int damage = 10; // Задаем урон удара когтями
     cout << this->getName() << " наносит удар когтями по " << target.getName() << "!\n";
     target.takeDamage(damage);
+    decreaseStamina(20);
 }
 
 void Wolf::attack(Character& target) {
     // Вызываем случайную атаку между укусом и ударом когтями
-    int choice = rand() % 2; // Генерируем случайное число от 0 до 1
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 4);
 
-    if (choice == 0) {
-        this->bite(target);
+    int choice = dist(gen); // Генерируем случайное число от 1 до 4
+
+    if (choice == 4) {
+        this->clawAttack(target);
     }
     else {
-        this->clawAttack(target);
+        this->bite(target);
     }
 }
 
 
-Ogre::Ogre() : Monster() {
-    // Инициализация по умолчанию или специфичная для огра
+Ogre::Ogre() : Character() {
 }
 
 Ogre::Ogre(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : Monster(name, health, stamina, mana, weapon, magic) {
-    // Инициализация огра с заданными параметрами
+    : Character(name, health, stamina, mana, weapon, magic) {
 }
 
 Ogre::~Ogre() {
-    // Деструктор огра, если нужно освободить какие-то ресурсы
 }
 
+// Реализация функции удара "smash" огра
 void Ogre::smash(Character& target) {
-    // Реализация функции удара "smash" огра
-    // ...
+    int damage = 25;
+    cout << this->getName() << " размахивает кулаками и наносит сокрушительный удар по " << target.getName() << "!\n";
+    target.takeDamage(damage);
+    decreaseStamina(30);
 }
 
+// Реализация функции атаки "groundPound" огра
 void Ogre::groundPound(Character& target) {
-    // Реализация функции атаки "groundPound" огра
-    // ...
+    int damage = 30;
+    cout << this->getName() << " наносит мощный удар о землю, поднимается волна, ударяя " << target.getName() << "!\n";
+    target.takeDamage(damage);
+    decreaseStamina(50);
 }
 
+// Реализация функции удара кулаком огра
 void Ogre::fistAttack(Character& target) {
-    // Реализация функции удара кулаком огра
-    // Например:
-    int damage = 15; // Задаем урон удара кулаком
+    int damage = 15;
     cout << this->getName() << " наносит удар кулаком по " << target.getName() << "!\n";
     target.takeDamage(damage);
+    decreaseStamina(15);
 }
 
 void Ogre::attack(Character& target) {
-    // Вызываем случайную атаку между ударом кулаком, ударом "smash" и "groundPound"
-    int choice = rand() % 3; // Генерируем случайное число от 0 до 2
+    // Вызываем случайную атаку между укусом и ударом когтями
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 100);
 
-    if (choice == 0) {
+    int choice = dist(gen); // Генерируем случайное число от 1 до 4
+
+    if (choice <= 40) {
         this->fistAttack(target);
     }
-    else if (choice == 1) {
-        this->smash(target);
-    }
-    else {
+    else if (choice > 40 && choice <= 80) {
         this->groundPound(target);
     }
+    else {
+        this->smash(target);
+    }
+    
 }

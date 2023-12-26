@@ -10,7 +10,7 @@ using namespace std;
 
 class Character
 {
-private:
+protected:
     string name;
     int health;
     int stamina;
@@ -47,7 +47,7 @@ public:
     void setWeapon(Weapon* newWeapon);
     void setMagic(Magic* newMagic);
 
-    void attack(Character& target);
+    virtual void attack(Character& target);
     void castSpell(Character& target);
     void takeDamage(int damage);
     void decreaseStamina(int cost);

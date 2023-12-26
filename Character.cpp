@@ -6,15 +6,12 @@
 Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0), classType("") {}
 
 // Конструктор с параметрами
-Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic) {
-
+Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
+    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype) {
     maxHealth = health;
     maxStamina = health;
     maxMana = health;
 }
-Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
-    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype) {}
 
 // Деструктор
 Character::~Character(){}

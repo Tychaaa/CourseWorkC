@@ -4,11 +4,7 @@ Wolf::Wolf() : Character() {
 }
 
 Wolf::Wolf(string name, int health, int stamina, int mana)
-    : Character(name, health, stamina, mana, nullptr, nullptr) {
-Wolf::Wolf(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
-    : Monster(name, health, stamina, mana, weapon, magic, classtype) {
-    // »нициализаци€ волка с заданными параметрами
-}
+    : Character(name, health, stamina, mana, nullptr, nullptr, "") {}
 
 Wolf::~Wolf() {
 }
@@ -72,11 +68,7 @@ Ogre::Ogre() : Character() {
 }
 
 Ogre::Ogre(string name, int health, int stamina, int mana, Weapon* weapon)
-    : Character(name, health, stamina, mana, weapon, nullptr) {
-Ogre::Ogre(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
-    : Monster(name, health, stamina, mana, weapon, magic, classtype) {
-    // »нициализаци€ огра с заданными параметрами
-}
+    : Character(name, health, stamina, mana, weapon, nullptr, "") {}
 
 Ogre::~Ogre() {
 }

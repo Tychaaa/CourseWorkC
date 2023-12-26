@@ -11,23 +11,14 @@ using namespace std;
 class Character
 {
 protected:
-    string name;
-    int health;
-    int stamina;
-    int mana;
-    int maxHealth;
-    int maxStamina;
-    int maxMana;
-    int level;
-    int experience;
-    Weapon* weapon; // Указатель на оружие персонажа
-    Magic* magic; // Указатель на оружие персонажа
-private:
 
     string name;      // Имя
     int health;       // Здоровье
     int stamina;      // Выносливость
     int mana;         // Запас маны
+    int maxHealth;
+    int maxStamina;
+    int maxMana;
     int level;        // Уровень игрока
     int experience;   // Опыт игрока
     string classType; // Класс игрока

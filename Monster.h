@@ -12,7 +12,7 @@ class Monster :
 {
 public:
     Monster(); // Конструктор
-    Monster(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic);
+    Monster(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype);
     ~Monster(); // Деструктор
 
     virtual void attack(Character& target); // Функция для атаки персонажа

@@ -4,8 +4,8 @@ Monster::Monster() : Character() {
     // Инициализация по умолчанию или специфичная для монстра
 }
 
-Monster::Monster(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : Character(name, health, stamina, mana, weapon, magic) {
+Monster::Monster(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
+    : Character(name, health, stamina, mana, weapon, magic, classtype) {
     // Инициализация монстра с заданными параметрами
 }
 

@@ -11,6 +11,7 @@ class Wolf : public Character {
 public:
     Wolf(); // Конструктор
     Wolf(string name, int health, int stamina, int mana);
+    Wolf(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype);
     ~Wolf(); // Деструктор
 
     void regenerateStamina() override;
@@ -26,6 +27,7 @@ class Ogre : public Character {
 public:
     Ogre(); // Конструктор
     Ogre(string name, int health, int stamina, int mana, Weapon* weapon);
+    Ogre(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype);
     ~Ogre(); // Деструктор
 
     void regenerateStamina() override;

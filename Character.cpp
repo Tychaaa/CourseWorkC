@@ -3,7 +3,7 @@
 #include "Magic.h"
 
 // Конструктор
-Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0) {}
+Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0), classType("") {}
 
 // Конструктор с параметрами
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
@@ -13,6 +13,8 @@ Character::Character(string name, int health, int stamina, int mana, Weapon* wea
     maxStamina = health;
     maxMana = health;
 }
+Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
+    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype) {}
 
 // Деструктор
 Character::~Character(){}
@@ -63,6 +65,11 @@ int Character::getLevel() const
 int Character::getExperience() const
 {
     return experience;
+}
+
+string Character::getClassType() const
+{
+    return classType;
 }
 
 Weapon* Character::getWeapon() const
@@ -119,6 +126,11 @@ void Character::setLevel(int newLevel)
 void Character::setExperience(int newExp)
 {
     experience = newExp;
+}
+
+void Character::setClassType(string newClass)
+{
+    classType = newClass;
 }
 
 void Character::setWeapon(Weapon* newWeapon)

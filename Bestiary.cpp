@@ -4,8 +4,8 @@ Wolf::Wolf() : Monster() {
     // Инициализация по умолчанию или специфичная для волка
 }
 
-Wolf::Wolf(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : Monster(name, health, stamina, mana, weapon, magic) {
+Wolf::Wolf(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
+    : Monster(name, health, stamina, mana, weapon, magic, classtype) {
     // Инициализация волка с заданными параметрами
 }
 
@@ -43,8 +43,8 @@ Ogre::Ogre() : Monster() {
     // Инициализация по умолчанию или специфичная для огра
 }
 
-Ogre::Ogre(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : Monster(name, health, stamina, mana, weapon, magic) {
+Ogre::Ogre(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
+    : Monster(name, health, stamina, mana, weapon, magic, classtype) {
     // Инициализация огра с заданными параметрами
 }
 

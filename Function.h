@@ -5,6 +5,7 @@
 #include <Windows.h>
 #include <conio.h>
 #include <cstdlib>  // Для использования функции exit()
+#include <utility>  // Для использования std::pair
 #include <vector>
 #include <string>
 #include <chrono>
@@ -15,6 +16,9 @@
 #include "Magic.h"
 
 using namespace std;
+
+// Функция для вывода заставки игры (медленно)
+void gameTitleSlow();
 
 // Функция для вывода заставки игры
 void gameTitle();
@@ -27,6 +31,9 @@ void mainMenu();
 
 // Глава "Пролог"
 void introduction(Character character);
+
+// Функция для создания оружия и магии в зависимости от класса
+pair<Weapon*, Magic*> createEquipment(string& className);
 
 // Функция для создания главного героя
 Character createMainCharacter();

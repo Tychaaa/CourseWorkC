@@ -1,7 +1,7 @@
 #include "Function.h"
 
-// Функция для вывода заставки игры
-void gameTitle()
+// Функция для вывода заставки игры (медленно)
+void gameTitleSlow()
 {
     system("cls");
 
@@ -21,7 +21,28 @@ void gameTitle()
 
     cout << "\n" << endl;
 
-    Sleep(1200);
+    this_thread::sleep_for(chrono::milliseconds(1000));
+}
+
+// Функция для вывода заставки игры
+void gameTitle()
+{
+    system("cls");
+
+    // ASCII-арт, разбитый на строки
+    string asciiArt[] = {
+        " ____   __,     ____, ____,  ____,  ____,    ____,  ____,    ____,  ____,  ____,  ____,  __,   _,  _, _  _, ",
+        "(-|__) (-|     (-/_| (-|  \\ (-|_,  (-(__    (-/  \\ (-|_,    (-|  \\ (-|_,  (-(__  (-|    (-|   (-|\\ | (-\\_/  ",
+        " _|__)  _|__,  _/  |, _|__/  _|__,  ____)    _\\__/, _|       _|__/  _|__,  ____)  _|,    _|_,  _| \\|,  _|,  ",
+        "(      (      (      (      (      (        (      (        (      (      (      (      (     (       (     "
+    };
+
+    // Выводим ASCII-арт построчно с задержкой
+    for (const auto& line : asciiArt) {
+        cout << line << '\n';
+    }
+
+    cout << "\n" << endl;
 }
 
 // Функция для вывода заставки разработчиков
@@ -80,7 +101,7 @@ void mainMenu()
 
     do {
 
-        gameTitle();
+        gameTitleSlow();
 
         cout << "Главное меню:\n" << endl;
         this_thread::sleep_for(chrono::milliseconds(100));
@@ -96,6 +117,9 @@ void mainMenu()
         switch (choice) {
         case 1:
             // Начать игру
+            //prodTitle();
+            gameTitle();
+            this_thread::sleep_for(chrono::milliseconds(1000));
             break;
         case 2:
             // Показать информацию об авторах
@@ -126,6 +150,8 @@ void mainMenu()
             break;
         default:
             cout << "\nНеверный выбор. Пожалуйста, выберите существующий вариант.\n";
+            cout << "\nЧтобы продолжить нажмите любую кнопку" << endl;
+            _getch();
             break;
         }
     } while (choice != 1);  // Цикл продолжается, пока пользователь не выберет "Начать игру"
@@ -134,6 +160,30 @@ void mainMenu()
 // Глава "Пролог"
 void introduction(Character character)
 {
+    // Определяем отступ слева
+    int leftIndent = 10;
+
+    // ASCII-арт для названия главы с отступом слева
+    vector<string> chapterArt = {
+        "     _____                _                            ",
+        "    |  __ \\              | |                           ",
+        "    | |__) | _ __   ___  | |  ___    __ _  _   _   ___ ",
+        "    |  ___/ | '__| / _ \\ | | / _ \\  / _` || | | | / _ \\",
+        "    | |     | |   | (_) || || (_) || (_| || |_| ||  __/",
+        "    |_|     |_|    \\___/ |_| \\___/  \\__, | \\__,_| \\___|",
+        "                                     __/ |              ",
+        "                                    |___/               "
+    };
+
+    for (const string& line : chapterArt) {
+        // Добавляем отступ слева
+        cout << string(leftIndent, ' ') << line << endl;
+    }
+
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\n\n" << endl;
+
     // Рассказ о мире
     cout << "\nДобро пожаловать в увлекательный мир приключений!" << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
@@ -183,20 +233,44 @@ void introduction(Character character)
     cin.get();
 }
 
+// Функция для создания оружия и магии в зависимости от класса
+pair<Weapon*, Magic*> createEquipment(string& className)
+{
+    Weapon* defaultWeapon = new Weapon("Старый меч", 10, 3);       // Оружие по умолчанию
+    Magic* defaultMagic = new Magic("Простое заклинание", 15, 5);  // Магия по умолчанию
+
+    if (className == "Воин") {
+        return make_pair(new Weapon("Меч Воина", 20, 5), new Magic("Силовой удар", 10, 15));
+    }
+    else if (className == "Маг") {
+        return make_pair(new Weapon("Посох Мага", 15, 8), new Magic("Огненный шар", 25, 10));
+    }
+    else if (className == "Вор") {
+        return make_pair(new Weapon("Кинжал Вора", 18, 6), new Magic("Тень", 12, 18));
+    }
+    else if (className == "Бродяга") {
+        return make_pair(new Weapon("Старый Кастет", 15, 3), new Magic("Ловкость", 8, 20));
+    }
+    else if (className == "Жрец") {
+        return make_pair(new Weapon("Святой Жезл", 17, 7), new Magic("Исцеление", 20, 12));
+    }
+    else if (className == "Рыцарь") {
+        return make_pair(new Weapon("Меч Рыцаря", 22, 4), new Magic("Защитный барьер", 15, 15));
+    }
+    else {
+        // По умолчанию возвращаем стандартное оружие и магию
+        return make_pair(defaultWeapon, defaultMagic);
+    }
+}
+
 // Функция для создания главного героя
 Character createMainCharacter()
 {
-    // Создаём объекты оружия и магии
-    Weapon* sword = new Weapon("Меч Храбреца", 20, 5);
-    Magic* fireball = new Magic("Огненная Вспышка", 30, 10);
-
-    cin.ignore();
-
     // Вводим имя героя
     cout << "\nРассказчик: \"- Помнишь ли ты свое имя?\"" << endl;
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nМеня зовут: ";
+    cout << "\nГерой: - Меня зовут ";
     string name;
     cin >> name;
 
@@ -217,16 +291,79 @@ Character createMainCharacter()
     cout << "\nРассказчик: \" - Как насчёт - " << name << "?\"" << endl;
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    // Создаем героя с базовыми параметрами
-    Character mainCharacter(name, 100, 50, 50, sword, fireball);
+    // Выбираем класс
+    vector<string> classes = { "Воин", "Маг", "Вор", "Бродяга", "Жрец", "Рыцарь" };
+    cout << "\nРассказчик: \"- Теперь скажи мне, в чём твоё призвание?\"\n" << endl;
+    for (int i = 0; i < classes.size(); ++i) {
+        cout << i + 1 << ". " << classes[i] << endl;
+    }
+
+    int choice;
+    cout << "\nВаш выбор: ";
+    cin >> choice;
+
+    // Проверка корректности ввода
+    while (choice < 1 || choice > classes.size()) {
+        cout << "Некорректный выбор. Пожалуйста, выберите снова: ";
+        cin >> choice;
+    }
+
+    // Получаем название выбранного класса
+    string className = classes[choice - 1];
+
+    // Устанавливаем параметры в конструкторе
+    Weapon* defaultWeapon = nullptr;
+    Magic* defaultMagic = nullptr;
+
+    // Создаем героя с базовыми параметрами в зависимости от класса
+    Character mainCharacter(name, 100, 50, 50, defaultWeapon, defaultMagic, className);
+
+    // Получаем указатели на оружие и магию в зависимости от класса и устанавливаем их герою
+    auto equipment = createEquipment(className);
+    mainCharacter.setWeapon(equipment.first);
+    mainCharacter.setMagic(equipment.second);
+
+    if (className == "Воин") {
+        mainCharacter.setHealth(120);
+        mainCharacter.setStamina(60);
+        mainCharacter.setMana(40);
+    }
+    else if (className == "Маг") {
+        mainCharacter.setHealth(80);
+        mainCharacter.setStamina(40);
+        mainCharacter.setMana(80);
+    }
+    else if (className == "Вор") {
+        mainCharacter.setHealth(100);
+        mainCharacter.setStamina(80);
+        mainCharacter.setMana(30);
+    }
+    else if (className == "Бродяга") {
+        mainCharacter.setHealth(90);
+        mainCharacter.setStamina(70);
+        mainCharacter.setMana(40);
+    }
+    else if (className == "Жрец") {
+        mainCharacter.setHealth(100);
+        mainCharacter.setStamina(50);
+        mainCharacter.setMana(70);
+    }
+    else if (className == "Рыцарь") {
+        mainCharacter.setHealth(110);
+        mainCharacter.setStamina(70);
+        mainCharacter.setMana(50);
+    }
 
     // Выводим информацию о герое
     cout << "\n\t~~Приветствуйте нового героя~~\n" << endl;
     cout << "Имя: " << mainCharacter.getName() << endl;
+    cout << "Класс: " << mainCharacter.getClassType() << endl;
     cout << "Уровень: " << mainCharacter.getLevel() << endl;
     cout << "Здоровье: " << mainCharacter.getHealth() << endl;
     cout << "Мана: " << mainCharacter.getMana() << endl;
     cout << "Выносливость: " << mainCharacter.getStamina() << endl;
+    cout << "Оружие: " << mainCharacter.getWeapon()->getName() << endl;
+    cout << "Магия: " << mainCharacter.getMagic()->getName() << endl;
 
     return mainCharacter;
 }

@@ -101,9 +101,9 @@ void mainMenu()
             // Показать информацию об авторах
             prodTitle();
 
-            cout << "Тимофей Тычков - студент 2 курса АлтГТУ группы ПИ-23" << endl;
+            cout << "Тимофей Тычков - студент АлтГТУ 2 курса группы ПИ-23" << endl;
             this_thread::sleep_for(chrono::milliseconds(100));
-            cout << "Артём Шевцов - студент 2 курса АлтГТУ группы ПИ-23\n" << endl;
+            cout << "Артём Шевцов - студент АлтГТУ 2 курса группы ПИ-23\n" << endl;
             this_thread::sleep_for(chrono::milliseconds(100));
 
             cout << "Игра выполнена в рамках курсовой работы за 2 курс" << endl;
@@ -113,7 +113,7 @@ void mainMenu()
 
             cout << "По любым вопросам, предложениям или баг репортам" << endl;
             this_thread::sleep_for(chrono::milliseconds(100));
-            cout << "обращайтесь на почту timofeytychkov@gmail.com" << endl;
+            cout << "обращайтесь в telegram: @tychaaaa или @Sh1chik" << endl;
             this_thread::sleep_for(chrono::milliseconds(100));
 
             cout << "\nЧтобы продолжить нажмите любую кнопку" << endl;
@@ -131,24 +131,97 @@ void mainMenu()
     } while (choice != 1);  // Цикл продолжается, пока пользователь не выберет "Начать игру"
 }
 
+// Глава "Пролог"
+void introduction(Character character)
+{
+    // Рассказ о мире
+    cout << "\nДобро пожаловать в увлекательный мир приключений!" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
+
+    cout << "\nДавным-давно, в таинственном мире, где свет и тьма танцуют вечный вальс, началось ваше приключение." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nЗдесь, среди древних руин и неисследованных земель, каждый шаг может привести к открытию тайны или смертельной опасности." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nТемный лес, городские переулки — перед вами открыты неисследованные земли." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nЭтот мир слышит своих героев, истории которых еще не написаны." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nИ вот вы просыпаетесь, ощущая, что ваше призвание велико, и что вас ждут невероятные испытания." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nГолос раздаётся в вашей голове!" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nРассказчик: \"- Привет, путник! Ты проснулся в мире, где каждое решение, каждый поступок,\nможет повлиять на судьбу всего мира. Я - твой проводник в этом удивительном приключении.\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(2500));
+
+    cout << "\n\"- Кто ты? Где я?\" - спрашиваете вы, смутно осознавая себя в этом загадочном мире." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nРассказчик: \"- Меня зовут Элдрик, рассказчик этого мира. Это Страна Семи Клинков.\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nРассказчик: \"- А ты — тот, кто изменит ход истории. Твое имя пока забыто, но оно станет легендой.\nТы вольный герой, и твой выбор определит судьбу этого мира.\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(2500));
+
+    // Задержка и создание главного героя
+    cout << "\nРассказчик: \"- Секундочку, у меня есть несколько вопросов... Отвечай на вопросы внимательно, они определят твою судьбу.\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(2000));
+
+    character = createMainCharacter();
+
+    cout << "\nРассказчик: \"- Теперь вы готовы начать свое приключение! Удачи, " << character.getName() << "!\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    // Ожидаем нажатия клавиши перед продолжением
+    cout << "\nНажмите Enter, чтобы продолжить...";
+    cin.ignore();
+    cin.get();
+}
+
 // Функция для создания главного героя
 Character createMainCharacter()
 {
+    // Создаём объекты оружия и магии
     Weapon* sword = new Weapon("Меч Храбреца", 20, 5);
     Magic* fireball = new Magic("Огненная Вспышка", 30, 10);
 
     cin.ignore();
 
     // Вводим имя героя
-    cout << "\nВведите имя героя: ";
+    cout << "\nРассказчик: \"- Помнишь ли ты свое имя?\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nМеня зовут: ";
     string name;
-    getline(cin, name);
+    cin >> name;
+
+    cout << "\nРассказчик: \"- Твое имя звучит великолепно, " << name << ". Но чего-то не хватает....\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    // Вектор прилагательных для имени
+    vector<string> adjectives = { "Драконорожденный", "Громовержец", "Сияющий", "Неустрашимый", "Магистр", "Повелитель огня", "Стальной", "Теневладыка", "Сокрушитель", "Бесстрашный" };
+
+    // Выбираем случайное прилагательное
+    srand(static_cast<unsigned int>(time(0)));
+    int randomIndex = rand() % adjectives.size();
+    string randomAdjective = adjectives[randomIndex];
+
+    // Добавляем прилагательное к имени героя
+    name = name + " " + randomAdjective;
+
+    cout << "\nРассказчик: \" - Как насчёт - " << name << "?\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
 
     // Создаем героя с базовыми параметрами
     Character mainCharacter(name, 100, 50, 50, sword, fireball);
 
     // Выводим информацию о герое
-    cout << "\nСоздан главный герой:\n";
+    cout << "\n\t~~Приветствуйте нового героя~~\n" << endl;
     cout << "Имя: " << mainCharacter.getName() << endl;
     cout << "Уровень: " << mainCharacter.getLevel() << endl;
     cout << "Здоровье: " << mainCharacter.getHealth() << endl;

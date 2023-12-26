@@ -25,5 +25,8 @@ void prodTitle();
 // Функция для вывода главного меню игры
 void mainMenu();
 
+// Глава "Пролог"
+void introduction(Character character);
+
 // Функция для создания главного героя
 Character createMainCharacter();

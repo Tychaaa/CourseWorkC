@@ -26,10 +26,17 @@ int main() {
     // Устанавливаем заголовок окна консоли
     SetConsoleTitle(L"Blades of Destiny");
 
+    //Главное меню
+    mainMenu();
 
-    Character mainCharacter = createMainCharacter();
+    // Создаем объект персонажа
+    Character mainCharacter;
 
-    //introduction(mainCharacter);
+    // Глава "Вступление"
+    introduction(mainCharacter);
+
+    // Глава "Пролог"
+    prologue(mainCharacter);
 
     return 0;
 }

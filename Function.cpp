@@ -163,8 +163,8 @@ void mainMenu()
     } while (choice != 1);  // Цикл продолжается, пока пользователь не выберет "Начать игру"
 }
 
-// Глава "Пролог"
-void introduction(Character character)
+// Вступление
+void introduction(Character& character)
 {
     // Определяем отступ слева
     int leftIndent = 10;
@@ -230,13 +230,32 @@ void introduction(Character character)
 
     character = createMainCharacter();
 
-    cout << "\nРассказчик: \"- Теперь вы готовы начать свое приключение! Удачи, " << character.getName() << "!\"" << endl;
+    cout << "\nРассказчик: \"- Впереди вас ждет долгий путь. На востоке расположен прекрасный город Староград. Туда и направляйтесь.\"" << endl;
+    this_thread::sleep_for(chrono::milliseconds(2000));
+
+    cout << "\nРассказчик: \"- Удачи, " << character.getName() << "!\"" << endl;
     this_thread::sleep_for(chrono::milliseconds(1500));
 
     // Ожидаем нажатия клавиши перед продолжением
     cout << "\nНажмите Enter, чтобы продолжить...";
     cin.ignore();
     cin.get();
+}
+
+// Глава "Пролог"
+void prologue(Character& character)
+{
+    gameTitle();
+
+    // Переход от разговора с рассказчиком к началу путешествия
+    cout << "\nРассветное утро озаряет страну, когда вы решаете следовать по указанию рассказчика." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nВы отправляетесь в путь... Впереди виднеется повозка, стоящая на обочине дороги." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nНа повозке сидит старый мужчина, собирающийся вот-вот отправиться в путь." << endl;
+    this_thread::sleep_for(chrono::milliseconds(1500));
 }
 
 // Функция для создания оружия и магии в зависимости от класса
@@ -300,13 +319,13 @@ Character createMainCharacter()
     // Выбираем класс
     vector<string> classes = { "Воин", "Маг", "Вор", "Бродяга", "Жрец", "Рыцарь" };
     cout << "\nРассказчик: \"- Теперь скажи мне, в чём твоё призвание?\"\n" << endl;
-
+    
     // Выводим таблицу с характеристиками классов
-    cout << "+----+-------------+---------------+---------------+---------------+-------------------------+" << endl;
+    cout << "+----+---------------+---------------+---------------+---------------+----------------------------------------+--------------------------------------------------+" << endl;
     Sleep(100);
-    cout << "| #  |    Класс    |   Здоровье    | Выносливость  |    Мана        |        Оружие      |" << endl;
+    cout << "| #  |    Класс      |   Здоровье    | Выносливость  |     Мана      |                 Оружие                 |                      Магия                       |" << endl;
     Sleep(100);
-    cout << "+----+-------------+---------------+---------------+---------------+-------------------------+" << endl;
+    cout << "+----+---------------+---------------+---------------+---------------+----------------------------------------+--------------------------------------------------+" << endl;
 
     for (int i = 0; i < classes.size(); ++i) {
         // Получаем характеристики класса
@@ -316,48 +335,47 @@ Character createMainCharacter()
         Magic* magic = equipment.second;
 
         // Выводим информацию в таблице
-        cout << "| " << setw(2) << i + 1 << " |" << setw(15) << left << className;
+        cout << "| " << setw(1) << i + 1 << "  |" << setw(15) << left << className;
 
         // Выводим характеристики в зависимости от класса
         if (className == "Воин") {
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 120;
-            cout << setw(15) << left << 80;
+            cout << "|" << setw(15) << left << 110 << "|";
+            cout << setw(15) << left << 120 << "|";
+            cout << setw(15) << left << 80 << "|";
         }
         else if (className == "Маг") {
-            cout << setw(15) << left << 80;
-            cout << setw(15) << left << 80;
-            cout << setw(15) << left << 150;
+            cout << "|" << setw(15) << left << 80 << "|";
+            cout << setw(15) << left << 80 << "|";
+            cout << setw(15) << left << 150 << "|";
         }
         else if (className == "Вор") {
-            cout << setw(15) << left << 90;
-            cout << setw(15) << left << 90;
-            cout << setw(15) << left << 110;
+            cout << "|" << setw(15) << left << 90 << "|";
+            cout << setw(15) << left << 90 << "|";
+            cout << setw(15) << left << 110 << "|";
         }
         else if (className == "Бродяга") {
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 110;
+            cout << "|" << setw(15) << left << 110 << "|";
+            cout << setw(15) << left << 110 << "|";
+            cout << setw(15) << left << 110 << "|";
         }
         else if (className == "Жрец") {
-            cout << setw(15) << left << 110;
-            cout << setw(15) << left << 90;
-            cout << setw(15) << left << 110;
+            cout << "|" << setw(15) << left << 110 << "|";
+            cout << setw(15) << left << 90 << "|";
+            cout << setw(15) << left << 110 << "|";
         }
         else if (className == "Рыцарь") {
-            cout << setw(15) << left << 140;
-            cout << setw(15) << left << 100;
-            cout << setw(15) << left << 100;
+            cout << "|" << setw(15) << left << 140 << "|";
+            cout << setw(15) << left << 100 << "|";
+            cout << setw(15) << left << 100 << "|";
         }
 
         // Выводим информацию об оружии и магии
-        cout << setw(25) << left << weapon->getName() << " (Урон: " << weapon->getDamage() << ", Стоимость: " << weapon->getCost() << ")";
-        cout << setw(25) << left << magic->getName() << " (Урон: " << magic->getDamage() << ", Стоимость: " << magic->getCost() << ")" << "|" << endl;
+        cout << setw(15) << left << weapon->getName() << " (dmg: " << setw(2) << weapon->getDamage() << ", stm: -" << setw(2) << weapon->getCost() << setw(6) << ")" << "|";
+        cout << setw(25) << left << magic->getName() << " (dmg: " << setw(2) << magic->getDamage() << ", mana: -" << setw(2) << magic->getCost() << setw(5) << ")" << "|" << endl;
     }
 
     // Закрываем таблицу
-    cout << "+----+---------------+---------------+---------------+-------------------------+-------------------------+" << endl;
-
+    cout << "+----+---------------+---------------+---------------+---------------+----------------------------------------+--------------------------------------------------+" << endl;
 
     int choice;
     cout << "\nВаш выбор: ";
@@ -417,14 +435,23 @@ Character createMainCharacter()
 
     // Выводим информацию о герое
     cout << "\n\t~~Приветствуйте нового героя~~\n" << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Имя: " << mainCharacter.getName() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Класс: " << mainCharacter.getClassType() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Уровень: " << mainCharacter.getLevel() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Здоровье: " << mainCharacter.getHealth() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Мана: " << mainCharacter.getMana() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Выносливость: " << mainCharacter.getStamina() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Оружие: " << mainCharacter.getWeapon()->getName() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
     cout << "Магия: " << mainCharacter.getMagic()->getName() << endl;
+    this_thread::sleep_for(chrono::milliseconds(100));
 
     return mainCharacter;
 }

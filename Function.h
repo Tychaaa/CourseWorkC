@@ -31,8 +31,11 @@ void prodTitle();
 // Функция для вывода главного меню игры
 void mainMenu();
 
+// Вступление
+void introduction(Character& character);
+
 // Глава "Пролог"
-void introduction(Character character);
+void prologue(Character& character);
 
 // Функция для создания оружия и магии в зависимости от класса
 pair<Weapon*, Magic*> createEquipment(string& className);

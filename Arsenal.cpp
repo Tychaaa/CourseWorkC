@@ -41,7 +41,3 @@ void Arsenal::setCost(int cst)
     cost = cst;
 }
 
-void Arsenal::use()
-{
-    cout << "Using " << name << " - Damage: " << damage << ", Cost: " << cost << "\n";
-}

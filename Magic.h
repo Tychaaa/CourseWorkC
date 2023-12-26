@@ -17,6 +17,5 @@ public:
     // Деструктор
     ~Magic();
 
-    void use(Character& target) override;
 };
 

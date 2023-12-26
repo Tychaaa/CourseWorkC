@@ -30,9 +30,5 @@ public:
     void setDamage(int dmg);
     void setCost(int cst);
 
-    virtual void use();
-
-    virtual void use(Character& target) = 0; // Виртуальная функция для использования предмета
-
 };
 

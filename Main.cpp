@@ -1,5 +1,7 @@
 #include <iostream>
 #include <Windows.h>
+#include <iomanip>
+#include <string>
 
 #include "Location.h"
 #include "NPC.h"
@@ -10,8 +12,11 @@
 #include "Monster.h"
 #include "Bestiary.h"
 #include "Function.h"
+#include "CombatSystem.h"
+
 
 using namespace std;
+
 
 int main() {
     // Ставим русский язык в консоль
@@ -62,44 +67,10 @@ int main() {
     Magic* fireball = new Magic("Огненный шар", 30, 10);
     Character player("Герой", 100, 50, 50, sword, fireball);
 
-    Wolf wolf("Волк", 80, 30, 0, nullptr, nullptr);
+    Wolf wolf("Волк", 80, 30, 0);
 
-
-
-
-    while (player.getHealth() > 0 && wolf.getHealth() > 0) {
-        cout << "Выберите действие для героя: \n";
-        cout << "1. Атаковать мечом\n";
-        cout << "2. Использовать магию\n";
-
-        int choice;
-        cin >> choice;
-
-        if (choice == 1) {
-            player.attack(wolf); // Атака мечом
-        }
-        else if (choice == 2) {
-            player.castSpell(wolf); // Использовать магию
-        }
-        else {
-            cout << "Некорректный выбор. Попробуйте еще раз." << endl;
-            continue; // Продолжить цикл, чтобы повторно запросить выбор действия
-        }
-
-        if (wolf.getHealth() <= 0) {
-            cout << "Волк побежден!" << endl;
-            break;
-        }
-
-        wolf.attack(player);
-
-        if (player.getHealth() <= 0) {
-            cout << "Герой побежден!" << endl;
-            break;
-        }
-
-        cout << "Здоровье героя: " << player.getHealth() << " | Здоровье волка: " << wolf.getHealth() << endl;
-    }
+    // Инициализация боя через статический метод initiateCombat класса CombatSystem
+    CombatSystem::initiateCombat(player, wolf);
 
     delete sword;
     delete fireball;

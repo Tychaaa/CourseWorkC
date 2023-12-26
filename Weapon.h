@@ -17,5 +17,4 @@ public:
     // Деструктор
     ~Weapon();
 
-    void use(Character& target) override;
 }; 

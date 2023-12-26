@@ -7,7 +7,12 @@ Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), exp
 
 // Конструктор с параметрами
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic)
-    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic) {}
+    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic) {
+
+    maxHealth = health;
+    maxStamina = health;
+    maxMana = health;
+}
 
 // Деструктор
 Character::~Character(){}
@@ -32,6 +37,23 @@ int Character::getMana() const
 {
     return mana;
 }
+
+// методы для доступа к максимальным значениям
+int Character::getMaxHealth() const
+{
+    return maxHealth;
+}
+
+int Character::getMaxStamina() const
+{
+    return maxStamina;
+}
+
+int Character::getMaxMana() const
+{
+    return maxMana;
+}
+
 
 int Character::getLevel() const
 {
@@ -74,6 +96,21 @@ void Character::setMana(int newMana)
     mana = newMana;
 }
 
+void Character::setMaxHealth(int value)
+{
+    maxHealth = value;
+}
+
+void Character::setMaxStamina(int value)
+{
+    maxStamina = value;
+}
+
+void Character::setMaxMana(int value)
+{
+    maxMana = value;
+}
+
 void Character::setLevel(int newLevel)
 {
     level = newLevel;
@@ -93,7 +130,6 @@ void Character::setMagic(Magic* newMagic)
 {
     magic = newMagic;
 }
-
 
 void Character::attack(Character& target) {
     if (weapon) {
@@ -119,17 +155,35 @@ void Character::castSpell(Character& target) {
 
 void Character::takeDamage(int dmg) {
     health -= dmg;
-    cout << name << " получил " << dmg << " уронa. Текущее здоровье: " << health << "\n";
+    cout << name << " получил " << dmg << " уронa.\n";
 }
 
 void Character::decreaseStamina(int cost) {
     stamina -= cost;
-    cout << "Выносливость " << name << " уменшилась на " << cost << ". Текущая выносливость: " << stamina << "\n";
+    //cout << "Выносливость " << name << " уменшилась на " << cost << ".\n";
 }
 
 void Character::decreaseMana(int cost) {
     mana -= cost;
-    cout << "Мана " << name << " уменшилась на " << cost << ". Текущая мана: " << mana << "\n";
+    //cout << "Мана " << name << " уменшилась на " << cost << ".\n";
+}
+
+void Character::regenerateStamina() {
+    if (stamina < maxStamina) {
+        stamina += 10;
+        if (stamina > maxStamina) {
+            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
+        }
+    }
+}
+
+void Character::regenerateMana() {
+    if (mana < maxMana) {
+        mana += 10;
+        if (mana > maxMana) {
+            mana = maxMana; // Устанавливаем значение маны в максимум, если превысили
+        }
+    }
 }
 
 void Character::levelUp() {

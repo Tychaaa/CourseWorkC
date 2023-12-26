@@ -15,6 +15,9 @@ protected:
     int health;
     int stamina;
     int mana;
+    int maxHealth;
+    int maxStamina;
+    int maxMana;
     int level;
     int experience;
     Weapon* weapon; // ”казатель на оружие персонажа
@@ -31,6 +34,9 @@ public:
     string getName() const;
     int getHealth() const;
     int getMana() const;
+    int getMaxHealth() const;
+    int getMaxStamina() const;
+    int getMaxMana() const;
     int getLevel() const;
     int getExperience() const;
     int getStamina() const;
@@ -41,6 +47,9 @@ public:
     void setName(string newName);
     void setHealth(int newHealth);
     void setMana(int newMana);
+    void setMaxHealth(int value);
+    void setMaxStamina(int value);
+    void setMaxMana(int value);
     void setLevel(int newLevel);
     void setExperience(int newExp);
     void setStamina(int newStamina);
@@ -52,5 +61,7 @@ public:
     void takeDamage(int damage);
     void decreaseStamina(int cost);
     void decreaseMana(int cost);
+    virtual void regenerateStamina();
+    virtual void regenerateMana();
     void levelUp();
 };

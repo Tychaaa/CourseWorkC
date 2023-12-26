@@ -22,9 +22,9 @@ int main() {
 
     mainMenu();
 
-    Character mainCharacter;
+    Character mainCharacter = createMainCharacter();
 
-    introduction(mainCharacter);
+    //introduction(mainCharacter);
 
     return 0;
 }

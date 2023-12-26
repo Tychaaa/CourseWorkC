@@ -99,10 +99,9 @@ void mainMenu()
 {
     int choice;
 
+    gameTitleSlow();
+
     do {
-
-        gameTitleSlow();
-
         cout << "Главное меню:\n" << endl;
         this_thread::sleep_for(chrono::milliseconds(100));
         cout << "1. Начать игру" << endl;
@@ -114,10 +113,14 @@ void mainMenu()
         cout << "\nВыберите опцию: ";
         cin >> choice;
 
+        if (cin.fail()) {
+            cin.clear(); // Сбрасываем флаг ошибки
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Очищаем буфер ввода
+        }
+
         switch (choice) {
         case 1:
             // Начать игру
-            //prodTitle();
             gameTitle();
             this_thread::sleep_for(chrono::milliseconds(1000));
             break;
@@ -142,16 +145,19 @@ void mainMenu()
 
             cout << "\nЧтобы продолжить нажмите любую кнопку" << endl;
             _getch();
+
+            gameTitleSlow();
             break;
         case 3:
             // Выйти из игры
-            cout << "\nДо свидания! Спасибо за игру.\n";
+            cout << "\nРассказчик: \"Ты уверен, что хочешь покинуть этот захватывающий мир? Буду ждать твоего возвращения!\"\n";
             exit(0);  // Завершить программу
             break;
         default:
-            cout << "\nНеверный выбор. Пожалуйста, выберите существующий вариант.\n";
-            cout << "\nЧтобы продолжить нажмите любую кнопку" << endl;
-            _getch();
+            cout << "\nРассказчик: \"- Ты что-то путаешь, мой дорогой. Выбирай внимательнее.\"" << endl;
+            this_thread::sleep_for(chrono::milliseconds(2000));
+            system("cls");
+            gameTitle();
             break;
         }
     } while (choice != 1);  // Цикл продолжается, пока пользователь не выберет "Начать игру"
@@ -240,22 +246,22 @@ pair<Weapon*, Magic*> createEquipment(string& className)
     Magic* defaultMagic = new Magic("Простое заклинание", 15, 5);  // Магия по умолчанию
 
     if (className == "Воин") {
-        return make_pair(new Weapon("Меч Воина", 20, 5), new Magic("Силовой удар", 10, 15));
+        return make_pair(new Weapon("Меч Воина", 20, 8), new Magic("Силовой удар", 12, 20));
     }
     else if (className == "Маг") {
-        return make_pair(new Weapon("Посох Мага", 15, 8), new Magic("Огненный шар", 25, 10));
+        return make_pair(new Weapon("Посох Мага", 15, 5), new Magic("Огненная вспышка", 25, 10));
     }
     else if (className == "Вор") {
-        return make_pair(new Weapon("Кинжал Вора", 18, 6), new Magic("Тень", 12, 18));
+        return make_pair(new Weapon("Кинжал Вора", 18, 6), new Magic("Теневой удар", 15, 15));
     }
     else if (className == "Бродяга") {
-        return make_pair(new Weapon("Старый Кастет", 15, 3), new Magic("Ловкость", 8, 20));
+        return make_pair(new Weapon("Старый Кастет", 15, 3), new Magic("Меткая атака", 10, 18));
     }
     else if (className == "Жрец") {
         return make_pair(new Weapon("Святой Жезл", 17, 7), new Magic("Исцеление", 20, 12));
     }
     else if (className == "Рыцарь") {
-        return make_pair(new Weapon("Меч Рыцаря", 22, 4), new Magic("Защитный барьер", 15, 15));
+        return make_pair(new Weapon("Меч Рыцаря", 22, 10), new Magic("Благословение щита", 10, 20));
     }
     else {
         // По умолчанию возвращаем стандартное оружие и магию
@@ -304,7 +310,7 @@ Character createMainCharacter()
 
     // Проверка корректности ввода
     while (choice < 1 || choice > classes.size()) {
-        cout << "Некорректный выбор. Пожалуйста, выберите снова: ";
+        cout << "\nРассказчик: \"- Ты что-то путаешь, мой дорогой. Попробуй выбрать снова: \"";
         cin >> choice;
     }
 
@@ -324,34 +330,34 @@ Character createMainCharacter()
     mainCharacter.setMagic(equipment.second);
 
     if (className == "Воин") {
-        mainCharacter.setHealth(120);
-        mainCharacter.setStamina(60);
-        mainCharacter.setMana(40);
+        mainCharacter.setHealth(110);
+        mainCharacter.setStamina(120);
+        mainCharacter.setMana(80);
     }
     else if (className == "Маг") {
         mainCharacter.setHealth(80);
-        mainCharacter.setStamina(40);
-        mainCharacter.setMana(80);
+        mainCharacter.setStamina(80);
+        mainCharacter.setMana(150);
     }
     else if (className == "Вор") {
-        mainCharacter.setHealth(100);
-        mainCharacter.setStamina(80);
-        mainCharacter.setMana(30);
+        mainCharacter.setHealth(90);
+        mainCharacter.setStamina(90);
+        mainCharacter.setMana(110);
     }
     else if (className == "Бродяга") {
-        mainCharacter.setHealth(90);
-        mainCharacter.setStamina(70);
-        mainCharacter.setMana(40);
+        mainCharacter.setHealth(110);
+        mainCharacter.setStamina(110);
+        mainCharacter.setMana(110);
     }
     else if (className == "Жрец") {
-        mainCharacter.setHealth(100);
-        mainCharacter.setStamina(50);
-        mainCharacter.setMana(70);
+        mainCharacter.setHealth(110);
+        mainCharacter.setStamina(90);
+        mainCharacter.setMana(110);
     }
     else if (className == "Рыцарь") {
-        mainCharacter.setHealth(110);
-        mainCharacter.setStamina(70);
-        mainCharacter.setMana(50);
+        mainCharacter.setHealth(140);
+        mainCharacter.setStamina(100);
+        mainCharacter.setMana(100);
     }
 
     // Выводим информацию о герое

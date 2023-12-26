@@ -1,5 +1,6 @@
 #pragma once
 #define ESCAPE 27
+#define NOMINMAX
 
 #include <iostream>
 #include <Windows.h>
@@ -10,6 +11,7 @@
 #include <string>
 #include <chrono>
 #include <thread>
+#include <iomanip>
 
 #include "Character.h"
 #include "Weapon.h"

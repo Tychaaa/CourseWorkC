@@ -128,17 +128,17 @@ void CombatSystem::applyStatusEffects(Character& character, Character& enemy)
 // Вывод информации о персонажах на экран
 void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)
 {
-    std::cout << "+----------------------+----------------------+" << std::endl;
+    std::cout << "+------------------------+------------------------+" << std::endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Информация о Герое:  | Информация о Враге:  |" << std::endl;
+    std::cout << "| Информация о Герое:    | Информация о Враге:    |" << std::endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "+----------------------+----------------------+" << std::endl;
+    std::cout << "+------------------------+------------------------+" << std::endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Здоровье: " << std::setw(11) << player.getHealth() << "| Здоровье: " << std::setw(11) << enemy.getHealth() << "|" << std::endl;
+    std::cout << "| Здоровье: " << std::setw(13) << player.getHealth() << "| Здоровье: " << std::setw(13) << enemy.getHealth() << "|" << std::endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Выносливость: " << std::setw(7) << player.getStamina() << "| Выносливость: " << std::setw(7) << enemy.getStamina() << "|" << std::endl;
+    std::cout << "| Выносливость: " << std::setw(4) << player.getStamina() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Выносливость: " << std::setw(4) << enemy.getStamina() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << std::endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Мана: " << std::setw(15) << player.getMana() << "| Мана: " << std::setw(15) << enemy.getMana() << "|" << std::endl;
+    std::cout << "| Мана: " << std::setw(12) << player.getMana() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Мана: " << std::setw(12) << enemy.getMana() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << std::endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "+----------------------+----------------------+" << std::endl;
+    std::cout << "+------------------------+------------------------+" << std::endl;
 }

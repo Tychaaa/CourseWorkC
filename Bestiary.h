@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include <chrono>
+#include <thread>
 
 #include "Character.h"
 

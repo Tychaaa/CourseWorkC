@@ -3,7 +3,11 @@
 #include "Magic.h"
 
 //  онструктор
-Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0), classType("") {}
+Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0), classType("") {
+    maxHealth = 0;
+    maxStamina = 0;
+    maxMana = 0;
+}
 
 //  онструктор с параметрами
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
@@ -120,9 +124,12 @@ void Character::setLevel(int newLevel)
     level = newLevel;
 }
 
-void Character::setExperience(int newExp)
-{
-    experience = newExp;
+void Character::setExperience(int newExp) {
+    experience += newExp;
+    while (experience >= 100) {
+        levelUp();
+        experience -= 100; // ”меньшаем опыт на 100 после повышени€ уровн€
+    }
 }
 
 void Character::setClassType(string newClass)
@@ -179,7 +186,7 @@ void Character::decreaseMana(int cost) {
 
 void Character::regenerateStamina() {
     if (stamina < maxStamina) {
-        stamina += 10;
+        stamina += 10 + 5 * level;
         if (stamina > maxStamina) {
             stamina = maxStamina; // ”станавливаем значение стамины в максимум, если превысили
         }
@@ -188,7 +195,7 @@ void Character::regenerateStamina() {
 
 void Character::regenerateMana() {
     if (mana < maxMana) {
-        mana += 10;
+        mana += 10 + 5 * level;
         if (mana > maxMana) {
             mana = maxMana; // ”станавливаем значение маны в максимум, если превысили
         }
@@ -199,10 +206,12 @@ void Character::levelUp() {
     level++; // ”величиваем уровень на один
 
     // ”величиваем здоровье, выносливость, ману и т.д. на определенное количество при достижении нового уровн€
-    // «десь приведен лишь пример - нужно подобрать подход€щие значени€ дл€ вашей игры
-    health += 10;
-    stamina += 5;
-    mana += 8;
+    maxHealth += 10;
+    maxStamina += 5;
+    maxMana += 8;
+    health = maxHealth;
+    stamina = maxStamina;
+    mana = maxMana;
 
     // ¬ыводим сообщение о повышении уровн€ персонажа
     cout << "”ровень геро€ " << name << " повышен до " << level << "!\n";

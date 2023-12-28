@@ -4,7 +4,9 @@ Wolf::Wolf() : Character() {
 }
 
 Wolf::Wolf(string name, int health, int stamina, int mana)
-    : Character(name, health, stamina, mana, nullptr, nullptr, "") {}
+    : Character(name, health, stamina, mana, nullptr, nullptr, "") {
+    experience = 25;
+}
 
 Wolf::~Wolf() {
 }
@@ -23,7 +25,7 @@ void Wolf::bite(Character& target) {
     int staminaCost = 15; // Стоимость выносливости для укуса
 
     if (getStamina() >= staminaCost) {
-        int damage = 15; // Задаем урон удара когтями
+        int damage = 30; // Задаем урон удара когтями
         cout << this->getName() << " с силой кусает " << target.getName() << endl;
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -55,11 +57,14 @@ void Wolf::attack(Character& target) {
 
     int choice = dist(gen); // Генерируем случайное число от 1 до 4
 
-    if (choice <= 25) {
+    if (choice <= 30) {
         this->clawAttack(target);
     }
-    else {
+    else if (choice > 30 && choice <= 90) {
         this->bite(target);
+    }
+    else {
+        cout << this->getName() << " промахивается и не попадает по " << target.getName() << "!\n";
     }
 }
 
@@ -68,7 +73,9 @@ Ogre::Ogre() : Character() {
 }
 
 Ogre::Ogre(string name, int health, int stamina, int mana, Weapon* weapon)
-    : Character(name, health, stamina, mana, weapon, nullptr, "") {}
+    : Character(name, health, stamina, mana, weapon, nullptr, "") {
+    experience = 35;
+}
 
 Ogre::~Ogre() {
 }
@@ -139,8 +146,11 @@ void Ogre::attack(Character& target) {
     else if (choice > 40 && choice <= 80) {
         this->groundPound(target);
     }
-    else {
+    else if (choice > 80 && choice <= 90) {
         this->smash(target);
+    }
+    else {
+        cout << this->getName() << " промахивается и не попадает по " << target.getName() << "!\n";
     }
     
 }

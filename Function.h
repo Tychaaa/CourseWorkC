@@ -40,6 +40,9 @@ void introduction(Character& character);
 // Глава "Пролог"
 void prologue(Character& character);
 
+// Обучение бою
+void combatTraining(Character& character);
+
 // Функция для создания оружия и магии в зависимости от класса
 pair<Weapon*, Magic*> createEquipment(string& className);
 
@@ -47,4 +50,4 @@ pair<Weapon*, Magic*> createEquipment(string& className);
 Character createMainCharacter();
 
 // Заполнить г.Эмердейл неигровыми персонажами
-void createEmerdealNPC(Location emerdeal);
+void createEmerdealNPC(Location emerdeal, Character character);

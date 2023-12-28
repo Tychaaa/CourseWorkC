@@ -30,23 +30,28 @@ int main() {
     mainMenu();
 
     // Создаем объект персонажа
-    Character mainCharacter;
+    Character mainCharacter = createMainCharacter();
 
-    // Глава "Вступление"
-    introduction(mainCharacter);
+    //// Глава "Вступление"
+    //introduction(mainCharacter);
 
-    // Глава "Пролог"
-    prologue(mainCharacter);
+    //// Глава "Пролог"
+    //prologue(mainCharacter);
 
-    // Создаем начальную локацию
-    Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
+    //// Создаем начальную локацию
+    //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
-    // Заполняем локацию персонажами
-    createEmerdealNPC(emerdealLocation);
+    //// Заполняем локацию персонажами
+    //createEmerdealNPC(emerdealLocation, mainCharacter);
 
-    gameTitle();
+    //// Очищаем консоль
+    //gameTitle();
 
-    emerdealLocation.onEnter();
+    //// Входим в стартовую локацию
+    //emerdealLocation.onEnter();
+
+    // Запуск обучающего боя
+    combatTraining(mainCharacter);
 
     return 0;
 }

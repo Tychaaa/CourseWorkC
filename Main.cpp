@@ -32,6 +32,23 @@ int main() {
     //introduction(mainCharacter);
 
 
+        // Создание оружия и магии
+    Weapon sword("Меч", 20, 15);
+    Magic fireball("Огненный шар", 30, 25);
+
+        // Создание персонажей
+    Character player("shichi", 100, 100, 50, &sword, &fireball, "Воин");
+    Wolf enemy("Волк", 80, 80, 30);
+
+    // Создание экземпляра системы боя
+    CombatSystem combatSystem;
+
+    // Инициализация боя
+    combatSystem.initiateCombat(player, enemy);
+
+    return 0;
+
+
 
 
 

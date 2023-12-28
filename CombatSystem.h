@@ -10,11 +10,19 @@
 
 class CombatSystem
 {
+private:
+
+    int prevMaxPlayerHealth;
+    int prevMaxPlayerStamina;
+    int prevMaxPlayerMana;
+
 public:
-    static void initiateCombat(Character& player, Character& enemy);
-    static void playerTurn(Character& player, Character& enemy);
-    static void enemyTurn(Character& enemy, Character& player);
-    static bool checkVictory(Character& player, Character& enemy);
-    static void applyStatusEffects(Character& character, Character& enemy);
-    static void displayCharacterInfo(Character& player, Character& enemy);
+
+    void startGame(Character& player, Character& enemy);
+    void initiateCombat(Character& player, Character& enemy);
+    void playerTurn(Character& player, Character& enemy);
+    void enemyTurn(Character& enemy, Character& player);
+    bool checkVictory(Character& player, Character& enemy);
+    void applyStatusEffects(Character& character, Character& enemy);
+    void displayCharacterInfo(Character& player, Character& enemy);
 };

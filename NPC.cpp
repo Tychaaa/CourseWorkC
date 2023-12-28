@@ -3,7 +3,7 @@
 // Конструктор
 NPC::NPC() : InteractiveObject() {}
 
-// Конструктор с параметрами
+// Конструктор с параметрами 1
 NPC::NPC(const string& n, const string& desc) : InteractiveObject(n, desc) 
 {
     // Инициализация фраз NPC
@@ -19,21 +19,32 @@ NPC::NPC(const string& n, const string& desc) : InteractiveObject(n, desc)
     talkPhrases.push_back("Будь готов ко всему.");
 }
 
+// Конструктор с параметрами 2
+NPC::NPC(const string& n, const string& desc, vector<string> phrases) : InteractiveObject(n, desc)
+{
+    // Инициализация фраз NPC
+    talkPhrases = move(phrases);
+}
+
 // Деструктор
 NPC::~NPC() {}
 
 // Функция для взаимодействия с не игровым персонажем
 void NPC::interact()
 {
-    // Выбираем случайную фразу из набора, исключая приветствие, если есть другие фразы
+    // Выводим фразы по порядку
     if (!talkPhrases.empty()) {
-        int randomIndex = rand() % talkPhrases.size();
-        Screen::displayText("\n" + getName() + " говорит: " + talkPhrases[randomIndex]);
+        cout << "\n" << getName() << ":";
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayCharacterByCharacter(talkPhrases.front() + "\n");
+
         // Удаляем использованную фразу
-        talkPhrases.erase(talkPhrases.begin() + randomIndex);
+        talkPhrases.erase(talkPhrases.begin());
     }
     else {
-        Screen::displayText("\n" + getName() + " говорит: Иди своей дорогой, путник!");
+        cout << "\n" << getName() << ":";
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayCharacterByCharacter("- Иди своей дорогой, путник!\n");
     }
 }
 

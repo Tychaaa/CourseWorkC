@@ -25,8 +25,10 @@ public:
 
     // Конструктор
     NPC();
-    // Конструктор с параметрами
+    // Конструктор с параметрами 1
     NPC(const string& n, const string& desc);
+    // Конструктор с параметрами 2
+    NPC(const string& n, const string& desc, vector<string> phrases);
     // Деструктор
     ~NPC();
 

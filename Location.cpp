@@ -15,18 +15,23 @@ Location::~Location() {}
 // Метод, вызываемый при входе в локацию
 void Location::onEnter()
 {
-    Screen::displayText("\nВы находитесь в " + name + ".\n" + description);
+    Screen::displayCharacterByCharacter("\nВы находитесь в " + name + ".\n" + description + "\n");
+    //Screen::displayText("\nВы находитесь в " + name + ".\n" + description);
+    this_thread::sleep_for(chrono::milliseconds(1000));
 
     while (true) {
         // Выводим информацию о доступных объектах
         Screen::displayText("\n\t~~Доступные объекты для взаимодействия~~\n");
+        this_thread::sleep_for(chrono::milliseconds(500));
 
         for (size_t i = 0; i < objects.size(); ++i) {
             Screen::displayText(to_string(i + 1) + ". " + objects[i]->getName());
+            this_thread::sleep_for(chrono::milliseconds(300));
         }
 
         // Вариант "закончить взаимодействие"
         Screen::displayText("0. Закончить взаимодействие");
+        this_thread::sleep_for(chrono::milliseconds(700));
 
         cout << "\nВаш выбор: ";
 
@@ -44,10 +49,13 @@ void Location::onEnter()
         if (selectedObjectIndex >= 0 && selectedObjectIndex < static_cast<int>(objects.size())) {
             // Выводим варианты действий для выбранного объекта
             vector<Action> objectActions = objects[selectedObjectIndex]->getAvailableActions();
+            this_thread::sleep_for(chrono::milliseconds(300));
             Screen::displayText("\n\t~~\"" + objects[selectedObjectIndex]->getName() + "\"~~\n");
+            this_thread::sleep_for(chrono::milliseconds(100));
 
             for (size_t i = 0; i < objectActions.size(); ++i) {
                 Screen::displayText(to_string(i + 1) + ". " + objectActions[i].getDescription());
+                this_thread::sleep_for(chrono::milliseconds(500));
             }
 
             cout << "\nВаш выбор: ";

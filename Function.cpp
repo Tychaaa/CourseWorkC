@@ -191,53 +191,62 @@ void introduction(Character& character)
     cout << "\n\n" << endl;
 
     // Рассказ о мире
-    cout << "\nДобро пожаловать в увлекательный мир приключений!" << endl;
+    Screen::displayText("\nДобро пожаловать в увлекательный мир приключений!");
     this_thread::sleep_for(chrono::milliseconds(1000));
 
-    cout << "\nДавным-давно, в таинственном мире, где свет и тьма танцуют вечный вальс, началось ваше приключение." << endl;
+    Screen::displayText("\nДавным-давно, в таинственном мире, где свет и тьма танцуют вечный вальс, началось ваше приключение.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nЗдесь, среди древних руин и неисследованных земель, каждый шаг может привести к открытию тайны или смертельной опасности." << endl;
+    Screen::displayText("\nЗдесь, среди древних руин и неисследованных земель, каждый шаг может привести к открытию тайны или смертельной опасности.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nТемный лес, городские переулки — перед вами открыты неисследованные земли." << endl;
+    Screen::displayText("\nТемный лес, городские переулки — перед вами открыты неисследованные земли.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nЭтот мир слышит своих героев, истории которых еще не написаны." << endl;
+    Screen::displayText("\nЭтот мир слышит своих героев, истории которых еще не написаны.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nИ вот вы просыпаетесь, ощущая, что ваше призвание велико, и что вас ждут невероятные испытания." << endl;
+    Screen::displayText("\nИ вот вы просыпаетесь, ощущая, что ваше призвание велико, и что вас ждут невероятные испытания.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nГолос раздаётся в вашей голове!" << endl;
+    Screen::displayText("\nГолос раздаётся в вашей голове!");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nРассказчик: \"- Привет, путник! Ты проснулся в мире, где каждое решение, каждый поступок,\nможет повлиять на судьбу всего мира. Я - твой проводник в этом удивительном приключении.\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(2500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Привет, путник! Ты проснулся в мире, где каждое решение, каждый поступок,\nможет повлиять на судьбу всего мира. Я - твой проводник в этом удивительном приключении.\"\n");
 
-    cout << "\n\"- Кто ты? Где я?\" - спрашиваете вы, смутно осознавая себя в этом загадочном мире." << endl;
+    Screen::displayCharacterByCharacter("\n\"- Кто ты? Где я?\"");
+    this_thread::sleep_for(chrono::milliseconds(1000));
+
+    Screen::displayText(" - спрашиваете вы, смутно осознавая себя в этом загадочном мире.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nРассказчик: \"- Меня зовут Элдрик, рассказчик этого мира. Это Страна Семи Клинков.\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Меня зовут Элдрик, рассказчик этого мира. Это Страна Семи Клинков.\"\n");
 
-    cout << "\nРассказчик: \"- А ты — тот, кто изменит ход истории. Твое имя пока забыто, но оно станет легендой.\nТы вольный герой, и твой выбор определит судьбу этого мира.\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(2500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- А ты — тот, кто изменит ход истории. Твое имя пока забыто, но оно станет легендой.\nТы вольный герой, и твой выбор определит судьбу этого мира.\"\n");
 
     // Задержка и создание главного героя
-    cout << "\nРассказчик: \"- Секундочку, у меня есть несколько вопросов... Отвечай на вопросы внимательно, они определят твою судьбу.\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(2000));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Секундочку, у меня есть несколько вопросов... Отвечай на вопросы внимательно, они определят твою судьбу.\"\n");
 
     character = createMainCharacter();
 
-    cout << "\nРассказчик: \"- Впереди вас ждет долгий путь. На востоке расположен прекрасный город Староград. Туда и направляйтесь.\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(2000));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Впереди вас ждет долгий путь. На востоке расположен прекрасный город Эмердейл. Туда и направляйтесь.\"\n");
 
-    cout << "\nРассказчик: \"- Удачи, " << character.getName() << "!\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Удачи, " + character.getName() + "!\"\n");
 
     // Ожидаем нажатия клавиши перед продолжением
-    cout << "\nНажмите Enter, чтобы продолжить...";
+    Screen::displayText("\nНажмите Enter, чтобы продолжить...");
     cin.ignore();
     cin.get();
 }
@@ -248,14 +257,107 @@ void prologue(Character& character)
     gameTitle();
 
     // Переход от разговора с рассказчиком к началу путешествия
-    cout << "\nРассветное утро озаряет страну, когда вы решаете следовать по указанию рассказчика." << endl;
+    Screen::displayText("\nРассветное утро озаряет страну, когда вы решаете следовать по указанию рассказчика.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nВы отправляетесь в путь... Впереди виднеется повозка, стоящая на обочине дороги." << endl;
+    Screen::displayText("\nВы отправляетесь в путь... Впереди виднеется повозка, стоящая на обочине дороги.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nНа повозке сидит старый мужчина, собирающийся вот-вот отправиться в путь." << endl;
+    Screen::displayText("\nНа повозке сидит старый мужчина, собирающийся вот-вот отправиться в путь.");
     this_thread::sleep_for(chrono::milliseconds(1500));
+
+    cout << "\nСтарик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Дорогой путник, судя по всему, наши пути совпадают. Желаете ли вы составить мне компанию в пути?\"\n");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    Screen::displayText("\n1. \"- Да, я присоединюсь. Безопаснее двигаться вдвоем.\"");
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayText("2. \"- Благодарю за предложение, но я предпочту идти в одиночестве.\"");
+    this_thread::sleep_for(chrono::milliseconds(500));
+
+    cout << "\nВаш ответ: ";
+
+    int choice;
+    cin >> choice;
+
+    switch (choice)
+    {
+    case 1:
+        cout << "\nСтарик: ";
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayCharacterByCharacter("\"- Отлично! Присаживайтесь, в путь!\"\n");
+        this_thread::sleep_for(chrono::milliseconds(1500));
+
+        Screen::displayText("\nВы садитесь на повозку и начинаете беседовать с попутчиком.");
+
+        cout << "\nСтарик: ";
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayCharacterByCharacter("\"- Куда направляемся?\"\n");
+        this_thread::sleep_for(chrono::milliseconds(1500));
+
+        Screen::displayText("\n1. \"- В город Эмердейл, там меня ждут дела.\"");
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayText("2. \"- Просто иду, куда дорога занесет.\"");
+        this_thread::sleep_for(chrono::milliseconds(500));
+
+        cout << "\nВаш ответ: ";
+
+        int destinationChoice;
+        cin >> destinationChoice;
+
+        switch (destinationChoice)
+        {
+        case 1:
+            cout << "\nСтарик: ";
+            this_thread::sleep_for(chrono::milliseconds(500));
+            Screen::displayCharacterByCharacter("\"- Отличный выбор! Эмердейл - великолепный город. Давайте вместе отправимся туда.\"\n");
+            this_thread::sleep_for(chrono::milliseconds(1500));
+            break;
+        case 2:
+            cout << "\nСтарик: ";
+            this_thread::sleep_for(chrono::milliseconds(500));
+            Screen::displayCharacterByCharacter("\"- Дорога часто приносит сюрпризы. Давайте в путь! Я отправляюсь в Эмердейл.\"\n");
+            this_thread::sleep_for(chrono::milliseconds(1500));
+            break;
+        default:
+            break;
+        }
+
+        Screen::displayText("\nВаше путешествие начинается. Всю поездку вы общаетесь со стариком, и дорога пролетает незаметно.");
+        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayText("\nВы приобрели немного опыта.");
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        Screen::displayText("\n(Добавлено +20 опыта)");
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        Screen::displayText("\n");
+
+        // Увеличение опыта персонажа
+        character.setExperience(character.getExperience() + 20);
+        break;
+
+    case 2:
+        cout << "\nСтарик: ";
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayCharacterByCharacter("\"- Понимаю, каждый выбирает свой путь. Надеюсь, встретимся вновь.\"\n");
+        this_thread::sleep_for(chrono::milliseconds(1500));
+
+        Screen::displayText("\nСтарик махнул вам на прощание, и вы отправились в путь одни.");
+        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayText("\nВы решили идти пешком, укрепляя свою выносливость и получая дополнительный опыт.");
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        Screen::displayText("\n(Добавлено +50 опыта. Потеряно -20 выносливости)");
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        Screen::displayText("\n");
+
+        // Увеличение опыта и уменьшение выносливости персонажа
+        character.setExperience(character.getExperience() + 50);
+        character.setStamina(character.getStamina() - 20);
+        break;
+
+    default:
+        break;
+    }
 }
 
 // Функция для создания оружия и магии в зависимости от класса
@@ -292,15 +394,20 @@ pair<Weapon*, Magic*> createEquipment(string& className)
 Character createMainCharacter()
 {
     // Вводим имя героя
-    cout << "\nРассказчик: \"- Помнишь ли ты свое имя?\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Помнишь ли ты свое имя?\"\n");
 
-    cout << "\nГерой: - Меня зовут ";
+    cout << "\nГерой: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("- Меня зовут ");
+
     string name;
     cin >> name;
 
-    cout << "\nРассказчик: \"- Твое имя звучит великолепно, " << name << ". Но чего-то не хватает....\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Твое имя звучит великолепно, " + name + ". Но чего-то не хватает....\"\n");
 
     // Вектор прилагательных для имени
     vector<string> adjectives = { "Драконорожденный", "Громовержец", "Сияющий", "Неустрашимый", "Магистр", "Повелитель огня", "Стальной", "Теневладыка", "Сокрушитель", "Бесстрашный" };
@@ -313,12 +420,15 @@ Character createMainCharacter()
     // Добавляем прилагательное к имени героя
     name = name + " " + randomAdjective;
 
-    cout << "\nРассказчик: \" - Как насчёт - " << name << "?\"" << endl;
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\" - Как насчёт - " + name + "?\"\n");
 
     // Выбираем класс
     vector<string> classes = { "Воин", "Маг", "Вор", "Бродяга", "Жрец", "Рыцарь" };
-    cout << "\nРассказчик: \"- Теперь скажи мне, в чём твоё призвание?\"\n" << endl;
+    cout << "\nРассказчик: ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayCharacterByCharacter("\"- Теперь скажи мне, в чём твоё призвание?\"\n\n");
     
     // Выводим таблицу с характеристиками классов
     cout << "+----+---------------+---------------+---------------+---------------+----------------------------------------+--------------------------------------------------+" << endl;
@@ -383,7 +493,9 @@ Character createMainCharacter()
 
     // Проверка корректности ввода
     while (choice < 1 || choice > classes.size()) {
-        cout << "\nРассказчик: \"- Ты что-то путаешь, мой дорогой. Попробуй выбрать снова: \"";
+        cout << "\nРассказчик: ";
+        this_thread::sleep_for(chrono::milliseconds(500));
+        Screen::displayCharacterByCharacter("\"- Ты что-то путаешь, мой дорогой. Попробуй выбрать снова: \"");
         cin >> choice;
     }
 
@@ -454,4 +566,56 @@ Character createMainCharacter()
     this_thread::sleep_for(chrono::milliseconds(100));
 
     return mainCharacter;
+}
+
+// Заполнить г.Эмердейл неигровыми персонажами
+void createEmerdealNPC(Location emerdeal)
+{
+    // Трактирщик
+    vector<string> innkeeperPhrases = {
+        "\"- Добро пожаловать в 'Золотую Лиру', путник! Что привело вас сегодня в наш прекрасный трактир?\"",
+        "\"- Если вы хотите узнать больше о нашем городе, поговорите с Воеводой Стелсвином. Он знает много интересного.\"",
+        "\"- Здесь всегда рады новым гостям. В 'Золотой Лире' вы найдете не только отличные напитки, но и приятное общество.\"",
+        "\"- Расскажите мне о своих приключениях, и я расскажу вам старинные легенды этого места.\"",
+        "\"- Необычайные события происходят вокруг. Будьте готовы к встречам, которые могут изменить вашу судьбу.\""
+    };
+    NPC innkeeper(
+        "Трактирщик Гастин",
+        "Хозяин таверны 'Золотая Лира'. Гастин - приветливый хозяин, умеющий рассказывать интересные истории.\n"
+        "В его таверне всегда теплая атмосфера и отличный выбор напитков. Здесь можно встретить путешественников и местных жителей.",
+        innkeeperPhrases
+    );
+    emerdeal.addInteractiveObject(&innkeeper);
+
+    // Воевода
+    vector<string> wardenPhrases = {
+        "\"- Добро пожаловать в Эмердейл, странник. Я - Капитан Стелсвин, воевода города. Если у вас есть вопросы,\nобращайся ко мне, я готов помочь. Наш город всегда открыт для новых героев.\"",
+        "\"- Когда вы закончите свои дела в городе, не забудьте вернуться ко мне. Может быть, у меня будет для вас задание.\"",
+        "\"- В Эмердейле каждый герой находит свой путь. Мы гордимся своими жителями и всегда готовы приветствовать новых обитателей.\"",
+        "\"- За городом много опасностей, но и много возможностей. Исследуйте мир, и, может быть, вы станете частью наших легенд.\"",
+        "\"- Наш город богат не только историей, но и торговлей. Посетите рынок, чтобы найти необходимые вам вещи.\""
+    };
+    NPC warden(
+        "Капитан Стелсвин",
+        "Воевода Эмердейла. Капитан Стелсвин - опытный лидер, посвятивщий свою жизнь защите города.\n"
+        "Его решительность и мудрость сделали его уважаемым лидером, который присматривает за безопасностью города.",
+        wardenPhrases
+    );
+    emerdeal.addInteractiveObject(&warden);
+
+    // Еще один житель города
+    vector<string> citizenPhrases = {
+        "\"- Приветствую вас, путник! Если у вас есть вопросы или нужна информация, обращайтесь. В Эмердейле всегда рады новым знакомствам.\"",
+        "\"- Здесь так много интересных мест. Если вы решите исследовать город, обратите внимание на нашу ткацкую мастерскую. Там создают удивительные вещи.\"",
+        "\"- Недавно в лесу возле города появилась странная пещера. Говорят, что внутри она полна загадок и сокровищ. Может быть, вам стоит проверить?\"",
+        "\"- Если вы заблудитесь в городе, обратитесь к стражам. Они всегда готовы помочь и указать верное направление.\"",
+        "\"- В Эмердейле много тайн. Если у вас есть смелость и жажда приключений, вам точно не будет скучно.\""
+    };
+    NPC citizen(
+        "Эльза Белль",
+        "Местная жительница. Эльза - добрая и отзывчивая женщина.\n"
+        "Она знает много интересных историй о городе и его жителях.",
+        citizenPhrases
+    );
+    emerdeal.addInteractiveObject(&citizen);
 }

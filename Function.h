@@ -14,8 +14,11 @@
 #include <iomanip>
 
 #include "Character.h"
+#include "Location.h"
+#include "NPC.h"
 #include "Weapon.h"
 #include "Magic.h"
+#include "Screen.h"
 
 using namespace std;
 
@@ -42,3 +45,6 @@ pair<Weapon*, Magic*> createEquipment(string& className);
 
 // Функция для создания главного героя
 Character createMainCharacter();
+
+// Заполнить г.Эмердейл неигровыми персонажами
+void createEmerdealNPC(Location emerdeal);

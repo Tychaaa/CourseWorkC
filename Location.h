@@ -2,6 +2,8 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <chrono>
+#include <thread>
 
 #include "InteractiveObject.h"
 #include "Screen.h"
@@ -31,9 +33,6 @@ public:
 
     // Метод, вызываемый при входе в локацию
     void onEnter();
-
-    // Обработка ввода от пользователя
-    void handleUserInput(char userInput);
 
     // Новый метод для добавления интерактивных объектов
     void addInteractiveObject(InteractiveObject* object);

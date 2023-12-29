@@ -9,9 +9,11 @@
 #include <utility>  // Для использования std::pair
 #include <vector>
 #include <string>
+#include <limits>
 #include <chrono>
 #include <thread>
 #include <iomanip>
+#include <random>
 
 #include "Character.h"
 #include "Location.h"

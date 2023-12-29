@@ -9,9 +9,17 @@ Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), exp
     maxMana = 0;
 }
 
-// Конструктор с параметрами
+// Конструктор с параметрами 1
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
     : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype) {
+    maxHealth = health;
+    maxStamina = health;
+    maxMana = health;
+}
+
+// Конструктор с параметрами 2
+Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, int exp)
+    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), experience(exp) {
     maxHealth = health;
     maxStamina = health;
     maxMana = health;
@@ -147,31 +155,38 @@ void Character::setMagic(Magic* newMagic)
     magic = newMagic;
 }
 
-void Character::attack(Character& target) {
-    if (weapon) {
-        cout << name << " атакует " << target.name << ", используя " << weapon->getName() << ".\n";
+void Character::attack(Character& target) 
+{
+    if (weapon) 
+    {
+        Screen::displayCharacterByCharacter(name + " атакует " + target.getName() + ", используя " + weapon->getName() + ".\n");
         target.takeDamage(weapon->getDamage());
         decreaseStamina(weapon->getCost());
     }
-    else {
-        cout << "У " << name << " нет оружия для атаки!\n";
+    else 
+    {
+        Screen::displayCharacterByCharacter("У " + name + " нет оружия для атаки!\n");
     }
 }
 
-void Character::castSpell(Character& target) {
-    if (magic) {
-        std::cout << name << " кастует " << magic->getName() << " на " << target.name << ".\n";
+void Character::castSpell(Character& target) 
+{
+    if (magic)
+    {
+        Screen::displayCharacterByCharacter(name + " кастует " + magic->getName() + " на " + target.name + ".\n");
         target.takeDamage(magic->getDamage());
         decreaseMana(magic->getCost());
     }
-    else {
-        cout << "У " << name << " нет магии для каста!\n";
+    else
+    {
+        Screen::displayCharacterByCharacter("У " + name + " нет магии для каста!\n");
     }
 }
 
-void Character::takeDamage(int dmg) {
+void Character::takeDamage(int dmg) 
+{
     health -= dmg;
-    cout << name << " получил " << dmg << " уронa.\n";
+    Screen::displayCharacterByCharacter(name + " получил " + to_string(dmg) + " урона.\n");
 }
 
 void Character::decreaseStamina(int cost) {

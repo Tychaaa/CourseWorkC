@@ -22,3 +22,12 @@ void Screen::displayCharacterByCharacter(const string& text)
 		this_thread::sleep_for(chrono::milliseconds(35)); // Задержка в миллисекундах
 	}
 }
+
+// Вывод прямой речи NPC
+void Screen::displayDialog(const string& name, const string& phrase)
+{
+	cout << "\n" << name << ": ";
+	this_thread::sleep_for(chrono::milliseconds(500));
+	Screen::displayCharacterByCharacter("\"- " + phrase + "\"\n");
+	this_thread::sleep_for(chrono::milliseconds(1500));
+}

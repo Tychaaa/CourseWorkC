@@ -49,5 +49,5 @@ pair<Weapon*, Magic*> createEquipment(string& className);
 // Функция для создания главного героя
 Character createMainCharacter();
 
-// Заполнить г.Эмердейл неигровыми персонажами
+// Заполнить г.Эмердейл неигровыми персонажами и посещение локации
 void createEmerdealNPC(Location emerdeal, Character character);

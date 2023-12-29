@@ -150,12 +150,11 @@ void mainMenu()
             break;
         case 3:
             // Выйти из игры
-            cout << "\nРассказчик: \"Ты уверен, что хочешь покинуть этот захватывающий мир? Буду ждать твоего возвращения!\"\n";
+            Screen::displayDialog("Рассказчик", "Ты уверен, что хочешь покинуть этот захватывающий мир? Буду ждать твоего возвращения!");
             exit(0);  // Завершить программу
             break;
         default:
-            cout << "\nРассказчик: \"- Ты что-то путаешь, мой дорогой. Выбирай внимательнее.\"" << endl;
-            this_thread::sleep_for(chrono::milliseconds(2000));
+            Screen::displayDialog("Рассказчик", "Ты что-то путаешь, мой дорогой. Выбирай внимательнее.");
             system("cls");
             gameTitle();
             break;
@@ -212,38 +211,26 @@ void introduction(Character& character)
     Screen::displayText("\nГолос раздаётся в вашей голове!");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Привет, путник! Ты проснулся в мире, где каждое решение, каждый поступок,\nможет повлиять на судьбу всего мира. Я - твой проводник в этом удивительном приключении.\"\n");
-
+    Screen::displayDialog("Рассказчик", "Привет, путник! Ты проснулся в мире, где каждое решение, каждый поступок,\nможет повлиять на судьбу всего мира. Я - твой проводник в этом удивительном приключении.");
+    
     Screen::displayCharacterByCharacter("\n\"- Кто ты? Где я?\"");
     this_thread::sleep_for(chrono::milliseconds(1000));
 
     Screen::displayText(" - спрашиваете вы, смутно осознавая себя в этом загадочном мире.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Меня зовут Элдрик, рассказчик этого мира. Это Страна Семи Клинков.\"\n");
+    Screen::displayDialog("Рассказчик", "Меня зовут Элдрик, рассказчик этого мира. Это Страна Семи Клинков.");
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- А ты — тот, кто изменит ход истории. Твое имя пока забыто, но оно станет легендой.\nТы вольный герой, и твой выбор определит судьбу этого мира.\"\n");
+    Screen::displayDialog("Рассказчик", "А ты — тот, кто изменит ход истории. Твое имя пока забыто, но оно станет легендой.\nТы вольный герой, и твой выбор определит судьбу этого мира.");
 
     // Задержка и создание главного героя
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Секундочку, у меня есть несколько вопросов... Отвечай на вопросы внимательно, они определят твою судьбу.\"\n");
+    Screen::displayDialog("Рассказчик", "Секундочку, у меня есть несколько вопросов... Отвечай на вопросы внимательно, они определят твою судьбу.");
 
     character = createMainCharacter();
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Впереди вас ждет долгий путь. На востоке расположен прекрасный город Эмердейл. Туда и направляйтесь.\"\n");
+    Screen::displayDialog("Рассказчик", "Впереди вас ждет долгий путь. На востоке расположен прекрасный город Эмердейл. Туда и направляйтесь.");
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Удачи, " + character.getName() + "!\"\n");
+    Screen::displayDialog("Рассказчик", "Удачи, " + character.getName() + "!");
 
     // Ожидаем нажатия клавиши перед продолжением
     Screen::displayText("\nНажмите Enter, чтобы продолжить...");
@@ -266,10 +253,7 @@ void prologue(Character& character)
     Screen::displayText("\nНа повозке сидит старый мужчина, собирающийся вот-вот отправиться в путь.");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    cout << "\nСтарик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Дорогой путник, судя по всему, наши пути совпадают. Желаете ли вы составить мне компанию в пути?\"\n");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    Screen::displayDialog("Старик", "Дорогой путник, судя по всему, наши пути совпадают. Желаете ли вы составить мне компанию в пути?");
 
     Screen::displayText("\n1. \"- Да, я присоединюсь. Безопаснее двигаться вдвоем.\"");
     this_thread::sleep_for(chrono::milliseconds(500));
@@ -284,17 +268,11 @@ void prologue(Character& character)
     switch (choice)
     {
     case 1:
-        cout << "\nСтарик: ";
-        this_thread::sleep_for(chrono::milliseconds(500));
-        Screen::displayCharacterByCharacter("\"- Отлично! Присаживайтесь, в путь!\"\n");
-        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayDialog("Старик", "Отлично! Присаживайтесь, в путь!");
 
         Screen::displayText("\nВы садитесь на повозку и начинаете беседовать с попутчиком.");
 
-        cout << "\nСтарик: ";
-        this_thread::sleep_for(chrono::milliseconds(500));
-        Screen::displayCharacterByCharacter("\"- Куда направляемся?\"\n");
-        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayDialog("Старик", "Куда направляемся?");
 
         Screen::displayText("\n1. \"- В город Эмердейл, там меня ждут дела.\"");
         this_thread::sleep_for(chrono::milliseconds(500));
@@ -309,18 +287,13 @@ void prologue(Character& character)
         switch (destinationChoice)
         {
         case 1:
-            cout << "\nСтарик: ";
-            this_thread::sleep_for(chrono::milliseconds(500));
-            Screen::displayCharacterByCharacter("\"- Отличный выбор! Эмердейл - великолепный город. Давайте вместе отправимся туда.\"\n");
-            this_thread::sleep_for(chrono::milliseconds(1500));
+            Screen::displayDialog("Старик", "Отличный выбор! Эмердейл - великолепный город. Давайте вместе отправимся туда.");
             break;
         case 2:
-            cout << "\nСтарик: ";
-            this_thread::sleep_for(chrono::milliseconds(500));
-            Screen::displayCharacterByCharacter("\"- Дорога часто приносит сюрпризы. Давайте в путь! Я отправляюсь в Эмердейл.\"\n");
-            this_thread::sleep_for(chrono::milliseconds(1500));
+            Screen::displayDialog("Старик", "Дорога часто приносит сюрпризы. Давайте в путь! Я отправляюсь в Эмердейл.");
             break;
         default:
+            Screen::displayDialog("Старик", "Видимо ты не настроен на разговор. Значит отправися куда глаза глядят!");
             break;
         }
 
@@ -337,10 +310,7 @@ void prologue(Character& character)
         break;
 
     case 2:
-        cout << "\nСтарик: ";
-        this_thread::sleep_for(chrono::milliseconds(500));
-        Screen::displayCharacterByCharacter("\"- Понимаю, каждый выбирает свой путь. Надеюсь, встретимся вновь.\"\n");
-        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayDialog("Старик", "Понимаю, каждый выбирает свой путь. Надеюсь, встретимся вновь.");
 
         Screen::displayText("\nСтарик махнул вам на прощание, и вы отправились в путь одни.");
         this_thread::sleep_for(chrono::milliseconds(1500));
@@ -348,7 +318,6 @@ void prologue(Character& character)
         this_thread::sleep_for(chrono::milliseconds(1000));
         Screen::displayText("\n(Добавлено +50 опыта. Потеряно -20 выносливости)");
         this_thread::sleep_for(chrono::milliseconds(1000));
-        Screen::displayText("\n");
 
         // Увеличение опыта и уменьшение выносливости персонажа
         character.setExperience(character.getExperience() + 50);
@@ -358,6 +327,11 @@ void prologue(Character& character)
     default:
         break;
     }
+
+    // Ожидаем нажатия клавиши перед продолжением
+    Screen::displayText("\nНажмите Enter, чтобы продолжить...");
+    cin.ignore();
+    cin.get();
 }
 
 // Обучение бою
@@ -371,20 +345,11 @@ void combatTraining(Character& character)
     this_thread::sleep_for(chrono::milliseconds(1500));
 
     // Внезапно, воевода Стелсвин подходит к герою.
-    cout << "\nКапитан Стелсвин: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- " + character.getName() + ", я видел, как ты исследовал наш город. У меня есть предложение для тебя.\"\n");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    Screen::displayDialog("Капитан Стелсвин", character.getName() + ", я видел, как ты исследовал наш город. У меня есть предложение для тебя.");
 
-    cout << "\nКапитан Стелсвин: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Мы ищем сильных воинов, способных защитить нашу страну Семи Клинков. Я хочу предложить тебе тренировку.\"\n");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    Screen::displayDialog("Капитан Стелсвин", "Мы ищем сильных воинов, способных защитить нашу страну Семи Клинков.Я хочу предложить тебе тренировку.");
 
-    cout << "\nКапитан Стелсвин решительно продолжает: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Это будет тренировочный бой, в котором ты сможешь продемонстрировать свои навыки. Что скажешь?\"\n");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    Screen::displayDialog("Капитан Стелсвин решительно продолжает", "Это будет тренировочный бой, в котором ты сможешь продемонстрировать свои навыки. Что скажешь?");
 
     // Пользователь делает выбор
     cout << "\n1. Принять предложение и приступить к тренировке."
@@ -397,22 +362,15 @@ void combatTraining(Character& character)
     switch (trainingChoice)
     {
     case 1:
-
-        cout << "\nКапитан Стелсвин: ";
-        this_thread::sleep_for(chrono::milliseconds(500));
-        Screen::displayCharacterByCharacter("\"- Отлично! Давай начнем тренировку. Пойдем на тренировочную площадку.\"\n");
-        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayDialog("Капитан Стелсвин", "Отлично! Давай начнем тренировку. Пойдем на тренировочную площадку.");
         break;
 
     case 2:
-
-        cout << "\nКапитан Стелсвин: ";
-        this_thread::sleep_for(chrono::milliseconds(500));
-        Screen::displayCharacterByCharacter("\"- Но я вижу в тебе потенциал. Даже если ты не хочешь, я проведу тренировочный бой, чтобы помочь тебе развить свои навыки.\"\n");
-        this_thread::sleep_for(chrono::milliseconds(1500));
+        Screen::displayDialog("Капитан Стелсвин", "Но я вижу в тебе потенциал. Даже если ты не хочешь, я проведу тренировочный бой, чтобы помочь тебе развить свои навыки.");
         break;
 
     default:
+        Screen::displayDialog("Капитан Стелсвин", "Так как ты молчишь, давай начнем!");
         break;
     }
 }
@@ -451,9 +409,7 @@ pair<Weapon*, Magic*> createEquipment(string& className)
 Character createMainCharacter()
 {
     // Вводим имя героя
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Помнишь ли ты свое имя?\"\n");
+    Screen::displayDialog("Рассказчик", "Помнишь ли ты свое имя?");
 
     cout << "\nГерой: ";
     this_thread::sleep_for(chrono::milliseconds(500));
@@ -462,9 +418,7 @@ Character createMainCharacter()
     string name;
     cin >> name;
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Твое имя звучит великолепно, " + name + ". Но чего-то не хватает....\"\n");
+    Screen::displayDialog("Рассказчик", "Твое имя звучит великолепно, " + name + ". Но чего-то не хватает....");
 
     // Вектор прилагательных для имени
     vector<string> adjectives = { "Драконорожденный", "Громовержец", "Сияющий", "Неустрашимый", "Магистр", "Повелитель огня", "Стальной", "Теневладыка", "Сокрушитель", "Бесстрашный" };
@@ -477,15 +431,11 @@ Character createMainCharacter()
     // Добавляем прилагательное к имени героя
     name = name + " " + randomAdjective;
 
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\" - Как насчёт - " + name + "?\"\n");
+    Screen::displayDialog("Рассказчик", "Как насчёт - " + name + "?");
 
     // Выбираем класс
     vector<string> classes = { "Воин", "Маг", "Вор", "Бродяга", "Жрец", "Рыцарь" };
-    cout << "\nРассказчик: ";
-    this_thread::sleep_for(chrono::milliseconds(500));
-    Screen::displayCharacterByCharacter("\"- Теперь скажи мне, в чём твоё призвание?\"\n\n");
+    Screen::displayDialog("Рассказчик", "Теперь скажи мне, в чём твоё призвание?");
     
     // Выводим таблицу с характеристиками классов
     cout << "+----+---------------+---------------+---------------+---------------+----------------------------------------+--------------------------------------------------+" << endl;
@@ -549,10 +499,9 @@ Character createMainCharacter()
     cin >> choice;
 
     // Проверка корректности ввода
-    while (choice < 1 || choice > classes.size()) {
-        cout << "\nРассказчик: ";
-        this_thread::sleep_for(chrono::milliseconds(500));
-        Screen::displayCharacterByCharacter("\"- Ты что-то путаешь, мой дорогой. Попробуй выбрать снова: \"");
+    while (choice < 1 || choice > classes.size()) 
+    {
+        Screen::displayDialog("Рассказчик", "Ты что-то путаешь, мой дорогой. Попробуй выбрать снова:");
         cin >> choice;
     }
 
@@ -625,7 +574,7 @@ Character createMainCharacter()
     return mainCharacter;
 }
 
-// Заполнить г.Эмердейл неигровыми персонажами
+// Заполнить г.Эмердейл неигровыми персонажами и посещение локации
 void createEmerdealNPC(Location emerdeal, Character character)
 {
     // Трактирщик
@@ -646,7 +595,7 @@ void createEmerdealNPC(Location emerdeal, Character character)
 
     // Воевода
     vector<string> wardenPhrases = {
-        "\"- Добро пожаловать в Эмердейл, " + character.getName() + ".Я - Капитан Стелсвин, воевода города.Если у вас есть вопросы,\nобращайся ко мне, я готов помочь.Наш город всегда открыт для новых героев.\"",
+        "\"- Добро пожаловать в Эмердейл, " + character.getName() + ". Я - Капитан Стелсвин, воевода города.Если у вас есть вопросы,\nобращайся ко мне, я готов помочь.Наш город всегда открыт для новых героев.\"",
         "\"- Когда вы закончите свои дела в городе, не забудьте вернуться ко мне. Может быть, у меня будет для вас задание.\"",
         "\"- В Эмердейле каждый герой находит свой путь. Мы гордимся своими жителями и всегда готовы приветствовать новых обитателей.\"",
         "\"- За городом много опасностей, но и много возможностей. Исследуйте мир, и, может быть, вы станете частью наших легенд.\"",
@@ -675,4 +624,10 @@ void createEmerdealNPC(Location emerdeal, Character character)
         citizenPhrases
     );
     emerdeal.addInteractiveObject(&citizen);
+
+    // Очищаем консоль
+    gameTitle();
+
+    // Входим в стартовую локацию
+    emerdeal.onEnter();
 }

@@ -15,7 +15,7 @@ void CombatSystem::startGame(Character& player, Character& enemy)
 // Начало боя: вывод информации, управление ходами игрока и противника
 void CombatSystem::initiateCombat(Character& player, Character& enemy)
 {
-    cout << "Бой начинается!" << std::endl;
+    Screen::displayText("\n\t\tБой начинается!");
     this_thread::sleep_for(chrono::milliseconds(1000));
 
     displayCharacterInfo(player, enemy);
@@ -24,9 +24,16 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy)
     while (!checkVictory(player, enemy))
     {
         playerTurn(player, enemy);
-        if (checkVictory(player, enemy)) break;
+
+        if (checkVictory(player, enemy)) 
+            break;
+
+        cout << endl;
+
         enemyTurn(enemy, player);
+
         applyStatusEffects(player, enemy);
+
         displayCharacterInfo(player, enemy);
     }
 }
@@ -34,15 +41,19 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy)
 // Ход игрока: вывод опций, чтение выбора, выполнение соответствующего действия
 void CombatSystem::playerTurn(Character& player, Character& enemy)
 {
-    cout << "Выберите действие для героя:" << std::endl;
+    cout << "\nВыберите действие для героя:" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "1. Атаковать мечом (dmg: " << player.getWeapon()->getDamage() << "  stm: -" << player.getWeapon()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "2. Использовать магию (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
 
+    cout << "\nВаше действие: ";
+
     int choice;
-    std::cin >> choice;
+    cin >> choice;
+
+    cout << endl;
 
     if (choice == 1) {
         player.attack(enemy);
@@ -131,17 +142,17 @@ void CombatSystem::applyStatusEffects(Character& character, Character& enemy)
 // Вывод информации о персонажах на экран
 void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)
 {
-    std::cout << "+------------------------+------------------------+" << std::endl;
+    cout << "\n+------------------------+------------------------+" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Информация о Герое:    | Информация о Враге:    |" << std::endl;
+    cout << "| Информация о Герое:    | Информация о Враге:    |" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "+------------------------+------------------------+" << std::endl;
+    cout << "+------------------------+------------------------+" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Здоровье: " << std::setw(13) << player.getHealth() << "| Здоровье: " << std::setw(13) << enemy.getHealth() << "|" << std::endl;
+    cout << "| Здоровье: " << setw(13) << player.getHealth() << "| Здоровье: " << setw(13) << enemy.getHealth() << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Выносливость: " << std::setw(4) << player.getStamina() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Выносливость: " << std::setw(4) << enemy.getStamina() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << std::endl;
+    cout << "| Выносливость: " << setw(4) << player.getStamina() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Выносливость: " << setw(4) << enemy.getStamina() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "| Мана: " << std::setw(12) << player.getMana() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Мана: " << std::setw(12) << enemy.getMana() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << std::endl;
+    cout << "| Мана: " << setw(12) << player.getMana() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Мана: " << setw(12) << enemy.getMana() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    std::cout << "+------------------------+------------------------+" << std::endl;
+    cout << "+------------------------+------------------------+" << endl;
 }

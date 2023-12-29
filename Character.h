@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 
+#include "Screen.h"
+
 // Предварительное объявление классов
 class Weapon;
 class Magic;
@@ -30,6 +32,8 @@ public:
     Character();
 
     Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype);
+
+    Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, int exp);
 
     ~Character();
 

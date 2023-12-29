@@ -19,5 +19,8 @@ public:
 
     // Вывод текста по буквам
     static void displayCharacterByCharacter(const string& text);
+
+    // Вывод прямой речи NPC
+    static void displayDialog(const string& name, const string& phrase);
 };
 

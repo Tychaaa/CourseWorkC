@@ -3,20 +3,18 @@
 #include <iomanip>
 #include <string>
 
-#include "Location.h"
-#include "NPC.h"
 #include "Arsenal.h"
-#include "Character.h"
-#include "Magic.h"
-#include "Weapon.h"
-#include "Monster.h"
 #include "Bestiary.h"
-#include "Function.h"
+#include "Character.h"
 #include "CombatSystem.h"
-
+#include "Function.h"
+#include "Location.h"
+#include "Magic.h"
+#include "Monster.h"
+#include "NPC.h"
+#include "Weapon.h"
 
 using namespace std;
-
 
 int main() {
     // Ставим русский язык в консоль
@@ -30,28 +28,29 @@ int main() {
    // mainMenu();
 
     // Создаем объект персонажа
-    Character mainCharacter = createMainCharacter();
+    Character mainCharacter;
 
-    //// Глава "Вступление"
-    //introduction(mainCharacter);
+    // Глава "Вступление"
+    introduction(mainCharacter);
 
-    //// Глава "Пролог"
-    //prologue(mainCharacter);
+    // Глава "Пролог"
+    prologue(mainCharacter);
 
-    //// Создаем начальную локацию
-    //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
+    // Создаем начальную локацию
+    Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
-    //// Заполняем локацию персонажами
-    //createEmerdealNPC(emerdealLocation, mainCharacter);
-
-    //// Очищаем консоль
-    //gameTitle();
-
-    //// Входим в стартовую локацию
-    //emerdealLocation.onEnter();
+    // Заполняем локацию персонажами
+    createEmerdealNPC(emerdealLocation, mainCharacter);
 
     // Запуск обучающего боя
     combatTraining(mainCharacter);
+
+    Weapon capitan_sword("Меч капитана", 10, 5);
+    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
+
+    CombatSystem fight;
+
+    fight.startGame(mainCharacter, enemy);
 
     return 0;
 }

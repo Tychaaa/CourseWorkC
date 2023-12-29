@@ -27,7 +27,7 @@ int main() {
     SetConsoleTitle(L"Blades of Destiny");
 
     //Главное меню
-    mainMenu();
+   // mainMenu();
 
     // Создаем объект персонажа
     Character mainCharacter = createMainCharacter();

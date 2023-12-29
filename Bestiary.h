@@ -40,3 +40,42 @@ public:
 };
 
 
+class Goblin : public Character {
+public:
+    Goblin();
+    Goblin(string name, int health, int stamina, int mana);
+    ~Goblin();
+
+    void regenerateStamina();
+    void sneakAttack(Character& target);
+    void throwRock(Character& target);
+    void attack(Character& target);
+};
+
+
+class Skeleton : public Character {
+public:
+    Skeleton();
+    Skeleton(string name, int health, int stamina, int mana);
+    ~Skeleton();
+
+    void regenerateStamina();
+    void boneStrike(Character& target);
+    void throwBone(Character& target);
+    void attack(Character& target);
+};
+
+
+class EarthElemental : public Character {
+public:
+    EarthElemental();
+    EarthElemental(string name, int health, int stamina, int mana);
+    ~EarthElemental();
+
+    void regenerateStamina() override;
+    void attack(Character& target) override;
+
+private:
+    void rockThrow(Character& target);
+    void earthquake(Character& target);
+};

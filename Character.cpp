@@ -155,32 +155,41 @@ void Character::setMagic(Magic* newMagic)
     magic = newMagic;
 }
 
-void Character::attack(Character& target) 
+void Character::attack(Character& target)
 {
-    if (weapon) 
+    // Вызываем случайную атаку между укусом и ударом когтями
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 100);
+
+    int choice = dist(gen); // Генерируем случайное число от 1 до 4
+
+    if (choice <= 45)
     {
-        Screen::displayCharacterByCharacter(name + " атакует " + target.getName() + ", используя " + weapon->getName() + ".\n");
-        target.takeDamage(weapon->getDamage());
-        decreaseStamina(weapon->getCost());
+        attackWeapon(target);
     }
-    else 
+    else if (choice > 45 && choice <= 90)
     {
-        Screen::displayCharacterByCharacter("У " + name + " нет оружия для атаки!\n");
+        castSpell(target);
     }
+    else
+    {
+        cout << this->getName() << " промахивается и не попадает по " << target.getName() << "!\n";
+    }
+}
+
+void Character::attackWeapon(Character& target) 
+{
+    Screen::displayCharacterByCharacter(name + " атакует " + target.getName() + ", используя " + weapon->getName() + ".\n");
+    target.takeDamage(weapon->getDamage());
+    decreaseStamina(weapon->getCost());
 }
 
 void Character::castSpell(Character& target) 
 {
-    if (magic)
-    {
-        Screen::displayCharacterByCharacter(name + " кастует " + magic->getName() + " на " + target.name + ".\n");
-        target.takeDamage(magic->getDamage());
-        decreaseMana(magic->getCost());
-    }
-    else
-    {
-        Screen::displayCharacterByCharacter("У " + name + " нет магии для каста!\n");
-    }
+    Screen::displayCharacterByCharacter(name + " кастует " + magic->getName() + " на " + target.name + ".\n");
+    target.takeDamage(magic->getDamage());
+    decreaseMana(magic->getCost());
 }
 
 void Character::takeDamage(int dmg) 
@@ -229,6 +238,32 @@ void Character::levelUp() {
     mana = maxMana;
 
     // Выводим сообщение о повышении уровня персонажа
-    cout << "Уровень героя " << name << " повышен до " << level << "!\n";
-    cout << "Здоровье увеличено до " << health << "\n Выносливость увеличенa до " << stamina << "\nМана увеличенa до " << mana << ".\n";
+    cout << "\nУровень героя " << name << " повышен до ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    for (char c : to_string(level)) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
+    }
+    cout << "!" << endl;
+    cout << "Здоровье увеличено до ";
+   this_thread::sleep_for(chrono::milliseconds(500));
+    for (char c : to_string(health)) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
+    }
+    cout << endl;
+    cout << "Выносливость увеличенa до ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    for (char c : to_string(stamina)) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
+    }
+    cout << endl;
+    cout << "Мана увеличенa до ";
+    this_thread::sleep_for(chrono::milliseconds(500));
+    for (char c : to_string(mana)) {
+        cout << c << flush;
+        this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
+    }
+    cout << endl;
 }

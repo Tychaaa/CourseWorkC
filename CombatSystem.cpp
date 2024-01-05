@@ -43,9 +43,9 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
 {
     cout << "\nВыберите действие для героя:" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "1. Атаковать мечом (dmg: " << player.getWeapon()->getDamage() << "  stm: -" << player.getWeapon()->getCost() << ")\n";
+    cout << "1. Атаковать " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "2. Использовать магию (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
+    cout << "2. Использовать "<< player.getMagic()->getName() <<" (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
 
     cout << "\nВаше действие: ";
@@ -56,7 +56,7 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
     cout << endl;
 
     if (choice == 1) {
-        player.attack(enemy);
+        player.attackWeapon(enemy);
     }
     else if (choice == 2) {
         player.castSpell(enemy);
@@ -104,7 +104,7 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
     }
     else if (enemy.getHealth() <= 0)
     {
-        cout << "Бой закончен! Герой победил, но его дыхание тяжелое. Он устал, но чувствует чувство облегчения." << std::endl;
+        cout << "\nБой закончен! Герой победил, но его дыхание тяжелое. Он устал, но чувствует чувство облегчения." << std::endl;
         this_thread::sleep_for(chrono::milliseconds(1000));
         if (playerDefeat)
         {
@@ -119,11 +119,11 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
         player.setStamina(player.getMaxStamina());
         player.setMana(player.getMaxMana());
 
+        cout << "Победа приносит новый опыт. Ощущение победы наполняет его душу, его путь становится яснее." << endl;
+        this_thread::sleep_for(chrono::milliseconds(1000));
+        cout << "Опыт: " << player.getExperience() << " (+" << enemy.getExperience() << ")" << endl;
+        this_thread::sleep_for(chrono::milliseconds(1000));
         player.setExperience(enemy.getExperience());
-        cout << "Победа приносит новый опыт. Ощущение победы наполняет его душу, его путь становится яснее." << std::endl;
-        this_thread::sleep_for(chrono::milliseconds(1000));
-        cout << "Опыт: " << player.getExperience() << " (+" << enemy.getExperience() << ")";
-        this_thread::sleep_for(chrono::milliseconds(1000));
 
         return true;
     }

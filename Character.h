@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <random>
 
 #include "Screen.h"
 
@@ -66,6 +67,7 @@ public:
     void setMagic(Magic* newMagic);
 
     virtual void attack(Character& target);
+    void attackWeapon(Character& target);
     void castSpell(Character& target);
     void takeDamage(int damage);
     void decreaseStamina(int cost);

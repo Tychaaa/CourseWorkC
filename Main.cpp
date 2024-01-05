@@ -25,32 +25,59 @@ int main() {
     SetConsoleTitle(L"Blades of Destiny");
 
     //Главное меню
-   // mainMenu();
+    //mainMenu();
 
     // Создаем объект персонажа
-    Character mainCharacter;
+    //Character mainCharacter;
 
     // Глава "Вступление"
-    introduction(mainCharacter);
+    //introduction(mainCharacter);
 
     // Глава "Пролог"
-    prologue(mainCharacter);
+    //prologue(mainCharacter);
 
     // Создаем начальную локацию
-    Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
+    //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
     // Заполняем локацию персонажами
-    createEmerdealNPC(emerdealLocation, mainCharacter);
+    //createEmerdealNPC(emerdealLocation, mainCharacter);
 
     // Запуск обучающего боя
-    combatTraining(mainCharacter);
+    //combatTraining(mainCharacter);
 
     Weapon capitan_sword("Меч капитана", 10, 5);
-    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
+    Magic magicCap("Шарик", 10, 5);
+    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, &magicCap, 100);
+
+    Weapon sword("Длинный меч", 10, 5);
+    Magic magic("Огненный шар", 10, 5);
+    Character mainCharacter("Shichi", 100, 100, 100, &sword, &magic, "Воин");
 
     CombatSystem fight;
 
     fight.startGame(mainCharacter, enemy);
+
+    Wolf wolf("Волк", 60, 50, 0);
+
+    Ogre ogre("Огр", 100, 100, 0, &capitan_sword);
+
+    Goblin goblin("Гоблин", 60, 100, 100);
+
+    Skeleton skeleton("Скелет", 40, 100, 100);
+
+    EarthElemental earthElemental("Элементаль земли", 100, 100, 150);
+
+    fight.startGame(mainCharacter, wolf);
+
+    fight.startGame(mainCharacter, ogre);
+
+    fight.startGame(mainCharacter, goblin);
+
+    fight.startGame(mainCharacter, skeleton);
+
+    fight.startGame(mainCharacter, earthElemental);
+
+
 
     return 0;
 }

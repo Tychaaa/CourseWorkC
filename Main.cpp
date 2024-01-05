@@ -16,7 +16,8 @@
 
 using namespace std;
 
-int main() {
+int main() 
+{
     // Ставим русский язык в консоль
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
@@ -24,60 +25,30 @@ int main() {
     // Устанавливаем заголовок окна консоли
     SetConsoleTitle(L"Blades of Destiny");
 
-    //Главное меню
+    ////Главное меню
     //mainMenu();
 
     // Создаем объект персонажа
-    //Character mainCharacter;
+    Character mainCharacter = createMainCharacter();
 
-    // Глава "Вступление"
+    //// Глава "Вступление"
     //introduction(mainCharacter);
 
-    // Глава "Пролог"
+    //// Глава "Пролог"
     //prologue(mainCharacter);
 
-    // Создаем начальную локацию
+    //// Создаем начальную локацию
     //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
-    // Заполняем локацию персонажами
+    //// Заполняем локацию персонажами
     //createEmerdealNPC(emerdealLocation, mainCharacter);
 
-    // Запуск обучающего боя
+    //// Запуск обучающего боя
     //combatTraining(mainCharacter);
 
-    Weapon capitan_sword("Меч капитана", 10, 5);
-    Magic magicCap("Шарик", 10, 5);
-    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, &magicCap, 100);
+    //chapter_one(mainCharacter);
 
-    Weapon sword("Длинный меч", 10, 5);
-    Magic magic("Огненный шар", 10, 5);
-    Character mainCharacter("Shichi", 100, 100, 100, &sword, &magic, "Воин");
-
-    CombatSystem fight;
-
-    fight.startGame(mainCharacter, enemy);
-
-    Wolf wolf("Волк", 60, 50, 0);
-
-    Ogre ogre("Огр", 100, 100, 0, &capitan_sword);
-
-    Goblin goblin("Гоблин", 60, 100, 100);
-
-    Skeleton skeleton("Скелет", 40, 100, 100);
-
-    EarthElemental earthElemental("Элементаль земли", 100, 100, 150);
-
-    fight.startGame(mainCharacter, wolf);
-
-    fight.startGame(mainCharacter, ogre);
-
-    fight.startGame(mainCharacter, goblin);
-
-    fight.startGame(mainCharacter, skeleton);
-
-    fight.startGame(mainCharacter, earthElemental);
-
-
+    chapter_two(mainCharacter);
 
     return 0;
 }

@@ -22,6 +22,7 @@
 #include "Magic.h"
 #include "Screen.h"
 #include "CombatSystem.h"
+#include "Bestiary.h"
 
 using namespace std;
 
@@ -48,6 +49,9 @@ void combatTraining(Character& character);
 
 // Глава 1
 void chapter_one(Character& character);
+
+// Глава 2
+void chapter_two(Character& character);
 
 // Функция для создания оружия и магии в зависимости от класса
 pair<Weapon*, Magic*> createEquipment(string& className);

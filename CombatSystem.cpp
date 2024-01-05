@@ -43,9 +43,9 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
 {
     cout << "\nВыберите действие для героя:" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "1. Атаковать " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
+    cout << "1. Атаковать с помощью " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "2. Использовать "<< player.getMagic()->getName() <<" (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
+    cout << "2. Использовать магию "<< player.getMagic()->getName() <<" (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
 
     cout << "\nВаше действие: ";

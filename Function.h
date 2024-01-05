@@ -9,9 +9,11 @@
 #include <utility>  // Для использования std::pair
 #include <vector>
 #include <string>
+#include <limits>
 #include <chrono>
 #include <thread>
 #include <iomanip>
+#include <random>
 
 #include "Character.h"
 #include "Location.h"
@@ -19,6 +21,7 @@
 #include "Weapon.h"
 #include "Magic.h"
 #include "Screen.h"
+#include "CombatSystem.h"
 
 using namespace std;
 
@@ -42,6 +45,9 @@ void prologue(Character& character);
 
 // Обучение бою
 void combatTraining(Character& character);
+
+// Глава 1
+void chapter_one(Character& character);
 
 // Функция для создания оружия и магии в зависимости от класса
 pair<Weapon*, Magic*> createEquipment(string& className);

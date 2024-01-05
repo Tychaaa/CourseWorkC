@@ -24,33 +24,26 @@ int main() {
     // Устанавливаем заголовок окна консоли
     SetConsoleTitle(L"Blades of Destiny");
 
-    //Главное меню
-    mainMenu();
+    ////Главное меню
+    //mainMenu();
 
     // Создаем объект персонажа
-    Character mainCharacter;
+    Character mainCharacter = createMainCharacter();
 
-    // Глава "Вступление"
-    introduction(mainCharacter);
+    //// Глава "Вступление"
+    //introduction(mainCharacter);
 
-    // Глава "Пролог"
-    prologue(mainCharacter);
+    //// Глава "Пролог"
+    //prologue(mainCharacter);
 
-    // Создаем начальную локацию
-    Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
+    //// Создаем начальную локацию
+    //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
-    // Заполняем локацию персонажами
-    createEmerdealNPC(emerdealLocation, mainCharacter);
+    //// Заполняем локацию персонажами
+    //createEmerdealNPC(emerdealLocation, mainCharacter);
 
     // Запуск обучающего боя
     combatTraining(mainCharacter);
-
-    Weapon capitan_sword("Меч капитана", 10, 5);
-    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
-
-    CombatSystem fight;
-
-    fight.startGame(mainCharacter, enemy);
 
     return 0;
 }

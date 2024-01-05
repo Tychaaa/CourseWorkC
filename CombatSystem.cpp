@@ -86,9 +86,9 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
         this_thread::sleep_for(chrono::milliseconds(1000));
 
         // ¬осстановление значений здоровь€, выносливости и маны игрока
-        player.setMaxHealth(player.getMaxHealth() * 1.2); // ”величиваем максимальное здоровье в 1.2
-        player.setMaxStamina(player.getMaxStamina() * 1.2); // ”величиваем максимальную выносливость в 1.2
-        player.setMaxMana(player.getMaxMana() * 1.2); // ”величиваем максимальную выносливость в 1.2
+        //player.setMaxHealth(player.getMaxHealth() * 1.2); // ”величиваем максимальное здоровье в 1.2
+        //player.setMaxStamina(player.getMaxStamina() * 1.2); // ”величиваем максимальную выносливость в 1.2
+        //player.setMaxMana(player.getMaxMana() * 1.2); // ”величиваем максимальную выносливость в 1.2
         player.setHealth(player.getMaxHealth());
         player.setStamina(player.getMaxStamina());
         player.setMana(player.getMaxMana());
@@ -100,7 +100,7 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
 
         // ѕерезапуск бо€ с сохраненными значени€ми
         initiateCombat(player, enemy);
-        return true; // ¬озвращаем true, чтобы бой перезапустилс€
+        return false; // ¬озвращаем true, чтобы бой перезапустилс€
     }
     else if (enemy.getHealth() <= 0)
     {

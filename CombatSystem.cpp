@@ -43,7 +43,7 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
 {
     cout << "\nВыберите действие для героя:" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "1. Атаковать " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
+    cout << "1. Использовать " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "2. Использовать "<< player.getMagic()->getName() <<" (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
     this_thread::sleep_for(chrono::milliseconds(100));
@@ -86,9 +86,9 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
         this_thread::sleep_for(chrono::milliseconds(1000));
 
         // Восстановление значений здоровья, выносливости и маны игрока
-        //player.setMaxHealth(player.getMaxHealth() * 1.2); // Увеличиваем максимальное здоровье в 1.2
-        //player.setMaxStamina(player.getMaxStamina() * 1.2); // Увеличиваем максимальную выносливость в 1.2
-        //player.setMaxMana(player.getMaxMana() * 1.2); // Увеличиваем максимальную выносливость в 1.2
+        player.setMaxHealth(player.getMaxHealth() * 1.2); // Увеличиваем максимальное здоровье в 1.2
+        player.setMaxStamina(player.getMaxStamina() * 1.2); // Увеличиваем максимальную выносливость в 1.2
+        player.setMaxMana(player.getMaxMana() * 1.2); // Увеличиваем максимальную выносливость в 1.2
         player.setHealth(player.getMaxHealth());
         player.setStamina(player.getMaxStamina());
         player.setMana(player.getMaxMana());
@@ -100,7 +100,7 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
 
         // Перезапуск боя с сохраненными значениями
         initiateCombat(player, enemy);
-        return false; // Возвращаем true, чтобы бой перезапустился
+        return true; // Возвращаем true, чтобы бой перезапустился
     }
     else if (enemy.getHealth() <= 0)
     {

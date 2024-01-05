@@ -13,16 +13,16 @@ Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), exp
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
     : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype) {
     maxHealth = health;
-    maxStamina = health;
-    maxMana = health;
+    maxStamina = stamina;
+    maxMana = mana;
 }
 
 // Конструктор с параметрами 2
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, int exp)
     : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), experience(exp) {
     maxHealth = health;
-    maxStamina = health;
-    maxMana = health;
+    maxStamina = stamina;
+    maxMana = mana;
 }
 
 // Деструктор
@@ -157,24 +157,37 @@ void Character::setMagic(Magic* newMagic)
 
 void Character::attack(Character& target)
 {
-    // Вызываем случайную атаку между укусом и ударом когтями
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dist(1, 100);
+    while (true)
+    {
+        random_device rd;
+        mt19937 gen(rd());
+        uniform_int_distribution<> dist(1, 100);
 
-    int choice = dist(gen); // Генерируем случайное число от 1 до 4
+        int choice = dist(gen); // Генерируем случайное число от 1 до 4
 
-    if (choice <= 45)
-    {
-        attackWeapon(target);
-    }
-    else if (choice > 45 && choice <= 90)
-    {
-        castSpell(target);
-    }
-    else
-    {
-        cout << this->getName() << " промахивается и не попадает по " << target.getName() << "!\n";
+        if (choice <= 45)
+        {
+            if(weapon==nullptr)
+            {
+                continue;
+            }
+            attackWeapon(target);
+            break;
+        }
+        else if (choice > 45 && choice <= 90)
+        {
+            if (magic == nullptr)
+            {
+                continue;
+            }
+            castSpell(target);
+            break;
+        }
+        else
+        {
+            Screen::displayCharacterByCharacter(name + " промахивается и не попадает по " + target.getName() + ".\n");
+            break;
+        }
     }
 }
 
@@ -200,12 +213,10 @@ void Character::takeDamage(int dmg)
 
 void Character::decreaseStamina(int cost) {
     stamina -= cost;
-    //cout << "Выносливость " << name << " уменшилась на " << cost << ".\n";
 }
 
 void Character::decreaseMana(int cost) {
     mana -= cost;
-    //cout << "Мана " << name << " уменшилась на " << cost << ".\n";
 }
 
 void Character::regenerateStamina() {

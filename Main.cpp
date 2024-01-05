@@ -45,12 +45,12 @@ int main() {
     // Запуск обучающего боя
     //combatTraining(mainCharacter);
 
-    Weapon capitan_sword("Меч капитана", 10, 5);
-    Magic magicCap("Шарик", 10, 5);
-    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, &magicCap, 100);
+    Weapon capitan_sword("Меч капитана", 45, 5);
+    Magic magicCap("Шарик", 50, 15);
+    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
 
     Weapon sword("Длинный меч", 10, 5);
-    Magic magic("Огненный шар", 10, 5);
+    Magic magic("Огненный шар", 30, 5);
     Character mainCharacter("Shichi", 100, 100, 100, &sword, &magic, "Воин");
 
     CombatSystem fight;
@@ -59,7 +59,7 @@ int main() {
 
     Wolf wolf("Волк", 60, 50, 0);
 
-    Ogre ogre("Огр", 100, 100, 0, &capitan_sword);
+    Ogre ogre("Огр", 100, 100, 0);
 
     Goblin goblin("Гоблин", 60, 100, 100);
 

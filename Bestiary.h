@@ -27,7 +27,7 @@ public:
 class Ogre : public Character {
 public:
     Ogre(); // Конструктор
-    Ogre(string name, int health, int stamina, int mana, Weapon* weapon);
+    Ogre(string name, int health, int stamina, int mana);
     ~Ogre(); // Деструктор
 
     void regenerateStamina() override;

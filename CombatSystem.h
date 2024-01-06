@@ -15,7 +15,7 @@ using namespace std;
 class CombatSystem
 {
 private:
-
+    bool isTraining;
     // Переменные для сохранения предыдущих характеристик игрока
     int prevMaxPlayerHealth;
     int prevMaxPlayerStamina;
@@ -23,8 +23,12 @@ private:
 
 public:
 
+    void displayTrainingInstructions();
+
     // Запуск игры
     void startGame(Character& player, Character& enemy);
+
+    void startGameTraining(Character& player, Character& enemy);
 
     // Начало боя
     void initiateCombat(Character& player, Character& enemy); 
@@ -36,7 +40,7 @@ public:
     void enemyTurn(Character& enemy, Character& player); 
 
     // Проверка на победу
-    bool checkVictory(Character& player, Character& enemy); 
+    bool checkVictory(Character& player, Character& enemy);
 
     // Применение эффектов
     void applyStatusEffects(Character& character, Character& enemy); 

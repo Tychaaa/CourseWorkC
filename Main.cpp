@@ -21,6 +21,16 @@ int main() {
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
+    // Получаем дескриптор консоли
+    HWND console = GetConsoleWindow();
+
+    // Максимизируем окно консоли
+    ShowWindow(console, SW_MAXIMIZE);
+
+
+
+
+
     // Устанавливаем заголовок окна консоли
     SetConsoleTitle(L"Blades of Destiny");
 
@@ -45,7 +55,7 @@ int main() {
     // Запуск обучающего боя
     //combatTraining(mainCharacter);
 
-    Weapon capitan_sword("Меч капитана", 45, 5);
+    Weapon capitan_sword("Меч капитана", 70, 5);
     Magic magicCap("Шарик", 50, 15);
     Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
 
@@ -55,7 +65,7 @@ int main() {
 
     CombatSystem fight;
 
-    fight.startGame(mainCharacter, enemy);
+    fight.startGameTraining(mainCharacter, enemy);
 
     Wolf wolf("Волк", 60, 50, 0);
 
@@ -67,15 +77,15 @@ int main() {
 
     EarthElemental earthElemental("Элементаль земли", 100, 100, 150);
 
-    fight.startGame(mainCharacter, wolf);
+   // fight.startGame(mainCharacter, wolf);
 
-    fight.startGame(mainCharacter, ogre);
+    //fight.startGame(mainCharacter, ogre);
 
-    fight.startGame(mainCharacter, goblin);
+   // fight.startGame(mainCharacter, goblin);
 
-    fight.startGame(mainCharacter, skeleton);
+    //fight.startGame(mainCharacter, skeleton);
 
-    fight.startGame(mainCharacter, earthElemental);
+    //fight.startGame(mainCharacter, earthElemental);
 
 
 

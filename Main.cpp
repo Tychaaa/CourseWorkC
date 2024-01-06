@@ -55,27 +55,28 @@ int main() {
     // Запуск обучающего боя
     //combatTraining(mainCharacter);
 
-    Weapon capitan_sword("Меч капитана", 70, 5);
-    Magic magicCap("Шарик", 50, 15);
-    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
+    //Weapon capitan_sword("Меч капитана", 70, 5);
+    //Magic magicCap("Шарик", 50, 15);
+    //Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
 
     Weapon sword("Длинный меч", 10, 5);
     Magic magic("Огненный шар", 30, 5);
-    Character mainCharacter("Shichi", 100, 100, 100, &sword, &magic, "Воин");
-
+    Character mainCharacter("Shichi", 200, 100, 100, &sword, &magic, "Воин");
+    DarkLord darklord("Владыка Тьмы", 500, 500, 500);
     CombatSystem fight;
 
-    fight.startGameTraining(mainCharacter, enemy);
+    fight.startGame(mainCharacter, darklord);
 
-    Wolf wolf("Волк", 60, 50, 0);
 
-    Ogre ogre("Огр", 100, 100, 0);
+    //Wolf wolf("Волк", 60, 50, 0);
 
-    Goblin goblin("Гоблин", 60, 100, 100);
+   // Ogre ogre("Огр", 100, 100, 0);
 
-    Skeleton skeleton("Скелет", 40, 100, 100);
+   // Goblin goblin("Гоблин", 60, 100, 100);
 
-    EarthElemental earthElemental("Элементаль земли", 100, 100, 150);
+   // Skeleton skeleton("Скелет", 40, 100, 100);
+
+   // EarthElemental earthElemental("Элементаль земли", 100, 100, 150);
 
    // fight.startGame(mainCharacter, wolf);
 

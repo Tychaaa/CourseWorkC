@@ -79,3 +79,22 @@ private:
     void rockThrow(Character& target);
     void earthquake(Character& target);
 };
+
+class DarkLord : public Character
+{
+public:
+    DarkLord(); // Конструктор
+    DarkLord(string name, int health, int stamina, int mana);
+    ~DarkLord(); // Деструктор
+
+    void regenerateStamina() override;
+
+    void blackFlash(Character& target); // Чёрная вспышка
+    void shadowStrike(Character& target); // Теневой удар
+    void summonMinions(Character& target); // Призыв прислужников
+    void energyAbsorption(Character& target); // Абсорбция энергии
+    void worldHeartDestruction(Character& target); // Разрушение сердец мира
+    void manaDrain(Character& target);
+
+    void attack(Character& target) override; // Переопределенная функция для атаки
+};

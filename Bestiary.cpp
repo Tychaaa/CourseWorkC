@@ -411,3 +411,173 @@ void EarthElemental::attack(Character& target)
     }
     Screen::displayCharacterByCharacter(name + " промахивается и не попадает по " + target.getName() + ".\n");
 }
+
+
+DarkLord::DarkLord() : Character() {}
+
+DarkLord::DarkLord(string name, int health, int stamina, int mana)
+    : Character(name, health, stamina, mana, nullptr, nullptr, "")
+{
+    experience = 50;
+}
+
+DarkLord::~DarkLord() {}
+
+void DarkLord::regenerateStamina()
+{
+    if (stamina < maxStamina)
+    {
+        stamina += 15;
+        if (stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+    }
+}
+
+void DarkLord::blackFlash(Character& target)
+{
+    int staminaCost = 35;
+
+    if (getStamina() >= staminaCost)
+    {
+        int damage = 20;
+        Screen::displayCharacterByCharacter(name + " создает мрак, окутывающий поле битвы... Темнота пожирает свет!\n");
+
+        Screen::displayCharacterByCharacter(name + " с кинжалом в руке проносится сквозь мрак, оставляя лишь мерцающие следы...\n");
+        target.takeDamage(damage);
+
+        Screen::displayCharacterByCharacter(name + " с криком зверя вцепился когтями, рассекая воздух...\n");
+        target.takeDamage(damage);
+
+        Screen::displayCharacterByCharacter(name + " словно зверь, бросается в атаку, укусив свою жертву...\n");
+        target.takeDamage(damage);
+
+        Screen::displayCharacterByCharacter("Мрак медленно рассеивается, возвращая видимость на поле битвы.\n");
+
+        decreaseStamina(staminaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для создания мрака.\n");
+    }
+}
+
+void DarkLord::shadowStrike(Character& target)
+{
+    int staminaCost = 50;
+
+    if (getStamina() >= staminaCost)
+    {
+        int damage = 40;
+        Screen::displayCharacterByCharacter(name + " направляет мощный клинок из тьмы на всех врагов.\n");
+        Screen::displayCharacterByCharacter(name + " с неистовством задевает своих прислужников, разрушая своё собственное княжество.\n");
+        target.takeDamage(damage);
+        decreaseStamina(staminaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для теневого удара.\n");
+    }
+}
+
+void DarkLord::summonMinions(Character& target)
+{
+    int staminaCost = 45;
+
+    if (getStamina() >= staminaCost)
+    {
+        int damage = 15;
+        Screen::displayCharacterByCharacter(name + " призывает теневых существ, нападающих на игроков.\n");
+
+        Screen::displayCharacterByCharacter("Существо материализуется перед игроком, его зловещий взгляд поражает цель.\n");
+        target.takeDamage(damage);
+
+        Screen::displayCharacterByCharacter("Существо нападает с мрачной яростью, его удары поражают игрока!\n");
+        target.takeDamage(damage);
+
+        decreaseStamina(staminaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для призыва прислужников.\n");
+    }
+}
+
+void DarkLord::energyAbsorption(Character& target)
+{
+    int staminaCost = 30;
+
+    if (getStamina() >= staminaCost)
+    {
+        int healAmount = 30;
+        Screen::displayCharacterByCharacter(name + " поглощает энергию из окружающей тьмы, восстанавливая своё здоровье.\n");
+        health += healAmount;
+        Screen::displayCharacterByCharacter(name + " обретает новую силу, восстановив " + to_string(healAmount) + " единиц здоровья.\n");
+        decreaseStamina(staminaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком истощен, чтобы поглотить энергию вокруг себя.\n");
+    }
+}
+
+void DarkLord::worldHeartDestruction(Character& target)
+{
+    int staminaCost = 60;
+
+    if (getStamina() >= staminaCost)
+    {
+        int damage = 60;
+        Screen::displayCharacterByCharacter(name + " направляет разрушительную атаку на фундамент мира, нанося урон игроку.\n");
+        target.takeDamage(damage);
+        decreaseStamina(staminaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для атаки по фундаменту мира.\n");
+    }
+}
+
+void DarkLord::manaDrain(Character& target)
+{
+    int manaDamage = 25; // Урон по мане
+
+    Screen::displayCharacterByCharacter(name + " воплощает тьму в атаке, высасывая энергию из " + target.getName() + ", истощая его ману.\n");
+    target.setMana(target.getMana() - manaDamage);
+    mana += manaDamage;
+}
+
+void DarkLord::attack(Character& target)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 100);
+
+    int choice = dist(gen);
+
+    if (choice <= 20)
+    {
+        blackFlash(target);
+    }
+    else if (choice > 20 && choice <= 40)
+    {
+        shadowStrike(target);
+    }
+    else if (choice > 40 && choice <= 60)
+    {
+        summonMinions(target);
+    }
+    else if (choice > 60 && choice <= 80)
+    {
+        energyAbsorption(target);
+    }
+    else if(choice > 80 && choice <= 90)
+    {
+        worldHeartDestruction(target);
+    }
+    else
+    {
+        manaDrain(target);
+    }
+}

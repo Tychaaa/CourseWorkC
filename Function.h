@@ -26,6 +26,9 @@
 
 using namespace std;
 
+// Устанавливаем параметры консоли
+void consoleSetting();
+
 // Функция для вывода заставки игры (медленно)
 void gameTitleSlow();
 
@@ -52,6 +55,9 @@ void chapter_one(Character& character);
 
 // Глава 2
 void chapter_two(Character& character);
+
+// Глава "Финал"
+void chapter_final(Character& character);
 
 // Функция для создания оружия и магии в зависимости от класса
 pair<Weapon*, Magic*> createEquipment(string& className);

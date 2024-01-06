@@ -18,12 +18,8 @@ using namespace std;
 
 int main() 
 {
-    // Ставим русский язык в консоль
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
-
-    // Устанавливаем заголовок окна консоли
-    SetConsoleTitle(L"Blades of Destiny");
+    // Устанавливаем параметры консоли
+    consoleSetting();
 
     ////Главное меню
     //mainMenu();
@@ -48,7 +44,9 @@ int main()
 
     //chapter_one(mainCharacter);
 
-    chapter_two(mainCharacter);
+    //chapter_two(mainCharacter);
+
+    chapter_final(mainCharacter);
 
     return 0;
 }

@@ -159,6 +159,36 @@ public:
     void dispelMagic(Character& target);
 };
 
+/*
+*   Демон стражник (Demon)
+*/
+
+class Demon : public Character
+{
+public:
+    Demon(); // Конструктор
+    Demon(string name, int health, int stamina, int mana);
+    ~Demon(); // Деструктор
+
+    int regenerateStamina() override;
+    int regenerateMana() override;
+
+    void hellishLash(Character& target);
+
+    void cursedOath(Character& target);
+
+    void infernalCurse(Character& target);
+
+    void infernalBlade(Character& target);
+
+    
+
+    void attack(Character& target) override; // Переопределенная функция для атаки
+};
+
+/*
+*   ВЛАДЫКА ТЬМЫ (DARKLORD)
+*/
 
 class DarkLord : public Character
 {

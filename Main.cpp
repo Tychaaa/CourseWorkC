@@ -50,13 +50,11 @@ int main()
 
     Weapon sword("Длинный меч", 10, 30);
     Magic magic("Огненный шар", 30, 30);
-    Character mainCharacter("Shichi", 200, 30, 30, &sword, &magic, "Воин");
-    DarkLord darklord("Владыка Тьмы", 500, 500, 500);
-    Witch witch("Ведьма Лилит", 200, 150, 150);
+    Character mainCharacter("Shichi", 500, 500, 500, &sword, &magic, "Воин");
+    Demon darklord("Демон-Стражник", 500, 500, 500);
 
     CombatSystem fight;
     fight.startGame(mainCharacter, darklord);
-    fight.startGame(mainCharacter, witch);
 
     //Wolf wolf("Волк", 60, 50, 0);
 

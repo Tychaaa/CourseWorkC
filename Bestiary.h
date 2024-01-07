@@ -41,7 +41,7 @@ public:
 
     void smash(Character& target); // Функция для удара "smash" огра
     void groundPound(Character& target); // Функция для атаки "groundPound" огра
-    void fistAttack(Character& target); // Новая функция для удара кулаком
+    void fistAttack(Character& target); // Удар кулаком
 
     void attack(Character& target) override; // Переопределенная функция для атаки
 };
@@ -157,6 +157,36 @@ public:
     void mysticBlast(Character& target);
     void whirlwindOfEnchantment(Character& target);
     void mirrorIllusion(Character& target);
+    void enchantWeapon(Character& target);
+    void fairyBlessing(Character& target);
+    void dispelMagic(Character& target);
+};
+
+/*
+*   Демон стражник (Demon)
+*/
+
+class Demon : public Character
+{
+public:
+    Demon(); // Конструктор
+    Demon(string name, int health, int stamina, int mana);
+    ~Demon(); // Деструктор
+
+    int regenerateStamina() override;
+    int regenerateMana() override;
+
+    void hellishLash(Character& target);
+
+    void cursedOath(Character& target);
+
+    void infernalCurse(Character& target);
+
+    void infernalBlade(Character& target);
+
+    
+
+    void attack(Character& target) override; // Переопределенная функция для атаки
 };
 
 /*

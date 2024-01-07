@@ -929,6 +929,161 @@ void Enchantress::mirrorIllusion(Character& target)
         Screen::displayCharacterByCharacter(getName() + " слишком изнурена для создания зеркальной иллюзии.\n");
     }
 }
+}
+
+/*
+*   Демон стражник (Demon)
+*/
+
+Demon::Demon() : Character() {}
+
+Demon::Demon(string name, int health, int stamina, int mana)
+    : Character(name, health, stamina, mana, nullptr, nullptr, "")
+{
+    experience = 200;
+}
+
+Demon::~Demon() {}
+
+int Demon::regenerateStamina()
+{
+    int staminaRegenerationAmount = 15;
+
+    if (stamina < maxStamina)
+    {
+        stamina += staminaRegenerationAmount;
+        if (stamina > maxStamina)
+        {
+            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
+        }
+    }
+    return staminaRegenerationAmount;
+}
+
+int Demon::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
+}
+
+void Demon::hellishLash(Character& target)
+{
+    int staminaCost = 20;
+    int manaCost = 20;
+
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
+    {
+        int damage = 25;
+        Screen::displayCharacterByCharacter(name + " с демоническим ревом вызывает пламенный кнут из бездны, который охватывает " + target.getName() + " огненным ударом.\n");
+        target.takeDamage(damage);
+        Screen::displayCharacterByCharacter("Пламя оставляет горящий след на земле, испуская дурманящий дым.\n");
+
+        decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для вызова пламенного кнута.\n");
+    }
+}
+
+void Demon::cursedOath(Character& target)
+{
+    int staminaCost = 30;
+    int manaCost = 10;
+
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
+    {
+        int damage = 15;
+        int staminaDamage = 10;
+        Screen::displayCharacterByCharacter("Демон-стражник произносит древние мистические слова, наложенные на оружие, и наносит проклятый удар по " + target.getName() + ".\n");
+        target.takeDamage(damage);
+        Screen::displayCharacterByCharacter("Удар оставляет темное пятно на доспехах " + target.getName() + ", вызывая временную слабость.\n");
+        target.setStamina(target.getStamina() - staminaDamage);
+
+        decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для проклятого обета.\n");
+    }
+}
+
+void Demon::infernalCurse(Character& target)
+{
+    int manaCost = 40;
+
+    if (getMana() >= manaCost)
+    {
+        int staminaDamage = 50;
+        Screen::displayCharacterByCharacter("Демон-стражник бросает адское проклятие на " + target.getName() + ", погружая его в мир адской муки.\n");
+        Screen::displayCharacterByCharacter("Проклятие оставляет " + target.getName() + " в изнурительных страданиях, ослабляя его силы.\n");
+        target.setStamina(target.getStamina() - staminaDamage);
+
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком истощен для проклятия.\n");
+    }
+}
+
+void Demon::infernalBlade(Character& target)
+{
+    int staminaCost = 30;
+    int manaCost = 30;
+
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
+    {
+        int damage = 40;
+        Screen::displayCharacterByCharacter("Демон-стражник создает клинок из тьмы и огня, направляя его в сторону " + target.getName() + ".\n");
+        target.takeDamage(damage);
+
+        decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(name + " слишком устал для создания клинка.\n");
+    }
+}
+
+void Demon::attack(Character& target)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 100);
+
+    int choice = dist(gen);
+
+    if (choice <= 25)
+    {
+        hellishLash(target);
+    }
+    else if (choice > 25 && choice <= 50)
+    {
+        cursedOath(target);
+    }
+    else if (choice > 50 && choice <= 75)
+    {
+        infernalCurse(target);
+    }
+    else if (choice > 75 && choice <= 100)
+    {
+        infernalBlade(target);
+    }
+}
 
 /*
 *   ВЛАДЫКА ТЬМЫ (DARK LORD)

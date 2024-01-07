@@ -138,7 +138,6 @@
     <ClCompile Include="Location.cpp" />
     <ClCompile Include="Magic.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Monster.cpp" />
     <ClCompile Include="NPC.cpp" />
     <ClCompile Include="Screen.cpp" />
     <ClCompile Include="Weapon.cpp" />
@@ -154,7 +153,6 @@
     <ClInclude Include="InteractiveObject.h" />
     <ClInclude Include="Location.h" />
     <ClInclude Include="Magic.h" />
-    <ClInclude Include="Monster.h" />
     <ClInclude Include="NPC.h" />
     <ClInclude Include="Screen.h" />
     <ClInclude Include="Weapon.h" />

@@ -10,7 +10,6 @@
 #include "Function.h"
 #include "Location.h"
 #include "Magic.h"
-#include "Monster.h"
 #include "NPC.h"
 #include "Weapon.h"
 

@@ -104,7 +104,16 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
 
 
         int choice;
-        cin >> choice;
+        // Проверка наличия ошибок ввода букв
+        while (!(cin >> choice))
+        {
+            // Очистка буфера ввода
+            cin.clear();
+            // Игнорирование оставшихся символов в буфере ввода
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "\nВаше действие: ";
+        }
 
         cout << endl;
 
@@ -155,14 +164,14 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
     if (player.getHealth() <= 0)
     {
         if (isTraining) {
-            cout << "Смерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << std::endl;
+            cout << "\nСмерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << std::endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
             cout << "Окончание тренировочного боя." << std::endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
             //Рализация без воскрешщения
             return true;
         }
-        cout << "Смерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << std::endl;
+        cout << "\nСмерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << std::endl;
         this_thread::sleep_for(chrono::milliseconds(1000));
         cout << "Слабый пульс начинает пульсировать вновь. Глаза героя открываются, словно он получил новую жизнь." << std::endl;
         this_thread::sleep_for(chrono::milliseconds(1000));

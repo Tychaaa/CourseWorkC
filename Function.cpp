@@ -172,8 +172,9 @@ void mainMenu()
             cout << "обращайтесь в telegram: @tychaaaa или @Sh1chik" << endl;
             this_thread::sleep_for(chrono::milliseconds(100));
 
-            cout << "\nЧтобы продолжить нажмите любую кнопку" << endl;
-            _getch();
+            Screen::displayText("\nНажмите Enter, чтобы продолжить...");
+            cin.ignore();
+            cin.get();
 
             gameTitleSlow();
             break;
@@ -559,9 +560,7 @@ void chapter_one(Character& character)
 
     CombatSystem fight;
 
-    Weapon stick("Дубина Огра", 10, 5);
-
-    Ogre ogre("Огр", 100, 100, 0, &stick);
+    Ogre ogre("Огр", 100, 100, 0);
 
     Goblin goblin1("Гоблин 1", 60, 100, 100);
     Goblin goblin2("Гоблин 2", 60, 100, 100);
@@ -648,14 +647,14 @@ void chapter_two(Character& character)
         "\"- Будь осторожен в своих действиях, и лес откроет тебе свои тайны.\""
     };
     NPC elf(
-        "Себилла",
+        "Эльфийка Себилла",
         "Древняя эльфийка, живущая в лесной долине. Себилла - стражница леса и его древних тайн.\n"
         "Она может помочь герою понять природу леса и его особенности.",
         elfPhrases
     );
     forestValleyLocation.addInteractiveObject(&elf);
 
-    // Дриада
+    // Друид
     vector<string> druidPhrases = {
         "\"- Добро пожаловать в лесную долину, " + character.getName() + ". Я - Дриада Элина, хранительница природы.\"",
         "\"- В этом лесу каждое дерево - часть меня. С уважением к природе, ты найдешь здесь свою силу и понимание.\"",
@@ -664,7 +663,7 @@ void chapter_two(Character& character)
         "\"- Береги природу, и она ответит тебе взаимностью.\""
     };
     NPC druid(
-        "Дриада Элина",
+        "Друид Элина",
         "Покровительница леса и природы. Дриада Элина - душа лесной долины, чуткая к сердцам всех его обитателей.\n"
         "Она может помочь герою понять связь с природой и использовать ее магию.",
         druidPhrases
@@ -796,7 +795,7 @@ void chapter_final(Character& character)
         "\"- Этот мир был обречен с самого начала. Сейчас ты станешь свидетелем его падения, " + character.getName() + ".\""
     };
     NPC darkLord(
-        "Владыка Тьмы",
+        "Владыка Тьмы Вергилий",
         "Могущественный владыка тьмы, властелин Княжества Тьмы. Он обладает магией тьмы и стремится подчинить мир своей воле.",
         darkLordPhrases
     );
@@ -851,7 +850,7 @@ void chapter_final(Character& character)
         "\"- Ты сталкиваешься с силой, против которой не устоит ни один герой. Подготовься к тьме.\"",
         "\"- Твоя участь решена, смертный. Время служить вечности во тьме.\""
     };
-    NPC darkElf("Темный эльф Силиндра", "Хитрая и сильная темная эльфийка, преданная владыке тьмы.", darkElfPhrases);
+    NPC darkElf("Темная эльфийка Аделлия", "Хитрая и сильная темная эльфийка, преданная владыке тьмы.", darkElfPhrases);
     darkLordCastle.addInteractiveObject(&darkElf);
 
     darkLordCastle.onEnter();
@@ -982,7 +981,7 @@ pair<Weapon*, Magic*> createEquipment(string& className)
         return make_pair(new Weapon("Святой Жезл", 17, 7), new Magic("Лавовое дыхание", 20, 12));
     }
     else if (className == "Рыцарь") {
-        return make_pair(new Weapon("Меч Рыцаря", 22, 10), new Magic("Вечная тьма", 10, 20));
+        return make_pair(new Weapon("Меч Рыцаря", 22, 10), new Magic("Стиль паука", 10, 20));
     }
     else {
         // По умолчанию возвращаем стандартное оружие и магию

@@ -48,39 +48,13 @@ int main()
 
     //chapter_final(mainCharacter);
 
-
-    Weapon sword("Длинный меч", 10, 30);
-    Magic magic("Огненный шар", 30, 30);
-    Character mainCharacter("Shichi", 200, 30, 30, &sword, &magic, "Воин");
-    DarkLord darklord("Владыка Тьмы", 500, 500, 500);
-    Witch witch("Ведьма Лилит", 200, 150, 150);
+    Weapon sword("Длинный меч", 10, 5);
+    Magic magic("Огненный шар", 30, 5);
+    Character mainCharacter("Тучка Стальной", 200, 100, 100, &sword, &magic, "Воин");;
+    DarkElf darkElf("Темная эльфийка Аделлия", 200, 150, 150);
 
     CombatSystem fight;
-    fight.startGame(mainCharacter, darklord);
-    fight.startGame(mainCharacter, witch);
-
-    //Wolf wolf("Волк", 60, 50, 0);
-
-   // Ogre ogre("Огр", 100, 100, 0);
-
-   // Goblin goblin("Гоблин", 60, 100, 100);
-
-   // Skeleton skeleton("Скелет", 40, 100, 100);
-
-   // EarthElemental earthElemental("Элементаль земли", 100, 100, 150);
-
-   // fight.startGame(mainCharacter, wolf);
-
-    //fight.startGame(mainCharacter, ogre);
-
-   // fight.startGame(mainCharacter, goblin);
-
-    //fight.startGame(mainCharacter, skeleton);
-
-    //fight.startGame(mainCharacter, earthElemental);
-
-
-
+    fight.startGame(mainCharacter, darkElf);
 
     return 0;
 }

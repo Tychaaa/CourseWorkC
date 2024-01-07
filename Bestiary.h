@@ -106,7 +106,8 @@ public:
     Succubus(std::string name, int health, int stamina, int mana);
     ~Succubus();
 
-    void regenerateStamina() override;
+    int regenerateStamina() override;
+    int regenerateMana() override;
     void attack(Character& target) override;
 
     void seductiveGlance(Character& target);
@@ -126,7 +127,8 @@ public:
     Witch(std::string name, int health, int stamina, int mana);
     ~Witch();
 
-    void regenerateStamina() override;
+    int regenerateStamina() override;
+    int regenerateMana() override;
     void attack(Character& target) override;
 
     void darkCurse(Character& target);
@@ -146,16 +148,20 @@ public:
     Enchantress(std::string name, int health, int stamina, int mana);
     ~Enchantress();
 
-    void regenerateMana() override;
+    int regenerateStamina() override;
+    int regenerateMana() override;
     void attack(Character& target) override;
 
-    void charmingGaze(Character& target);
+    void mysticTouch(Character& target);
+    void etherealDance(Character& target);
     void mysticBlast(Character& target);
-    void enchantWeapon(Character& target);
-    void fairyBlessing(Character& target);
-    void dispelMagic(Character& target);
+    void whirlwindOfEnchantment(Character& target);
+    void mirrorIllusion(Character& target);
 };
-};
+
+/*
+*   ВЛАДЫКА ТЬМЫ (DARK LORD)
+*/
 
 class DarkLord : public Character
 {
@@ -175,4 +181,25 @@ public:
     void manaDrain(Character& target);
 
     void attack(Character& target) override; // Переопределенная функция для атаки
+};
+
+/*
+*   ТЁМНЫЙ ЭЛЬФ (DARK ELF)
+*/
+
+class DarkElf : public Character {
+public:
+    DarkElf();
+    DarkElf(std::string name, int health, int stamina, int mana);
+    ~DarkElf();
+
+    int regenerateStamina() override;
+    int regenerateMana() override;
+    void attack(Character& target) override;
+
+    void shadowStrike(Character& target);
+    void darkArrow(Character& target);
+    void venomousArrow(Character& target);
+    void shadowStep(Character& target);
+    void bloodRitual(Character& target);
 };

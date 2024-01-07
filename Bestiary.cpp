@@ -474,16 +474,35 @@ Succubus::Succubus(std::string name, int health, int stamina, int mana)
 
 Succubus::~Succubus() {}
 
-void Succubus::regenerateStamina()
+int Succubus::regenerateStamina()
 {
-    if (stamina < maxStamina) 
+    int staminaRegenerationAmount = 15;
+
+    if (stamina < maxStamina)
     {
-        stamina += 25;
-        if (stamina > maxStamina) 
+        stamina += staminaRegenerationAmount;
+        if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
     }
+    return staminaRegenerationAmount;
+}
+
+int Succubus::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
 }
 
 void Succubus::attack(Character& target)
@@ -616,16 +635,35 @@ Witch::Witch(std::string name, int health, int stamina, int mana)
 
 Witch::~Witch() {}
 
-void Witch::regenerateStamina()
+int Witch::regenerateStamina()
 {
+    int staminaRegenerationAmount = 15;
+
     if (stamina < maxStamina)
     {
-        stamina += 20;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
     }
+    return staminaRegenerationAmount;
+}
+
+int Witch::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
 }
 
 void Witch::attack(Character& target)
@@ -751,24 +789,150 @@ Enchantress::Enchantress(std::string name, int health, int stamina, int mana)
 
 Enchantress::~Enchantress() {}
 
-void Enchantress::regenerateMana()
+int Enchantress::regenerateStamina()
 {
+    int staminaRegenerationAmount = 15;
+
+    if (stamina < maxStamina)
+    {
+        stamina += staminaRegenerationAmount;
+        if (stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+    }
+    return staminaRegenerationAmount;
+}
+
+int Enchantress::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
     if (mana < maxMana)
     {
-        mana += 20;
-        if (mana > maxMana)
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
         {
             mana = maxMana;
         }
     }
+
+    return manaRegenerationAmount;
 }
 
 void Enchantress::attack(Character& target)
 {
-}
-    Screen::displayCharacterByCharacter(name + " промахивается и не попадает по " + target.getName() + ".\n");
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 100);
+
+    int choice = dist(gen);
+
+    if (choice <= 25) {
+        this->mysticTouch(target);
+    }
+    else if (choice > 25 && choice <= 50) {
+        this->etherealDance(target);
+    }
+    else if (choice > 50 && choice <= 75) {
+        this->mysticBlast(target);
+    }
+    else if (choice > 75 && choice <= 90) {
+        this->whirlwindOfEnchantment(target);
+    }
+    else {
+        this->mirrorIllusion(target);
+    }
 }
 
+void Enchantress::mysticTouch(Character& target)
+{
+    int staminaCost = 20;
+
+    if (getStamina() >= staminaCost)
+    {
+        int damage = 25;
+        Screen::displayCharacterByCharacter(getName() + " прикасается к " + target.getName() + " мистическим прикосновением!\n");
+        target.takeDamage(damage);
+        decreaseStamina(staminaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком устала для мистического прикосновения.\n");
+    }
+}
+
+void Enchantress::etherealDance(Character& target)
+{
+    int manaCost = 25;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 30;
+        Screen::displayCharacterByCharacter(getName() + " исполняет эфирный танец перед " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурена для эфирного танца.\n");
+    }
+}
+
+void Enchantress::mysticBlast(Character& target)
+{
+    int manaCost = 25;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 30;
+        Screen::displayCharacterByCharacter(getName() + " выпускает мистический взрыв по " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурена для мистического взрыва.\n");
+    }
+}
+
+void Enchantress::whirlwindOfEnchantment(Character& target)
+{
+    int manaCost = 35;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 40;
+        Screen::displayCharacterByCharacter(getName() + " создает вихрь заклинаний вокруг " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурена для создания вихря заклинаний.\n");
+    }
+}
+
+void Enchantress::mirrorIllusion(Character& target)
+{
+    int manaCost = 30;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 35;
+        Screen::displayCharacterByCharacter(getName() + " создает зеркальную иллюзию, которая атакует " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурена для создания зеркальной иллюзии.\n");
+    }
+}
+
+/*
+*   ВЛАДЫКА ТЬМЫ (DARK LORD)
+*/
 
 DarkLord::DarkLord() : Character() {}
 
@@ -789,7 +953,7 @@ int DarkLord::regenerateStamina()
         stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
-            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
+            stamina = maxStamina;
         }
     }
     return staminaRegenerationAmount;
@@ -964,5 +1128,162 @@ void DarkLord::attack(Character& target)
     else
     {
         manaDrain(target);
+    }
+}
+
+/*
+*   ТЁМНЫЙ ЭЛЬФ (DARK ELF)
+*/
+
+DarkElf::DarkElf() : Character() {}
+
+DarkElf::DarkElf(std::string name, int health, int stamina, int mana)
+    : Character(name, health, stamina, mana, nullptr, nullptr, "") 
+{
+    experience = 50;
+}
+
+DarkElf::~DarkElf() {}
+
+int DarkElf::regenerateStamina()
+{
+    int staminaRegenerationAmount = 25;
+
+    if (stamina < maxStamina)
+    {
+        stamina += staminaRegenerationAmount;
+        if (stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+    }
+    return staminaRegenerationAmount;
+}
+
+int DarkElf::regenerateMana()
+{
+    int manaRegenerationAmount = 20;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
+}
+
+void DarkElf::attack(Character& target)
+{
+    random_device rd;
+    mt19937 gen(rd());
+    uniform_int_distribution<> dist(1, 100);
+
+    int choice = dist(gen);
+
+    if (choice <= 20) {
+        this->shadowStrike(target);
+    }
+    else if (choice > 20 && choice <= 40) {
+        this->darkArrow(target);
+    }
+    else if (choice > 40 && choice <= 60) {
+        this->venomousArrow(target);
+    }
+    else if (choice > 60 && choice <= 80) {
+        this->shadowStep(target);
+    }
+    else {
+        this->bloodRitual(target);
+    }
+}
+
+void DarkElf::shadowStrike(Character& target)
+{
+    int manaCost = 15;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 25;
+        Screen::displayCharacterByCharacter(getName() + " выползает из тени и наносит скрытный удар " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурен для скрытного удара.\n");
+    }
+}
+
+void DarkElf::darkArrow(Character& target) {
+    int staminaCost = 20;
+
+    if (getStamina() >= staminaCost) {
+        int damage = 30;
+        Screen::displayCharacterByCharacter(getName() + " выстреливает тёмной стрелой в " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseStamina(staminaCost);
+    }
+    else {
+        Screen::displayCharacterByCharacter(getName() + " слишком устал для выстрела тёмной стрелой.\n");
+    }
+}
+
+void DarkElf::venomousArrow(Character& target)
+{
+    int manaCost = 20;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 30;
+        Screen::displayCharacterByCharacter(getName() + " выпускает стрелу, покрытую ядом, в сторону " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурен для стрельбы ядовитой стрелой.\n");
+    }
+}
+
+void DarkElf::shadowStep(Character& target)
+{
+    int manaCost = 25;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 35;
+        Screen::displayCharacterByCharacter(getName() + " мгновенно перемещается в тень и атакует " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурен для мгновенного перемещения.\n");
+    }
+}
+
+void DarkElf::bloodRitual(Character& target)
+{
+    int manaCost = 25;
+
+    if (getMana() >= manaCost)
+    {
+        int damage = 30;
+        int healing = damage / 2;
+
+        Screen::displayCharacterByCharacter(getName() + " проводит кровавый обряд, направляя древние силы против " + target.getName() + "!\n");
+        target.takeDamage(damage);
+        Screen::displayCharacterByCharacter(getName() + " восстанавливает +" + to_string(healing) + " здоровья от кровавого обряда.\n");
+        health += healing;
+
+        decreaseMana(manaCost);
+    }
+    else
+    {
+        Screen::displayCharacterByCharacter(getName() + " слишком изнурен для проведения кровавого обряда.\n");
     }
 }

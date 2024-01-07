@@ -51,7 +51,7 @@ int main()
 
     Weapon sword("Длинный меч", 10, 30);
     Magic magic("Огненный шар", 30, 30);
-    Character mainCharacter("Shichi", 200, 30, 30, &sword, &magic, "Воин");
+    Character mainCharacter("Shichi", 1, 30, 30, &sword, &magic, "Воин");
     DarkLord darklord("Владыка Тьмы", 500, 500, 500);
     Witch witch("Ведьма Лилит", 200, 150, 150);
 

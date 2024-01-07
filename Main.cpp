@@ -25,7 +25,7 @@ int main()
     //mainMenu();
 
     // Создаем объект персонажа
-    Character mainCharacter = createMainCharacter();
+    //Character mainCharacter = createMainCharacter();
 
     //// Глава "Вступление"
     //introduction(mainCharacter);
@@ -46,7 +46,15 @@ int main()
 
     //chapter_two(mainCharacter);
 
-    chapter_final(mainCharacter);
+    //chapter_final(mainCharacter);
+
+    Weapon sword("Длинный меч", 10, 5);
+    Magic magic("Огненный шар", 30, 5);
+    Character mainCharacter("Тучка Стальной", 200, 100, 100, &sword, &magic, "Воин");
+    Witch witch("Ведьма Лилит", 200, 150, 150);
+    CombatSystem fight;
+
+    fight.startGame(mainCharacter, witch);
 
     return 0;
 }

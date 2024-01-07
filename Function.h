@@ -59,6 +59,15 @@ void chapter_two(Character& character);
 // Глава "Финал"
 void chapter_final(Character& character);
 
+// Функция для выбора концовки игры
+void chooseGameEnding(Character& character);
+
+// Функция для "хорошей" концовки
+void goodEnding(Character& character);
+
+// Функция для "плохой" концовки
+void badEnding(Character& character);
+
 // Функция для создания оружия и магии в зависимости от класса
 pair<Weapon*, Magic*> createEquipment(string& className);
 

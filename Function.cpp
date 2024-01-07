@@ -879,10 +879,85 @@ void chapter_final(Character& character)
     * TODO: Сделать бои со всеми NPC в замке (лучше отдельной функцией)
     */
 
+    chooseGameEnding(character);
+
     // Ожидаем нажатия клавиши перед продолжением
     Screen::displayText("\nНажмите Enter, чтобы продолжить...");
     cin.ignore();
     cin.get();
+}
+
+// Функция для выбора концовки игры
+void chooseGameEnding(Character& character) 
+{
+    Screen::displayText("\nПосле жесткой битвы в замке Владыки Тьмы, Владыка Тьмы лежит побежденным перед " + character.getName() + ".");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    // Получаем выбор игрока
+    int choice;
+    Screen::displayText("Выберите вариант завершения игры:");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+    Screen::displayText("1. Убить Владыку Тьмы и освободить мир.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+    Screen::displayText("2. Занять место Владыки Тьмы и захватить этот мир.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+    cout << "Ваш выбор: ";
+
+    cin >> choice;
+
+    // Проверяем валидность выбора
+    while (choice < 1 || choice > 2) {
+        Screen::displayDialog("Рассказчик", "Ой, кажется, вы что-то нажали не так. Выберите 1 или 2, пожалуйста.");
+        cout << "Ваш выбор: ";
+        cin >> choice;
+    }
+
+    // В зависимости от выбора игрока выполняем соответствующее действие
+    switch (choice) {
+    case 1:
+        goodEnding(character);
+        break;
+    case 2:
+        badEnding(character);
+        break;
+    default:
+        break;
+    }
+}
+
+// Функция для "хорошей" концовки
+void goodEnding(Character& character)
+{
+    Screen::displayDialog("Рассказчик", "Свет побеждает тьму! С мощным мечом " + character.getName() + " сразил Владыку Тьмы, освободив мир от его власти.");
+    this_thread::sleep_for(chrono::milliseconds(1000));
+
+    Screen::displayDialog("Рассказчик", "Мрак разгоняется, и природа начинает пробуждаться. Люди вновь увидели светлое будущее благодаря герою " + character.getName() + ".");
+    this_thread::sleep_for(chrono::milliseconds(1000));
+
+    Screen::displayDialog("Рассказчик", character.getName() + " становится легендой, о которой рассказывают вокруг костра. Его подвиги войдут в историю как символ надежды и силы.");
+    this_thread::sleep_for(chrono::milliseconds(1000));
+
+    Screen::displayDialog("Рассказчик", "Герой принимает благодарность народа и отправляется в новые приключения, но его имя останется в сердцах тех, кого он спас.");
+    this_thread::sleep_for(chrono::milliseconds(1000));
+}
+
+// Функция для "плохой" концовки
+void badEnding(Character& character)
+{
+    Screen::displayDialog("Рассказчик", "В поисках силы, " + character.getName() + " решает воспользоваться темной магией Владыки Тьмы.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    Screen::displayDialog("Рассказчик", "Мощь тьмы охватывает " + character.getName() + ". Он становится новым Владыкой Тьмы, господствуя над миром.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    Screen::displayDialog("Рассказчик", "Мир погружается во мрак, и тьма охватывает все вокруг. Надежда угасает, а страх преобразуется в подчинение.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    Screen::displayDialog("Рассказчик", "Герой " + character.getName() + " становится тем, от чего он стремился защитить мир. Новый Владыка Тьмы правит адским королевством.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    Screen::displayDialog("Рассказчик", "И закончилась история, но не так, как надеялись жители этого мира. Вечная ночь поглотила свет и надежду.");
+    this_thread::sleep_for(chrono::milliseconds(1500));
 }
 
 // Функция для создания оружия и магии в зависимости от класса

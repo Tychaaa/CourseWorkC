@@ -43,7 +43,7 @@ public:
     bool checkVictory(Character& player, Character& enemy);
 
     // Применение эффектов
-    void applyStatusEffects(Character& character, Character& enemy); 
+    //void applyStatusEffects(Character& character, Character& enemy); 
 
     // Отображение информации о персонажах
     void displayCharacterInfo(Character& player, Character& enemy); 

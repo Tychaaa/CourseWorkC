@@ -106,7 +106,8 @@ public:
     Succubus(std::string name, int health, int stamina, int mana);
     ~Succubus();
 
-    void regenerateStamina() override;
+    int regenerateStamina() override;
+    int regenerateMana() override;
     void attack(Character& target) override;
 
     void seductiveGlance(Character& target);
@@ -126,7 +127,8 @@ public:
     Witch(std::string name, int health, int stamina, int mana);
     ~Witch();
 
-    void regenerateStamina() override;
+    int regenerateStamina() override;
+    int regenerateMana() override;
     void attack(Character& target) override;
 
     void darkCurse(Character& target);
@@ -146,7 +148,8 @@ public:
     Enchantress(std::string name, int health, int stamina, int mana);
     ~Enchantress();
 
-    void regenerateMana() override;
+    int regenerateStamina() override;
+    int regenerateMana() override;
     void attack(Character& target) override;
 
     void charmingGaze(Character& target);
@@ -155,7 +158,7 @@ public:
     void fairyBlessing(Character& target);
     void dispelMagic(Character& target);
 };
-};
+
 
 class DarkLord : public Character
 {

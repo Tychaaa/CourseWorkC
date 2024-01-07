@@ -559,9 +559,7 @@ void chapter_one(Character& character)
 
     CombatSystem fight;
 
-    Weapon stick("Дубина Огра", 10, 5);
-
-    Ogre ogre("Огр", 100, 100, 0, &stick);
+    Ogre ogre("Огр", 100, 100, 0);
 
     Goblin goblin1("Гоблин 1", 60, 100, 100);
     Goblin goblin2("Гоблин 2", 60, 100, 100);

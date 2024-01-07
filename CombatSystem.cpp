@@ -80,7 +80,7 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy)
 
         enemyTurn(player, enemy);
 
-        applyStatusEffects(player, enemy);
+        //applyStatusEffects(player, enemy);
 
         displayCharacterInfo(player, enemy);
     }
@@ -216,13 +216,13 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
 }
 
 // Применение статусных эффектов : восстановление стамины и маны для игрока и противника
-void CombatSystem::applyStatusEffects(Character& player, Character& enemy)
-{
-    player.regenerateStamina();
-    player.regenerateMana();
-    enemy.regenerateStamina();
-    enemy.regenerateMana();
-}
+//void CombatSystem::applyStatusEffects(Character& player, Character& enemy)
+//{
+//    player.regenerateStamina();
+//    player.regenerateMana();
+//    enemy.regenerateStamina();
+//    enemy.regenerateMana();
+//}
 
 // Вывод информации о персонажах на экран
 void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)

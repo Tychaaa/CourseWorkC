@@ -474,16 +474,35 @@ Succubus::Succubus(std::string name, int health, int stamina, int mana)
 
 Succubus::~Succubus() {}
 
-void Succubus::regenerateStamina()
+int Succubus::regenerateStamina()
 {
-    if (stamina < maxStamina) 
+    int staminaRegenerationAmount = 15;
+
+    if (stamina < maxStamina)
     {
-        stamina += 25;
-        if (stamina > maxStamina) 
+        stamina += staminaRegenerationAmount;
+        if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
     }
+    return staminaRegenerationAmount;
+}
+
+int Succubus::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
 }
 
 void Succubus::attack(Character& target)
@@ -616,16 +635,35 @@ Witch::Witch(std::string name, int health, int stamina, int mana)
 
 Witch::~Witch() {}
 
-void Witch::regenerateStamina()
+int Witch::regenerateStamina()
 {
+    int staminaRegenerationAmount = 15;
+
     if (stamina < maxStamina)
     {
-        stamina += 20;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
             stamina = maxStamina;
         }
     }
+    return staminaRegenerationAmount;
+}
+
+int Witch::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
 }
 
 void Witch::attack(Character& target)
@@ -751,22 +789,39 @@ Enchantress::Enchantress(std::string name, int health, int stamina, int mana)
 
 Enchantress::~Enchantress() {}
 
-void Enchantress::regenerateMana()
+int Enchantress::regenerateStamina()
 {
+    int staminaRegenerationAmount = 15;
+
+    if (stamina < maxStamina)
+    {
+        stamina += staminaRegenerationAmount;
+        if (stamina > maxStamina)
+        {
+            stamina = maxStamina;
+        }
+    }
+    return staminaRegenerationAmount;
+}
+
+int Enchantress::regenerateMana()
+{
+    int manaRegenerationAmount = 15;
+
     if (mana < maxMana)
     {
-        mana += 20;
-        if (mana > maxMana)
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
         {
             mana = maxMana;
         }
     }
+
+    return manaRegenerationAmount;
 }
 
 void Enchantress::attack(Character& target)
 {
-}
-    Screen::displayCharacterByCharacter(name + " промахивается и не попадает по " + target.getName() + ".\n");
 }
 
 

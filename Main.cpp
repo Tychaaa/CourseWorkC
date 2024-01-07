@@ -48,19 +48,15 @@ int main()
 
     //chapter_final(mainCharacter);
 
-    Weapon sword("Длинный меч", 10, 5);
-    Magic magic("Огненный шар", 30, 5);
-    Character mainCharacter("Тучка Стальной", 200, 100, 100, &sword, &magic, "Воин");
-    Witch witch("Ведьма Лилит", 200, 150, 150);
-    CombatSystem fight;
+
     Weapon sword("Длинный меч", 10, 30);
     Magic magic("Огненный шар", 30, 30);
     Character mainCharacter("Shichi", 200, 30, 30, &sword, &magic, "Воин");
     DarkLord darklord("Владыка Тьмы", 500, 500, 500);
+    Witch witch("Ведьма Лилит", 200, 150, 150);
+
     CombatSystem fight;
-
     fight.startGame(mainCharacter, darklord);
-
     fight.startGame(mainCharacter, witch);
 
     //Wolf wolf("Волк", 60, 50, 0);

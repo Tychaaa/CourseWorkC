@@ -9,6 +9,10 @@
 
 using namespace std;
 
+/*
+*   ÂÎËÊ (WOLF)
+*/
+
 class Wolf : public Character {
 public:
     Wolf(); // Êîíñòğóêòîğ
@@ -23,6 +27,9 @@ public:
     void attack(Character& target) override; // Ïåğåîïğåäåëåííàÿ ôóíêöèÿ äëÿ àòàêè
 };
 
+/*
+*   ÎÃĞ (OGRE)
+*/
 
 class Ogre : public Character {
 public:
@@ -39,6 +46,9 @@ public:
     void attack(Character& target) override; // Ïåğåîïğåäåëåííàÿ ôóíêöèÿ äëÿ àòàêè
 };
 
+/*
+*   ÃÎÁËÈÍ (GOBLIN)
+*/
 
 class Goblin : public Character {
 public:
@@ -52,6 +62,9 @@ public:
     void attack(Character& target) override;
 };
 
+/*
+*   ÑÊÅËÅÒ (SKELETON)
+*/
 
 class Skeleton : public Character {
 public:
@@ -65,6 +78,9 @@ public:
     void attack(Character& target) override;
 };
 
+/*
+*   ÇÅÌËßÍÎÉ İËÅÌÅÍÒÀËÜ (EARTH ELEMENTAL)
+*/
 
 class EarthElemental : public Character {
 public:
@@ -78,6 +94,67 @@ public:
 
     void rockThrow(Character& target);
     void earthquake(Character& target);
+};
+
+/*
+*   ÑÓÊÊÓÁ (SUCCUBUS)
+*/
+
+class Succubus : public Character {
+public:
+    Succubus();
+    Succubus(std::string name, int health, int stamina, int mana);
+    ~Succubus();
+
+    void regenerateStamina() override;
+    void attack(Character& target) override;
+
+    void seductiveGlance(Character& target);
+    void demonicEmbrace(Character& target);
+    void charmingKiss(Character& target);
+    void seductiveWhisper(Character& target);
+    void passionateTrap(Character& target);
+};
+
+/*
+*   ÂÅÄÜÌÀ (WITCH)
+*/
+
+class Witch : public Character {
+public:
+    Witch();
+    Witch(std::string name, int health, int stamina, int mana);
+    ~Witch();
+
+    void regenerateStamina() override;
+    void attack(Character& target) override;
+
+    void darkCurse(Character& target);
+    void hexingBlast(Character& target);
+    void summonMinions(Character& target);
+    void poisonousBrew(Character& target);
+    void mysticalShield(Character& target);
+};
+
+/*
+*   ÇÀÊËÈÍÀÒÅËÜÍÈÖÀ (ENCHANTRESS)
+*/
+
+class Enchantress : public Character {
+public:
+    Enchantress();
+    Enchantress(std::string name, int health, int stamina, int mana);
+    ~Enchantress();
+
+    void regenerateMana() override;
+    void attack(Character& target) override;
+
+    void charmingGaze(Character& target);
+    void mysticBlast(Character& target);
+    void enchantWeapon(Character& target);
+    void fairyBlessing(Character& target);
+    void dispelMagic(Character& target);
+};
 };
 
 class DarkLord : public Character

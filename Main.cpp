@@ -16,49 +16,43 @@
 
 using namespace std;
 
-int main() {
-    // Ставим русский язык в консоль
-    SetConsoleCP(1251);
-    SetConsoleOutputCP(1251);
+int main() 
+{
+    // Устанавливаем параметры консоли
+    consoleSetting();
 
-    // Получаем дескриптор консоли
-    HWND console = GetConsoleWindow();
-
-    // Максимизируем окно консоли
-    ShowWindow(console, SW_MAXIMIZE);
-
-
-
-
-
-    // Устанавливаем заголовок окна консоли
-    SetConsoleTitle(L"Blades of Destiny");
-
-    //Главное меню
+    ////Главное меню
     //mainMenu();
 
     // Создаем объект персонажа
-    //Character mainCharacter;
+    //Character mainCharacter = createMainCharacter();
 
-    // Глава "Вступление"
+    //// Глава "Вступление"
     //introduction(mainCharacter);
 
-    // Глава "Пролог"
+    //// Глава "Пролог"
     //prologue(mainCharacter);
 
-    // Создаем начальную локацию
+    //// Создаем начальную локацию
     //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
-    // Заполняем локацию персонажами
+    //// Заполняем локацию персонажами
     //createEmerdealNPC(emerdealLocation, mainCharacter);
 
-    // Запуск обучающего боя
+    //// Запуск обучающего боя
     //combatTraining(mainCharacter);
 
-    //Weapon capitan_sword("Меч капитана", 70, 5);
-    //Magic magicCap("Шарик", 50, 15);
-    //Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
+    //chapter_one(mainCharacter);
 
+    //chapter_two(mainCharacter);
+
+    //chapter_final(mainCharacter);
+
+    Weapon sword("Длинный меч", 10, 5);
+    Magic magic("Огненный шар", 30, 5);
+    Character mainCharacter("Тучка Стальной", 200, 100, 100, &sword, &magic, "Воин");
+    Witch witch("Ведьма Лилит", 200, 150, 150);
+    CombatSystem fight;
     Weapon sword("Длинный меч", 10, 30);
     Magic magic("Огненный шар", 30, 30);
     Character mainCharacter("Shichi", 200, 30, 30, &sword, &magic, "Воин");
@@ -67,6 +61,7 @@ int main() {
 
     fight.startGame(mainCharacter, darklord);
 
+    fight.startGame(mainCharacter, witch);
 
     //Wolf wolf("Волк", 60, 50, 0);
 
@@ -87,6 +82,7 @@ int main() {
     //fight.startGame(mainCharacter, skeleton);
 
     //fight.startGame(mainCharacter, earthElemental);
+
 
 
 

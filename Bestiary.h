@@ -157,13 +157,10 @@ public:
     void mysticBlast(Character& target);
     void whirlwindOfEnchantment(Character& target);
     void mirrorIllusion(Character& target);
-    void enchantWeapon(Character& target);
-    void fairyBlessing(Character& target);
-    void dispelMagic(Character& target);
 };
 
 /*
-*   Демон стражник (Demon)
+*   ДЕМОН-СТРАЖНИК (DEMON)
 */
 
 class Demon : public Character

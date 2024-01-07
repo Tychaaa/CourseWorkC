@@ -929,10 +929,9 @@ void Enchantress::mirrorIllusion(Character& target)
         Screen::displayCharacterByCharacter(getName() + " слишком изнурена для создания зеркальной иллюзии.\n");
     }
 }
-}
 
 /*
-*   Демон стражник (Demon)
+*   ДЕМОН-СТРАЖНИК (DEMON)
 */
 
 Demon::Demon() : Character() {}

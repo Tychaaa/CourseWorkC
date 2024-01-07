@@ -937,7 +937,7 @@ void finalFight(Character& character)
     CombatSystem fight;
 
     DarkLord darklord("Владыка Тьмы Вергилий", 500, 500, 500);
-    //Demon demon("Демон-стражник Азгар", 500, 500, 500);
+    Demon demon("Демон-стражник Азгар", 500, 500, 500);
     Succubus succubus("Суккуб Малина", 500, 500, 500);
     Witch witch("Ведьма Лилит", 500, 500, 500);
     Enchantress enchantress("Зачаровательница Моргана", 500, 500, 500);

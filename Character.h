@@ -72,7 +72,7 @@ public:
     void takeDamage(int damage);
     void decreaseStamina(int cost);
     void decreaseMana(int cost);
-    virtual void regenerateStamina();
-    virtual void regenerateMana();
+    virtual int regenerateStamina();
+    virtual int regenerateMana();
     void levelUp();
 };

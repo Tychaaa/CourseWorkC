@@ -219,22 +219,31 @@ void Character::decreaseMana(int cost) {
     mana -= cost;
 }
 
-void Character::regenerateStamina() {
+int Character::regenerateStamina()
+{
+    int staminaRegenerationAmount = 10 + 5 * level;
     if (stamina < maxStamina) {
-        stamina += 10 + 5 * level;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina) {
             stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+
+    return staminaRegenerationAmount;
 }
 
-void Character::regenerateMana() {
+int Character::regenerateMana()
+{
+    int manaRegenerationAmount = 10 + 5 * level;
+
     if (mana < maxMana) {
-        mana += 10 + 5 * level;
+        mana += manaRegenerationAmount;
         if (mana > maxMana) {
             mana = maxMana; // Устанавливаем значение маны в максимум, если превысили
         }
     }
+
+    return manaRegenerationAmount;
 }
 
 void Character::levelUp() {

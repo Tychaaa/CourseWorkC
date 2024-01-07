@@ -78,7 +78,7 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy)
 
         cout << endl;
 
-        enemyTurn(enemy, player);
+        enemyTurn(player, enemy);
 
         applyStatusEffects(player, enemy);
 
@@ -118,7 +118,7 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
 }
 
 // Ход противника
-void CombatSystem::enemyTurn(Character& enemy, Character& player) {
+void CombatSystem::enemyTurn(Character& player, Character& enemy) {
     enemy.attack(player);
 }
 
@@ -190,10 +190,10 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
 }
 
 // Применение статусных эффектов : восстановление стамины и маны для игрока и противника
-void CombatSystem::applyStatusEffects(Character& character, Character& enemy)
+void CombatSystem::applyStatusEffects(Character& player, Character& enemy)
 {
-    character.regenerateStamina();
-    character.regenerateMana();
+    player.regenerateStamina();
+    player.regenerateMana();
     enemy.regenerateStamina();
     enemy.regenerateMana();
 }
@@ -209,7 +209,7 @@ void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "| Здоровье: " << setw(13) << player.getHealth() << "| Здоровье: " << setw(13) << enemy.getHealth() << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "| Выносливость: " << setw(4) << player.getStamina() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Выносливость: " << setw(4) << enemy.getStamina() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << endl;
+    cout << "| Выносливость: " << setw(4) << player.getStamina() << "(+" << player.regenerateStamina() << ")" << "| Выносливость: " << setw(4) << enemy.getStamina() << "(+" << enemy.regenerateStamina() << ")" << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "| Мана: " << setw(12) << player.getMana() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Мана: " << setw(12) << enemy.getMana() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));

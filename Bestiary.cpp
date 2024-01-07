@@ -10,16 +10,19 @@ Wolf::Wolf(string name, int health, int stamina, int mana)
 
 Wolf::~Wolf() {}
 
-void Wolf::regenerateStamina()
+int Wolf::regenerateStamina()
 {
+    int staminaRegenerationAmount = 10;
+
     if (stamina < maxStamina)
     {
-        stamina += 10;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
             stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+    return staminaRegenerationAmount;
 }
 
 void Wolf::bite(Character& target)
@@ -87,16 +90,19 @@ Ogre::Ogre(string name, int health, int stamina, int mana)
 
 Ogre::~Ogre() {}
 
-void Ogre::regenerateStamina()
+int Ogre::regenerateStamina()
 {
+    int staminaRegenerationAmount = 10;
+
     if (stamina < maxStamina)
     {
-        stamina += 10;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
             stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+    return staminaRegenerationAmount;
 }
 
 void Ogre::smash(Character& target)
@@ -189,16 +195,19 @@ Goblin::Goblin(string name, int health, int stamina, int mana)
 
 Goblin::~Goblin() {}
 
-void Goblin::regenerateStamina()
+int Goblin::regenerateStamina()
 {
+    int staminaRegenerationAmount = 15;
+
     if (stamina < maxStamina)
     {
-        stamina += 15;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
-            stamina = maxStamina;
+            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+    return staminaRegenerationAmount;
 }
 
 void Goblin::sneakAttack(Character& target)
@@ -268,16 +277,19 @@ Skeleton::Skeleton(string name, int health, int stamina, int mana)
 
 Skeleton::~Skeleton() {}
 
-void Skeleton::regenerateStamina()
+int Skeleton::regenerateStamina()
 {
+    int staminaRegenerationAmount = 10;
+
     if (stamina < maxStamina)
     {
-        stamina += 10; // Скелет восстанавливает меньше выносливости
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
-            stamina = maxStamina;
+            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+    return staminaRegenerationAmount;
 }
 
 void Skeleton::boneStrike(Character& target)
@@ -347,16 +359,35 @@ EarthElemental::EarthElemental(string name, int health, int stamina, int mana)
 
 EarthElemental::~EarthElemental() {}
 
-void EarthElemental::regenerateStamina()
+int EarthElemental::regenerateStamina()
 {
+    int staminaRegenerationAmount = 10;
+
     if (stamina < maxStamina)
     {
-        stamina += 10;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
-            stamina = maxStamina;
+            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+    return staminaRegenerationAmount;
+}
+
+int EarthElemental::regenerateMana()
+{
+    int manaRegenerationAmount = 20;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+
+    return manaRegenerationAmount;
 }
 
 void EarthElemental::rockThrow(Character& target)
@@ -379,8 +410,9 @@ void EarthElemental::rockThrow(Character& target)
 void EarthElemental::earthquake(Character& target)
 {
     int staminaCost = 50;
+    int manaCost = 40;
 
-    if (getStamina() >= staminaCost)
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
         int damage = 30;
         Screen::displayCharacterByCharacter(name + " вызывает землетрясение, поражая " + target.getName() + ".\n");
@@ -418,28 +450,48 @@ DarkLord::DarkLord() : Character() {}
 DarkLord::DarkLord(string name, int health, int stamina, int mana)
     : Character(name, health, stamina, mana, nullptr, nullptr, "")
 {
-    experience = 50;
+    experience = 200;
 }
 
 DarkLord::~DarkLord() {}
 
-void DarkLord::regenerateStamina()
+int DarkLord::regenerateStamina()
 {
+    int staminaRegenerationAmount = 20;
+
     if (stamina < maxStamina)
     {
-        stamina += 15;
+        stamina += staminaRegenerationAmount;
         if (stamina > maxStamina)
         {
-            stamina = maxStamina;
+            stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
+    return staminaRegenerationAmount;
+}
+
+int DarkLord::regenerateMana()
+{
+    int manaRegenerationAmount = 20;
+
+    if (mana < maxMana)
+    {
+        mana += manaRegenerationAmount;
+        if (mana > maxStamina)
+        {
+            mana = maxMana;
+        }
+    }
+    
+    return manaRegenerationAmount;
 }
 
 void DarkLord::blackFlash(Character& target)
 {
-    int staminaCost = 35;
+    int staminaCost = 30;
+    int manaCost = 20;
 
-    if (getStamina() >= staminaCost)
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
         int damage = 20;
         Screen::displayCharacterByCharacter(name + " создает мрак, окутывающий поле битвы... Темнота пожирает свет!\n");
@@ -450,12 +502,13 @@ void DarkLord::blackFlash(Character& target)
         Screen::displayCharacterByCharacter(name + " с криком зверя вцепился когтями, рассекая воздух...\n");
         target.takeDamage(damage);
 
-        Screen::displayCharacterByCharacter(name + " словно зверь, бросается в атаку, укусив свою жертву...\n");
+        Screen::displayCharacterByCharacter(name + " словно зверь, бросается в атаку, нанося свирепые раны...\n");
         target.takeDamage(damage);
 
         Screen::displayCharacterByCharacter("Мрак медленно рассеивается, возвращая видимость на поле битвы.\n");
 
         decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
     }
     else
     {
@@ -466,14 +519,17 @@ void DarkLord::blackFlash(Character& target)
 void DarkLord::shadowStrike(Character& target)
 {
     int staminaCost = 50;
+    int manaCost = 40;
 
-    if (getStamina() >= staminaCost)
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
         int damage = 40;
-        Screen::displayCharacterByCharacter(name + " направляет мощный клинок из тьмы на всех врагов.\n");
+        Screen::displayCharacterByCharacter(name + " направляет мощный клинок из тьмы на " + target.getName() + ".\n");
         Screen::displayCharacterByCharacter(name + " с неистовством задевает своих прислужников, разрушая своё собственное княжество.\n");
         target.takeDamage(damage);
+
         decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
     }
     else
     {
@@ -483,20 +539,20 @@ void DarkLord::shadowStrike(Character& target)
 
 void DarkLord::summonMinions(Character& target)
 {
-    int staminaCost = 45;
+    int manaCost = 35;
 
-    if (getStamina() >= staminaCost)
+    if (getMana() >= manaCost)
     {
         int damage = 15;
-        Screen::displayCharacterByCharacter(name + " призывает теневых существ, нападающих на игроков.\n");
+        Screen::displayCharacterByCharacter(name + " призывает теневых существ, нападающих на " + target.getName() + ".\n");
 
-        Screen::displayCharacterByCharacter("Существо материализуется перед игроком, его зловещий взгляд поражает цель.\n");
+        Screen::displayCharacterByCharacter("Существо материализуется перед " + target.getName() + ", его зловещий взгляд поражает цель.\n");
         target.takeDamage(damage);
 
-        Screen::displayCharacterByCharacter("Существо нападает с мрачной яростью, его удары поражают игрока!\n");
+        Screen::displayCharacterByCharacter("Существо нападает с мрачной яростью, его удары поражают " + target.getName() + "!\n");
         target.takeDamage(damage);
 
-        decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
     }
     else
     {
@@ -506,15 +562,16 @@ void DarkLord::summonMinions(Character& target)
 
 void DarkLord::energyAbsorption(Character& target)
 {
-    int staminaCost = 30;
+    int manaCost = 40;
 
-    if (getStamina() >= staminaCost)
+    if (getMana() >= manaCost)
     {
         int healAmount = 30;
         Screen::displayCharacterByCharacter(name + " поглощает энергию из окружающей тьмы, восстанавливая своё здоровье.\n");
         health += healAmount;
         Screen::displayCharacterByCharacter(name + " обретает новую силу, восстановив " + to_string(healAmount) + " единиц здоровья.\n");
-        decreaseStamina(staminaCost);
+        
+        decreaseMana(manaCost);
     }
     else
     {
@@ -525,13 +582,16 @@ void DarkLord::energyAbsorption(Character& target)
 void DarkLord::worldHeartDestruction(Character& target)
 {
     int staminaCost = 60;
+    int manaCost = 35;
 
-    if (getStamina() >= staminaCost)
+    if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
         int damage = 60;
-        Screen::displayCharacterByCharacter(name + " направляет разрушительную атаку на фундамент мира, нанося урон игроку.\n");
+        Screen::displayCharacterByCharacter(name + " направляет разрушительную атаку на фундамент мира, нанося урон " + target.getName() + ".\n");
         target.takeDamage(damage);
+
         decreaseStamina(staminaCost);
+        decreaseMana(manaCost);
     }
     else
     {

@@ -89,31 +89,57 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy)
 // Ход игрока: вывод опций, чтение выбора, выполнение соответствующего действия
 void CombatSystem::playerTurn(Character& player, Character& enemy)
 {
-    cout << "\nВыберите действие для героя:" << endl;
-    this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "1. Использовать " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
-    this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "2. Использовать "<< player.getMagic()->getName() <<" (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
-    this_thread::sleep_for(chrono::milliseconds(100));
-
-    cout << "\nВаше действие: ";
-
-    int choice;
-    cin >> choice;
-
-    cout << endl;
-
-    if (choice == 1)
+    while (true)
     {
-        player.attackWeapon(enemy);
-    }
-    else if (choice == 2)
-    {
-        player.castSpell(enemy);
-    }
-    else
-    {
-        cout << "Промах!" << std::endl;
+        cout << "\nВыберите действие для героя:" << endl;
+        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << "1. Использовать " << player.getWeapon()->getName() << " (dmg: " << player.getWeapon()->getDamage() << "  stm : -" << player.getWeapon()->getCost() << ")\n";
+        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << "2. Использовать " << player.getMagic()->getName() << " (dmg: " << player.getMagic()->getDamage() << "  mana: -" << player.getMagic()->getCost() << ")\n";
+        this_thread::sleep_for(chrono::milliseconds(100));
+        cout << "3. Пропустить ход\n";
+        this_thread::sleep_for(chrono::milliseconds(100));
+
+        cout << "\nВаше действие: ";
+
+
+        int choice;
+        cin >> choice;
+
+        cout << endl;
+
+        if (choice == 1)
+        {
+            if (player.getStamina() < player.getWeapon()->getCost())
+            {
+                Screen::displayCharacterByCharacter("Вы слишком истощены для использования " + player.getWeapon()->getName() + ".\n");
+                continue;
+            }
+
+            player.attackWeapon(enemy);
+            break;
+        }
+        else if (choice == 2)
+        {
+            if (player.getMana() < player.getMagic()->getCost())
+            {
+                Screen::displayCharacterByCharacter("Вы слишком истощены для использования " + player.getMagic()->getName() + ".\n");
+                continue;
+            }
+
+            player.castSpell(enemy);
+            break;
+        }
+        else if (choice == 3)
+        {
+            Screen::displayCharacterByCharacter(player.getName() + " начинает отступать.\n");
+            break;
+        }
+        else
+        {
+            cout << "Промах!" << std::endl;
+            break;
+        }
     }
 }
 
@@ -211,7 +237,7 @@ void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "| Выносливость: " << setw(4) << player.getStamina() << "(+" << player.regenerateStamina() << ")" << "| Выносливость: " << setw(4) << enemy.getStamina() << "(+" << enemy.regenerateStamina() << ")" << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
-    cout << "| Мана: " << setw(12) << player.getMana() << "(+" << 10 + 10 * player.getLevel() << ")" << "| Мана: " << setw(12) << enemy.getMana() << "(+" << 10 + 10 * enemy.getLevel() << ")" << "|" << endl;
+    cout << "| Мана: " << setw(12) << player.getMana() << "(+" << player.regenerateMana() << ")" << "| Мана: " << setw(12) << enemy.getMana() << "(+" << enemy.regenerateMana() << ")" << "|" << endl;
     this_thread::sleep_for(chrono::milliseconds(100));
     cout << "+------------------------+------------------------+" << endl;
 }

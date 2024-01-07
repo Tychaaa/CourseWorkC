@@ -59,9 +59,9 @@ int main() {
     //Magic magicCap("Шарик", 50, 15);
     //Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
 
-    Weapon sword("Длинный меч", 10, 5);
-    Magic magic("Огненный шар", 30, 5);
-    Character mainCharacter("Shichi", 200, 100, 100, &sword, &magic, "Воин");
+    Weapon sword("Длинный меч", 10, 30);
+    Magic magic("Огненный шар", 30, 30);
+    Character mainCharacter("Shichi", 200, 30, 30, &sword, &magic, "Воин");
     DarkLord darklord("Владыка Тьмы", 500, 500, 500);
     CombatSystem fight;
 

@@ -21,40 +21,38 @@ int main()
     // Устанавливаем параметры консоли
     consoleSetting();
 
-    ////Главное меню
-    //mainMenu();
+    //Главное меню
+    mainMenu();
 
     // Создаем объект персонажа
-    //Character mainCharacter = createMainCharacter();
+    Character mainCharacter;
 
-    //// Глава "Вступление"
-    //introduction(mainCharacter);
+    // Глава "Вступление"
+    introduction(mainCharacter);
 
-    //// Глава "Пролог"
-    //prologue(mainCharacter);
+    // Глава "Пролог"
+    prologue(mainCharacter);
 
-    //// Создаем начальную локацию
-    //Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
+    // Создаем начальную локацию
+    Location emerdealLocation("г.Эмердейл", "Город предоставляет разнообразные возможности для приключений, от торговли и заданий до исследования таинственных мест в его окрестностях.\nЭмердейл - место, где начинаются великие истории, и каждый приезжий ощущает волнение перед неизведанным.");
 
-    //// Заполняем локацию персонажами
-    //createEmerdealNPC(emerdealLocation, mainCharacter);
+    // Заполняем локацию персонажами
+    createEmerdealNPC(emerdealLocation, mainCharacter);
 
-    //// Запуск обучающего боя
-    //combatTraining(mainCharacter);
+    // Запуск обучающего боя
+    combatTraining(mainCharacter);
 
-    //chapter_one(mainCharacter);
+    // Глава 1
+    chapter_one(mainCharacter);
 
-    //chapter_two(mainCharacter);
+    // Глава 2
+    chapter_two(mainCharacter);
 
-    //chapter_final(mainCharacter);
+    // Глава "Финал"
+    chapter_final(mainCharacter);
 
-    Weapon sword("Длинный меч", 10, 5);
-    Magic magic("Огненный шар", 30, 5);
-    Character mainCharacter("Тучка Стальной", 200, 100, 100, &sword, &magic, "Воин");;
-    DarkElf darkElf("Темная эльфийка Аделлия", 200, 150, 150);
-
-    CombatSystem fight;
-    fight.startGame(mainCharacter, darkElf);
+    // Финальные титры
+    displayFinalCredits();
 
     return 0;
 }

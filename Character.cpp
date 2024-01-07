@@ -221,7 +221,7 @@ void Character::decreaseMana(int cost) {
 
 int Character::regenerateStamina()
 {
-    int staminaRegenerationAmount = 10 + 5 * level;
+    int staminaRegenerationAmount = 10 + 0.5 * level;
     if (stamina < maxStamina) {
         stamina += staminaRegenerationAmount;
         if (stamina > maxStamina) {
@@ -234,7 +234,7 @@ int Character::regenerateStamina()
 
 int Character::regenerateMana()
 {
-    int manaRegenerationAmount = 10 + 5 * level;
+    int manaRegenerationAmount = 10 + 0.5 * level;
 
     if (mana < maxMana) {
         mana += manaRegenerationAmount;

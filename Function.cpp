@@ -439,16 +439,16 @@ void combatTraining(Character& character)
         break;
     }
 
-    Weapon capitan_sword("Меч капитана", 10, 5);
-    Character enemy("Капитан Стелсвин", 100, 150, 150, &capitan_sword, nullptr, 100);
+    Weapon capitan_sword("Меч капитана", 35, 25);
+    Character enemy("Капитан Стелсвин", 200, 150, 150, &capitan_sword, nullptr, 100);
 
     CombatSystem fight;
 
     // Продолжение сюжета после тренировочного боя с капитаном Стелсвином
-    Screen::displayText("\nТренировочный бой начался. Капитан Стелсвин демонстрировал свою силу и мастерство, но " + character.getName() + " не оставался в стороне.");
+    Screen::displayText("\nТренировочный бой начался. Капитан Стелсвин демонстрировал свою силу и мастерство, но " + character.getName() + " не оставался в стороне.\n");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    fight.startGame(character, enemy);
+    fight.startGameTraining(character, enemy);
 
     // Подводим итоги тренировочного боя
     if (enemy.getHealth() <= 0) 
@@ -700,9 +700,9 @@ void chapter_two(Character& character)
 
     Wolf wolf("Волчара", 60, 50, 0);
 
-    Skeleton skeleton1("Зловещий скелет", 40, 100, 100);
+    Skeleton skeleton1("Зловещий скелет Фейн", 40, 100, 100);
 
-    Skeleton skeleton2("Не зловещий Скелет", 40, 100, 100);
+    Skeleton skeleton2("Загадочный Скелет Балд", 40, 100, 100);
 
     CombatSystem fight;
 
@@ -724,6 +724,52 @@ void chapter_two(Character& character)
     Screen::displayText("\nНажмите Enter, чтобы продолжить...");
     cin.ignore();
     cin.get();
+}
+
+void characterUpgrade(Character& character)
+{
+    character.setHealth(350);
+    character.setMaxHealth(350);
+    character.setStamina(300);
+    character.setMaxStamina(300);
+    character.setMana(300);
+    character.setMaxMana(300);
+    character.setLevel(50);
+
+    string className = character.getClassType();
+
+    // Создаем новые, еще более улучшенные объекты оружия и магии в зависимости от класса
+    Weapon* newWeapon = nullptr;
+    Magic* newMagic = nullptr;
+
+    if (className == "Воин") {
+        newWeapon = new Weapon("Героический Меч Защитника", 60, 80);
+        newMagic = new Magic("Неукротимый Гнев", 50, 60);
+    }
+    else if (className == "Маг") {
+        newWeapon = new Weapon("Архимагический Жезл Стихий", 40, 40);
+        newMagic = new Magic("Взрыв Астральных Пламеней", 70, 70);
+    }
+    else if (className == "Вор") {
+        newWeapon = new Weapon("Клинок Скрытной Тени", 70, 65);
+        newMagic = new Magic("Спектральный Перехват", 60, 65);
+    }
+    else if (className == "Бродяга") {
+        newWeapon = new Weapon("Стальные Кастеты Паука", 60, 60);
+        newMagic = new Magic("Техника Волкобой", 65, 65);
+    }
+    else if (className == "Жрец") {
+        newWeapon = new Weapon("Священный Жезл", 60, 50);
+        newMagic = new Magic("Божественное Пламя", 60, 85);
+    }
+    else if (className == "Рыцарь") {
+        newWeapon = new Weapon("Меч Паладина Света", 75, 65);
+        newMagic = new Magic("Луч Солнца", 55, 50);
+    }
+
+    // Устанавливаем новые улучшенные оружие и магию герою
+    character.setWeapon(newWeapon);
+    character.setMagic(newMagic);
 }
 
 // Глава "Финал"
@@ -755,6 +801,8 @@ void chapter_final(Character& character)
     this_thread::sleep_for(chrono::milliseconds(1500));
 
     cout << "\n\n" << endl;
+
+    characterUpgrade(character);
 
     // Переход к финалу после прошествия времени
     Screen::displayText("\nПрошло много лет с тех пор, как " + character.getName() + " отправился в свое первое приключение.");
@@ -874,9 +922,7 @@ void chapter_final(Character& character)
     Screen::displayText("\nПоследнее приключение начинается, и " + character.getName() + " вступает в бой со всеми силами Княжества Тьмы!");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
-    /*
-    * TODO: Сделать бои со всеми NPC в замке (лучше отдельной функцией)
-    */
+    finalFight(character);
 
     chooseGameEnding(character);
 
@@ -886,10 +932,24 @@ void chapter_final(Character& character)
     cin.get();
 }
 
+void finalFight(Character& character)
+{
+    CombatSystem fight;
+
+    DarkLord darklord("Владыка Тьмы Вергилий", 500, 500, 500);
+    //Demon demon("Демон-стражник Азгар", 500, 500, 500);
+    Succubus succubus("Суккуб Малина", 500, 500, 500);
+    Witch witch("Ведьма Лилит", 500, 500, 500);
+    Enchantress enchantress("Зачаровательница Моргана", 500, 500, 500);
+    DarkElf darkElf("Темная эльфийка Аделлия", 500, 500, 500);
+
+    fight.startGame();
+}
+
 // Функция для выбора концовки игры
 void chooseGameEnding(Character& character) 
 {
-    Screen::displayText("\nПосле жесткой битвы в замке Владыки Тьмы, Владыка Тьмы лежит побежденным перед " + character.getName() + ".");
+    Screen::displayText("\nПосле жесткой битвы в замке, Владыка Тьмы лежит побежденным перед " + character.getName() + ".");
     this_thread::sleep_for(chrono::milliseconds(1500));
 
     // Получаем выбор игрока
@@ -966,22 +1026,22 @@ pair<Weapon*, Magic*> createEquipment(string& className)
     Magic* defaultMagic = new Magic("Простое заклинание", 15, 5);  // Магия по умолчанию
 
     if (className == "Воин") {
-        return make_pair(new Weapon("Меч Воина", 20, 8), new Magic("Силовой удар", 12, 20));
+        return make_pair(new Weapon("Меч Воина", 25, 35), new Magic("Силовой удар", 15, 25));
     }
     else if (className == "Маг") {
-        return make_pair(new Weapon("Посох Мага", 15, 5), new Magic("Огненная вспышка", 25, 10));
+        return make_pair(new Weapon("Посох Мага", 15, 15), new Magic("Огненная вспышка", 30, 30));
     }
     else if (className == "Вор") {
-        return make_pair(new Weapon("Кинжал Вора", 18, 6), new Magic("Теневой удар", 15, 15));
+        return make_pair(new Weapon("Кинжал Вора", 30, 25), new Magic("Теневой удар", 25, 30));
     }
     else if (className == "Бродяга") {
-        return make_pair(new Weapon("Старый Кастет", 15, 3), new Magic("Меткая атака", 10, 18));
+        return make_pair(new Weapon("Старый Кастет", 25, 25), new Magic("Стиль паука", 30, 30));
     }
     else if (className == "Жрец") {
-        return make_pair(new Weapon("Святой Жезл", 17, 7), new Magic("Лавовое дыхание", 20, 12));
+        return make_pair(new Weapon("Святой Жезл", 25, 17), new Magic("Лавовое дыхание", 25, 40));
     }
     else if (className == "Рыцарь") {
-        return make_pair(new Weapon("Меч Рыцаря", 22, 10), new Magic("Стиль паука", 10, 20));
+        return make_pair(new Weapon("Меч Рыцаря", 40, 30), new Magic("Меткая атака", 20, 15));
     }
     else {
         // По умолчанию возвращаем стандартное оружие и магию
@@ -1225,4 +1285,26 @@ void createEmerdealNPC(Location emerdeal, Character character)
 
     // Входим в стартовую локацию
     emerdeal.onEnter();
+}
+
+void displayFinalCredits()
+{
+    Screen::displayText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayText("                                       END OF GAME\n");
+    this_thread::sleep_for(chrono::milliseconds(500));
+    Screen::displayText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n");
+    this_thread::sleep_for(chrono::milliseconds(1500));
+
+    Screen::displayDialog("Рассказчик", "И вот мы подошли к завершению нашего захватывающего приключения.\n            Спасибо, что были с нами и принимали участие в этой увлекательной истории.\n            Надеемся, что вам понравилось путешествие по миру фантазии и приключений.");
+
+    cout << "\n\n";
+
+    Screen::displayDialog("Рассказчик", "Игрок, вы проявили смелость, мудрость и силу в этом мире.\n            Ваши решения оставили свой след, и ваша история стала частью легенды.\n            Благодарим вас за участие в этом увлекательном путешествии!");
+
+    cout << "\n\n";
+
+    Screen::displayDialog("Рассказчик", "Пока мы прощаемся, помните: в мире фантазии всегда ждут новые приключения.\n            До новых встреч, герой! Пусть судьба вас сопровождает!");
+
+    Screen::displayText("\n\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
 }

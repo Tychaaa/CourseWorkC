@@ -56,8 +56,14 @@ void chapter_one(Character& character);
 // Глава 2
 void chapter_two(Character& character);
 
+// Улучшенеи персонажа перед финалом
+void characterUpgrade(Character& character);
+
 // Глава "Финал"
 void chapter_final(Character& character);
+
+// Финальный бой
+void finalFight(Character& character);
 
 // Функция для выбора концовки игры
 void chooseGameEnding(Character& character);
@@ -76,3 +82,5 @@ Character createMainCharacter();
 
 // Заполнить г.Эмердейл неигровыми персонажами и посещение локации
 void createEmerdealNPC(Location emerdeal, Character character);
+
+void displayFinalCredits();

@@ -3,7 +3,8 @@
 #include "Magic.h"
 
 // Конструктор
-Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0), classType("") {
+Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), experience(0), classType("")
+{
     maxHealth = 0;
     maxStamina = 0;
     maxMana = 0;
@@ -11,7 +12,8 @@ Character::Character() : name(""), health(0), stamina(0), mana(0), level(1), exp
 
 // Конструктор с параметрами 1
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, string classtype)
-    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype) {
+    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), classType(classtype)
+{
     maxHealth = health;
     maxStamina = stamina;
     maxMana = mana;
@@ -19,7 +21,8 @@ Character::Character(string name, int health, int stamina, int mana, Weapon* wea
 
 // Конструктор с параметрами 2
 Character::Character(string name, int health, int stamina, int mana, Weapon* weapon, Magic* magic, int exp)
-    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), experience(exp) {
+    : name(name), health(health), stamina(stamina), mana(mana), weapon(weapon), magic(magic), experience(exp)
+{
     maxHealth = health;
     maxStamina = stamina;
     maxMana = mana;
@@ -49,7 +52,6 @@ int Character::getMana() const
     return mana;
 }
 
-// методы для доступа к максимальным значениям
 int Character::getMaxHealth() const
 {
     return maxHealth;
@@ -64,7 +66,6 @@ int Character::getMaxMana() const
 {
     return maxMana;
 }
-
 
 int Character::getLevel() const
 {
@@ -90,6 +91,7 @@ Magic* Character::getMagic() const
 {
     return magic;
 }
+
 
 // Сеттеры
 void Character::setName(string newName)
@@ -132,7 +134,8 @@ void Character::setLevel(int newLevel)
     level = newLevel;
 }
 
-void Character::setExperience(int newExp) {
+void Character::setExperience(int newExp)
+{
     experience += newExp;
     while (experience >= 100) {
         levelUp();
@@ -163,7 +166,7 @@ void Character::attack(Character& target)
         mt19937 gen(rd());
         uniform_int_distribution<> dist(1, 100);
 
-        int choice = dist(gen); // Генерируем случайное число от 1 до 4
+        int choice = dist(gen);
 
         if (choice <= 45)
         {
@@ -221,16 +224,19 @@ void Character::decreaseStamina(int cost) {
     stamina -= cost;
 }
 
-void Character::decreaseMana(int cost) {
+void Character::decreaseMana(int cost)
+{
     mana -= cost;
 }
 
 int Character::regenerateStamina()
 {
     int staminaRegenerationAmount = 10 + 5 * level;
-    if (stamina < maxStamina) {
+    if (stamina < maxStamina)
+    {
         stamina += staminaRegenerationAmount;
-        if (stamina > maxStamina) {
+        if (stamina > maxStamina)
+        {
             stamina = maxStamina; // Устанавливаем значение стамины в максимум, если превысили
         }
     }
@@ -242,9 +248,11 @@ int Character::regenerateMana()
 {
     int manaRegenerationAmount = 10 + 5 * level;
 
-    if (mana < maxMana) {
+    if (mana < maxMana)
+    {
         mana += manaRegenerationAmount;
-        if (mana > maxMana) {
+        if (mana > maxMana)
+        {
             mana = maxMana; // Устанавливаем значение маны в максимум, если превысили
         }
     }
@@ -252,7 +260,8 @@ int Character::regenerateMana()
     return manaRegenerationAmount;
 }
 
-void Character::levelUp() {
+void Character::levelUp()
+{
     level++; // Увеличиваем уровень на один
 
     // Увеличиваем здоровье, выносливость, ману и т.д. на определенное количество при достижении нового уровня
@@ -266,28 +275,36 @@ void Character::levelUp() {
     // Выводим сообщение о повышении уровня персонажа
     cout << "\nУровень героя " << name << " повышен до ";
     this_thread::sleep_for(chrono::milliseconds(500));
-    for (char c : to_string(level)) {
+
+    for (char c : to_string(level))
+    {
         cout << c << flush;
         this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
     }
     cout << "!" << endl;
+
     cout << "Здоровье увеличено до ";
    this_thread::sleep_for(chrono::milliseconds(500));
-    for (char c : to_string(health)) {
+    for (char c : to_string(health))
+    {
         cout << c << flush;
         this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
     }
     cout << endl;
+
     cout << "Выносливость увеличенa до ";
     this_thread::sleep_for(chrono::milliseconds(500));
-    for (char c : to_string(stamina)) {
+    for (char c : to_string(stamina))
+    {
         cout << c << flush;
         this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
     }
     cout << endl;
+
     cout << "Мана увеличенa до ";
     this_thread::sleep_for(chrono::milliseconds(500));
-    for (char c : to_string(mana)) {
+    for (char c : to_string(mana))
+    {
         cout << c << flush;
         this_thread::sleep_for(chrono::milliseconds(100)); // Задержка в миллисекундах
     }

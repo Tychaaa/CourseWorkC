@@ -41,7 +41,7 @@ public:
 
     void smash(Character& target); // Функция для удара "smash" огра
     void groundPound(Character& target); // Функция для атаки "groundPound" огра
-    void fistAttack(Character& target); // Новая функция для удара кулаком
+    void fistAttack(Character& target); // Удар кулаком
 
     void attack(Character& target) override; // Переопределенная функция для атаки
 };

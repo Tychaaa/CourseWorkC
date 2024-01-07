@@ -15,19 +15,21 @@ using namespace std;
 class CombatSystem
 {
 private:
-    bool isTraining;
+    bool isTraining; // Пременная для определение тренировочного боя
+
     // Переменные для сохранения предыдущих характеристик игрока
     int prevMaxPlayerHealth;
     int prevMaxPlayerStamina;
     int prevMaxPlayerMana;
 
 public:
-
+    // Инструкция к бою
     void displayTrainingInstructions();
 
     // Запуск игры
     void startGame(Character& player, Character& enemy);
 
+    // Запуск тренировочного боя
     void startGameTraining(Character& player, Character& enemy);
 
     // Начало боя
@@ -41,9 +43,6 @@ public:
 
     // Проверка на победу
     bool checkVictory(Character& player, Character& enemy);
-
-    // Применение эффектов
-    //void applyStatusEffects(Character& character, Character& enemy); 
 
     // Отображение информации о персонажах
     void displayCharacterInfo(Character& player, Character& enemy); 

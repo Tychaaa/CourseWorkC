@@ -1,34 +1,53 @@
 #include "CombatSystem.h"
 
-void CombatSystem::displayTrainingInstructions() {
+// Инструкция к бою
+void CombatSystem::displayTrainingInstructions()
+{
     cout << "Добро пожаловать в тренировочный бой!" << endl << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "Инструкции по боевой системе:" << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "- Бой происходит поочередно: сначала ваш ход, затем ход противника." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "- Выберите номер действия:" << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Введите '1', чтобы использовать оружие." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Введите '2', чтобы использовать магию." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
-    cout << "   - Любая другая цифра - пропустить ход." << endl << endl;
+
+    cout << "   - Введите '3', чтобы пропустить ход." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
+    cout << "   - Любая другая цифра - означает промах." << endl << endl;
+    this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "Карточки характеристик:" << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Здоровье: текущий уровень жизненных сил персонажа." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Выносливость: показатель, влияющий на атаки и защиту (+восстановление)." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Мана: ресурс, необходимый для магических атак (+восстановление)." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - После каждого хода будут отображены характеристики игрока и врага." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Ваши характеристики слева, характеристики противника - справа." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "   - Восстановление выносливости и маны: ресурсы восстанавливаются после каждого хода." << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
+
     cout << "Желаем удачи в тренировке!" << endl;
     this_thread::sleep_for(chrono::milliseconds(1000));
 }
@@ -46,7 +65,7 @@ void CombatSystem::startGame(Character& player, Character& enemy)
     initiateCombat(player, enemy);
 }
 
-// Запуск игры: сохраняются начальные характеристики игрока и противника, затем инициируется бой
+// Запуск тренировочного боя
 void CombatSystem::startGameTraining(Character& player, Character& enemy)
 {
     isTraining = true;
@@ -80,8 +99,6 @@ void CombatSystem::initiateCombat(Character& player, Character& enemy)
 
         enemyTurn(player, enemy);
 
-        //applyStatusEffects(player, enemy);
-
         displayCharacterInfo(player, enemy);
     }
 }
@@ -101,7 +118,6 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
         this_thread::sleep_for(chrono::milliseconds(100));
 
         cout << "\nВаше действие: ";
-
 
         int choice;
         cin >> choice;
@@ -144,7 +160,8 @@ void CombatSystem::playerTurn(Character& player, Character& enemy)
 }
 
 // Ход противника
-void CombatSystem::enemyTurn(Character& player, Character& enemy) {
+void CombatSystem::enemyTurn(Character& player, Character& enemy)
+{
     enemy.attack(player);
 }
 
@@ -152,16 +169,20 @@ void CombatSystem::enemyTurn(Character& player, Character& enemy) {
 bool CombatSystem::checkVictory(Character& player, Character& enemy)
 {
     bool playerGetBonus = false;
+
     if (player.getHealth() <= 0)
     {
-        if (isTraining) {
+        if (isTraining)
+        {
             cout << "Смерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << std::endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
             cout << "Окончание тренировочного боя." << std::endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
+
             //Рализация без воскрешщения
             return true;
         }
+
         cout << "Смерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << std::endl;
         this_thread::sleep_for(chrono::milliseconds(1000));
         cout << "Слабый пульс начинает пульсировать вновь. Глаза героя открываются, словно он получил новую жизнь." << std::endl;
@@ -185,6 +206,7 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
 
         // Перезапуск боя с сохраненными значениями
         initiateCombat(player, enemy);
+
         return true; // Возвращаем true, чтобы бой перезапустился
     }
     else if (enemy.getHealth() <= 0)
@@ -215,14 +237,6 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
     return false;
 }
 
-// Применение статусных эффектов : восстановление стамины и маны для игрока и противника
-//void CombatSystem::applyStatusEffects(Character& player, Character& enemy)
-//{
-//    player.regenerateStamina();
-//    player.regenerateMana();
-//    enemy.regenerateStamina();
-//    enemy.regenerateMana();
-//}
 
 // Вывод информации о персонажах на экран
 void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)

@@ -44,6 +44,9 @@ public:
     // Проверка на победу
     bool checkVictory(Character& player, Character& enemy);
 
+    // Восстановление значений здоровья, выносливости и маны игрока
+    void restoreCharacterStats(Character& character);
+
     // Отображение информации о персонажах
     void displayCharacterInfo(Character& player, Character& enemy); 
 };

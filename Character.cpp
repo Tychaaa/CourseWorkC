@@ -210,11 +210,14 @@ void Character::castSpell(Character& target)
 
 void Character::takeDamage(int dmg) 
 {
-    health -= dmg;
 
     if (health < dmg)
     {
         health = 0;
+    }
+    else
+    {
+        health -= dmg;
     }
 
     Screen::displayCharacterByCharacter(name + " получил " + to_string(dmg) + " урона.\n");

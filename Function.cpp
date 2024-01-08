@@ -943,7 +943,7 @@ void finalFight(Character& character)
     Enchantress enchantress("Зачаровательница Моргана", 500, 500, 500);
     DarkElf darkElf("Темная эльфийка Аделлия", 500, 500, 500);
 
-    fight.startGame();
+    //fight.startGame();
 }
 
 // Функция для выбора концовки игры
@@ -1175,35 +1175,65 @@ Character createMainCharacter()
     mainCharacter.setWeapon(equipment.first);
     mainCharacter.setMagic(equipment.second);
 
-    if (className == "Воин") {
+    if (className == "Воин")
+    {
         mainCharacter.setHealth(110);
         mainCharacter.setStamina(120);
         mainCharacter.setMana(80);
+
+        mainCharacter.setMaxHealth(mainCharacter.getHealth());
+        mainCharacter.setMaxStamina(mainCharacter.getStamina());
+        mainCharacter.setMaxMana(mainCharacter.getMana());
     }
-    else if (className == "Маг") {
+    else if (className == "Маг")
+    {
         mainCharacter.setHealth(80);
         mainCharacter.setStamina(80);
         mainCharacter.setMana(150);
+
+        mainCharacter.setMaxHealth(mainCharacter.getHealth());
+        mainCharacter.setMaxStamina(mainCharacter.getStamina());
+        mainCharacter.setMaxMana(mainCharacter.getMana());
     }
-    else if (className == "Вор") {
+    else if (className == "Вор")
+    {
         mainCharacter.setHealth(90);
         mainCharacter.setStamina(90);
         mainCharacter.setMana(110);
+
+        mainCharacter.setMaxHealth(mainCharacter.getHealth());
+        mainCharacter.setMaxStamina(mainCharacter.getStamina());
+        mainCharacter.setMaxMana(mainCharacter.getMana());
     }
-    else if (className == "Бродяга") {
+    else if (className == "Бродяга")
+    {
         mainCharacter.setHealth(110);
         mainCharacter.setStamina(110);
         mainCharacter.setMana(110);
+
+        mainCharacter.setMaxHealth(mainCharacter.getHealth());
+        mainCharacter.setMaxStamina(mainCharacter.getStamina());
+        mainCharacter.setMaxMana(mainCharacter.getMana());
     }
-    else if (className == "Жрец") {
+    else if (className == "Жрец")
+    {
         mainCharacter.setHealth(110);
         mainCharacter.setStamina(90);
         mainCharacter.setMana(110);
+
+        mainCharacter.setMaxHealth(mainCharacter.getHealth());
+        mainCharacter.setMaxStamina(mainCharacter.getStamina());
+        mainCharacter.setMaxMana(mainCharacter.getMana());
     }
-    else if (className == "Рыцарь") {
+    else if (className == "Рыцарь")
+    {
         mainCharacter.setHealth(140);
         mainCharacter.setStamina(100);
         mainCharacter.setMana(100);
+
+        mainCharacter.setMaxHealth(mainCharacter.getHealth());
+        mainCharacter.setMaxStamina(mainCharacter.getStamina());
+        mainCharacter.setMaxMana(mainCharacter.getMana());
     }
 
     // Выводим информацию о герое

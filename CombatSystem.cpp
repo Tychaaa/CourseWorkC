@@ -191,6 +191,9 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
             cout << "\nОкончание тренировочного боя.\n" << endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
 
+            // Восстановление значений здоровья, выносливости и маны игрока
+            restoreCharacterStats(player);
+
             //Рализация без воскрешщения
             return true;
         }
@@ -205,15 +208,13 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
         player.setMaxHealth(player.getMaxHealth() * 1.2); // Увеличиваем максимальное здоровье в 1.2
         player.setMaxStamina(player.getMaxStamina() * 1.2); // Увеличиваем максимальную выносливость в 1.2
         player.setMaxMana(player.getMaxMana() * 1.2); // Увеличиваем максимальную выносливость в 1.2
-        player.setHealth(player.getMaxHealth());
-        player.setStamina(player.getMaxStamina());
-        player.setMana(player.getMaxMana());
         playerGetBonus = true;
 
+        // Восстановление значений здоровья, выносливости и маны игрока
+        restoreCharacterStats(player);
+
         // Восстановление значений здоровья, выносливости и маны противника
-        enemy.setHealth(enemy.getMaxHealth());
-        enemy.setStamina(enemy.getMaxStamina());
-        enemy.setMana(enemy.getMaxMana());
+        restoreCharacterStats(enemy);
 
         // Перезапуск боя с сохраненными значениями
         initiateCombat(player, enemy);
@@ -232,10 +233,9 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
             player.setMaxStamina(prevMaxPlayerStamina);
             player.setMaxMana(prevMaxPlayerMana);
         }
+
         // Восстановление значений здоровья, выносливости и маны игрока
-        player.setHealth(player.getMaxHealth());
-        player.setStamina(player.getMaxStamina());
-        player.setMana(player.getMaxMana());
+        restoreCharacterStats(player);
 
         cout << "Победа приносит новый опыт. Ощущение победы наполняет его душу, его путь становится яснее." << endl;
         this_thread::sleep_for(chrono::milliseconds(1000));
@@ -248,6 +248,12 @@ bool CombatSystem::checkVictory(Character& player, Character& enemy)
     return false;
 }
 
+// Восстановление значений здоровья, выносливости и маны игрока
+void CombatSystem::restoreCharacterStats(Character& character) {
+    character.setHealth(character.getMaxHealth());
+    character.setStamina(character.getMaxStamina());
+    character.setMana(character.getMaxMana());
+}
 
 // Вывод информации о персонажах на экран
 void CombatSystem::displayCharacterInfo(Character& player, Character& enemy)

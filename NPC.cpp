@@ -69,7 +69,8 @@ void NPC::performAction(Action& action)
 
     // Действие "Осмотреть"
     case Action::ActionType::Examine:
-        Screen::displayText("\nВы осматриваете \"" + getName() + "\".\n" + getDescription());
+        Screen::displayCharacterByCharacter("\nВы осматриваете \"" + getName() + "\".\n" + getDescription());
+        cout << endl;
         break;
 
     default:

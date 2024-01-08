@@ -83,4 +83,5 @@ Character createMainCharacter();
 // Заполнить г.Эмердейл неигровыми персонажами и посещение локации
 void createEmerdealNPC(Location emerdeal, Character character);
 
+// Финальные титры
 void displayFinalCredits();

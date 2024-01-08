@@ -7,7 +7,6 @@
 
 #include "InteractiveObject.h"
 #include "Screen.h"
-#include "Input.h"
 
 using namespace std;
 

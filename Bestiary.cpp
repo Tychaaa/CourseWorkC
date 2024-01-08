@@ -532,11 +532,11 @@ void Succubus::attack(Character& target)
 
 void Succubus::seductiveGlance(Character& target)
 {
-    int staminaCost = 15;
+    int staminaCost = 35;
+    int damage = 40 + rand() % 21;
 
     if (getStamina() >= staminaCost)
     {
-        int damage = 20;
         Screen::displayCharacterByCharacter(getName() + " очаровывает своим взглядом " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -549,11 +549,11 @@ void Succubus::seductiveGlance(Character& target)
 
 void Succubus::demonicEmbrace(Character& target)
 {
-    int staminaCost = 25;
+    int staminaCost = 45;
+    int damage = 60 + rand() % 31;
 
     if (getStamina() >= staminaCost)
     {
-        int damage = 30;
         Screen::displayCharacterByCharacter(getName() + " обнимает " + target.getName() + " в демоническом порыве!\n");
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -566,11 +566,11 @@ void Succubus::demonicEmbrace(Character& target)
 
 void Succubus::charmingKiss(Character& target)
 {
-    int manaCost = 15;
+    int manaCost = 50;
+    int damage = 70 + rand() % 31;
 
     if (getMana() >= manaCost)
     {
-        int damage = 20;
         Screen::displayCharacterByCharacter(getName() + " наносит очаровывающий поцелуй " + target.getName() + "!\n");
         Screen::displayCharacterByCharacter(target.getName() + " ослаблен от чар.\n");
         target.takeDamage(damage);
@@ -586,11 +586,11 @@ void Succubus::charmingKiss(Character& target)
 
 void Succubus::seductiveWhisper(Character& target)
 {
-    int staminaCost = 20;
+    int staminaCost = 40;
+    int damage = 45 + rand() % 16;
 
     if (getStamina() >= staminaCost)
     {
-        int damage = 25;
         Screen::displayCharacterByCharacter(getName() + " шепчет завораживающие слова " + target.getName() + "!\n");
         target.takeDamage(damage);
         Screen::displayCharacterByCharacter(getName() + " восстанавливает +" + to_string(damage / 2) + " здоровья от мучений противника.\n");
@@ -605,11 +605,11 @@ void Succubus::seductiveWhisper(Character& target)
 
 void Succubus::passionateTrap(Character& target)
 {
-    int manaCost = 30;
+    int manaCost = 70;
+    int damage = 80 + rand() % 21;
 
     if (getMana() >= manaCost)
     {
-        int damage = 40;
         Screen::displayCharacterByCharacter(getName() + " создает ловушку страсти вокруг " + target.getName() + "!\n");
         Screen::displayCharacterByCharacter(target.getName() + " погружается в вихрь страстных эмоций и получает урон.\n");
         target.takeDamage(damage);
@@ -630,7 +630,7 @@ Witch::Witch() : Character() {}
 Witch::Witch(std::string name, int health, int stamina, int mana)
     : Character(name, health, stamina, mana, nullptr, nullptr, "")
 {
-    experience = 60;
+    experience = 80;
 }
 
 Witch::~Witch() {}
@@ -693,11 +693,11 @@ void Witch::attack(Character& target)
 
 void Witch::darkCurse(Character& target)
 {
-    int manaCost = 15;
+    int manaCost = 70;
 
     if (getMana() >= manaCost)
     {
-        int damage = 20;
+        int damage = 50 + rand() % 31;
         Screen::displayCharacterByCharacter(getName() + " накладывает темное проклятие на " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -710,11 +710,11 @@ void Witch::darkCurse(Character& target)
 
 void Witch::hexingBlast(Character& target)
 {
-    int staminaCost = 20;
+    int staminaCost = 80;
 
     if (getStamina() >= staminaCost)
     {
-        int damage = 25;
+        int damage = 50 + rand() % 31;
         Screen::displayCharacterByCharacter(getName() + " выпускает волшебный сгусток энергии по " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -727,11 +727,11 @@ void Witch::hexingBlast(Character& target)
 
 void Witch::summonMinions(Character& target)
 {
-    int manaCost = 25;
+    int manaCost = 50;
 
     if (getMana() >= manaCost)
     {
-        int damage = 30;
+        int damage = 50 + rand() % 31;
         Screen::displayCharacterByCharacter(getName() + " призывает миньонов для атаки " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -744,11 +744,11 @@ void Witch::summonMinions(Character& target)
 
 void Witch::poisonousBrew(Character& target)
 {
-    int staminaCost = 20;
+    int staminaCost = 55;
 
     if (getStamina() >= staminaCost)
     {
-        int damage = 25;
+        int damage = 50 + rand() % 31;
         Screen::displayCharacterByCharacter(getName() + " бросает ядовитое зелье в сторону " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -761,12 +761,13 @@ void Witch::poisonousBrew(Character& target)
 
 void Witch::mysticalShield(Character& target)
 {
-    int manaCost = 15;
+    int manaCost = 70;
 
     if (getMana() >= manaCost)
     {
-        Screen::displayCharacterByCharacter(getName() + " создает мистический щит (+" + to_string(manaCost) + " hp), защищаясь от атак " + target.getName() + "!\n");
-        health += manaCost;
+        int shieldAmount = 40 + rand() % 31;
+        Screen::displayCharacterByCharacter(getName() + " создает мистический щит (+" + to_string(shieldAmount) + " hp), защищаясь от атак " + target.getName() + "!\n");
+        health += shieldAmount;
         decreaseMana(manaCost);
     }
     else
@@ -847,11 +848,11 @@ void Enchantress::attack(Character& target)
 
 void Enchantress::mysticTouch(Character& target)
 {
-    int staminaCost = 20;
+    int staminaCost = 40;
+    int damage = 50 + rand() % 11;
 
     if (getStamina() >= staminaCost)
     {
-        int damage = 25;
         Screen::displayCharacterByCharacter(getName() + " прикасается к " + target.getName() + " мистическим прикосновением!\n");
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -864,11 +865,11 @@ void Enchantress::mysticTouch(Character& target)
 
 void Enchantress::etherealDance(Character& target)
 {
-    int manaCost = 25;
+    int manaCost = 50;
+    int damage = 55 + rand() % 11;
 
     if (getMana() >= manaCost)
     {
-        int damage = 30;
         Screen::displayCharacterByCharacter(getName() + " исполняет эфирный танец перед " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -881,11 +882,11 @@ void Enchantress::etherealDance(Character& target)
 
 void Enchantress::mysticBlast(Character& target)
 {
-    int manaCost = 25;
+    int manaCost = 55;
+    int damage = 55 + rand() % 11;
 
     if (getMana() >= manaCost)
     {
-        int damage = 30;
         Screen::displayCharacterByCharacter(getName() + " выпускает мистический взрыв по " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -898,11 +899,11 @@ void Enchantress::mysticBlast(Character& target)
 
 void Enchantress::whirlwindOfEnchantment(Character& target)
 {
-    int manaCost = 35;
+    int manaCost = 70;
+    int damage = 60 + rand() % 11;
 
     if (getMana() >= manaCost)
     {
-        int damage = 40;
         Screen::displayCharacterByCharacter(getName() + " создает вихрь заклинаний вокруг " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -915,11 +916,11 @@ void Enchantress::whirlwindOfEnchantment(Character& target)
 
 void Enchantress::mirrorIllusion(Character& target)
 {
-    int manaCost = 30;
+    int manaCost = 60;
+    int damage = 65 + rand() % 11;
 
     if (getMana() >= manaCost)
     {
-        int damage = 35;
         Screen::displayCharacterByCharacter(getName() + " создает зеркальную иллюзию, которая атакует " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -929,7 +930,6 @@ void Enchantress::mirrorIllusion(Character& target)
         Screen::displayCharacterByCharacter(getName() + " слишком изнурена для создания зеркальной иллюзии.\n");
     }
 }
-
 /*
 *   ДЕМОН-СТРАЖНИК (DEMON)
 */
@@ -939,7 +939,7 @@ Demon::Demon() : Character() {}
 Demon::Demon(string name, int health, int stamina, int mana)
     : Character(name, health, stamina, mana, nullptr, nullptr, "")
 {
-    experience = 200;
+    experience = 70;
 }
 
 Demon::~Demon() {}
@@ -977,12 +977,12 @@ int Demon::regenerateMana()
 
 void Demon::hellishLash(Character& target)
 {
-    int staminaCost = 20;
-    int manaCost = 20;
+    int staminaCost = 40;
+    int manaCost = 40;
 
     if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
-        int damage = 25;
+        int damage = 60 + rand() % 26;
         Screen::displayCharacterByCharacter(name + " с демоническим ревом вызывает пламенный кнут из бездны, который охватывает " + target.getName() + " огненным ударом.\n");
         target.takeDamage(damage);
         Screen::displayCharacterByCharacter("Пламя оставляет горящий след на земле, испуская дурманящий дым.\n");
@@ -999,11 +999,11 @@ void Demon::hellishLash(Character& target)
 void Demon::cursedOath(Character& target)
 {
     int staminaCost = 30;
-    int manaCost = 10;
+    int manaCost = 25;
 
     if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
-        int damage = 15;
+        int damage = 50 + rand() % 16;
         int staminaDamage = 10;
         Screen::displayCharacterByCharacter("Демон-стражник произносит древние мистические слова, наложенные на оружие, и наносит проклятый удар по " + target.getName() + ".\n");
         target.takeDamage(damage);
@@ -1025,7 +1025,7 @@ void Demon::infernalCurse(Character& target)
 
     if (getMana() >= manaCost)
     {
-        int staminaDamage = 50;
+        int staminaDamage = 60;
         Screen::displayCharacterByCharacter("Демон-стражник бросает адское проклятие на " + target.getName() + ", погружая его в мир адской муки.\n");
         Screen::displayCharacterByCharacter("Проклятие оставляет " + target.getName() + " в изнурительных страданиях, ослабляя его силы.\n");
         target.setStamina(target.getStamina() - staminaDamage);
@@ -1040,12 +1040,12 @@ void Demon::infernalCurse(Character& target)
 
 void Demon::infernalBlade(Character& target)
 {
-    int staminaCost = 30;
-    int manaCost = 30;
+    int staminaCost = 60;
+    int manaCost = 60;
 
     if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
-        int damage = 40;
+        int damage = 70 + rand() % 16;
         Screen::displayCharacterByCharacter("Демон-стражник создает клинок из тьмы и огня, направляя его в сторону " + target.getName() + ".\n");
         target.takeDamage(damage);
 
@@ -1057,7 +1057,6 @@ void Demon::infernalBlade(Character& target)
         Screen::displayCharacterByCharacter(name + " слишком устал для создания клинка.\n");
     }
 }
-
 void Demon::attack(Character& target)
 {
     random_device rd;
@@ -1100,7 +1099,7 @@ DarkLord::~DarkLord() {}
 
 int DarkLord::regenerateStamina()
 {
-    int staminaRegenerationAmount = 20;
+    int staminaRegenerationAmount = 40;
 
     if (stamina < maxStamina)
     {
@@ -1115,7 +1114,7 @@ int DarkLord::regenerateStamina()
 
 int DarkLord::regenerateMana()
 {
-    int manaRegenerationAmount = 20;
+    int manaRegenerationAmount = 40;
 
     if (mana < maxMana)
     {
@@ -1131,12 +1130,12 @@ int DarkLord::regenerateMana()
 
 void DarkLord::blackFlash(Character& target)
 {
-    int staminaCost = 30;
-    int manaCost = 20;
+    int staminaCost = 70;
+    int manaCost = 70;
 
     if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
-        int damage = 20;
+        int damage = 40 + rand() % 21;
         Screen::displayCharacterByCharacter(name + " создает мрак, окутывающий поле битвы... Темнота пожирает свет!\n");
 
         Screen::displayCharacterByCharacter(name + " с кинжалом в руке проносится сквозь мрак, оставляя лишь мерцающие следы...\n");
@@ -1166,7 +1165,7 @@ void DarkLord::shadowStrike(Character& target)
 
     if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
-        int damage = 40;
+        int damage = 70 + rand() % 16;
         Screen::displayCharacterByCharacter(name + " направляет мощный клинок из тьмы на " + target.getName() + ".\n");
         Screen::displayCharacterByCharacter(name + " с неистовством задевает своих прислужников, разрушая своё собственное княжество.\n");
         target.takeDamage(damage);
@@ -1182,11 +1181,11 @@ void DarkLord::shadowStrike(Character& target)
 
 void DarkLord::summonMinions(Character& target)
 {
-    int manaCost = 35;
+    int manaCost = 65;
 
     if (getMana() >= manaCost)
     {
-        int damage = 15;
+        int damage = 50 + rand() % 26;
         Screen::displayCharacterByCharacter(name + " призывает теневых существ, нападающих на " + target.getName() + ".\n");
 
         Screen::displayCharacterByCharacter("Существо материализуется перед " + target.getName() + ", его зловещий взгляд поражает цель.\n");
@@ -1205,11 +1204,11 @@ void DarkLord::summonMinions(Character& target)
 
 void DarkLord::energyAbsorption(Character& target)
 {
-    int manaCost = 40;
+    int manaCost = 70;
 
     if (getMana() >= manaCost)
     {
-        int healAmount = 30;
+        int healAmount = 40 + rand() % 21;
         Screen::displayCharacterByCharacter(name + " поглощает энергию из окружающей тьмы, восстанавливая своё здоровье.\n");
         health += healAmount;
         Screen::displayCharacterByCharacter(name + " обретает новую силу, восстановив " + to_string(healAmount) + " единиц здоровья.\n");
@@ -1224,12 +1223,12 @@ void DarkLord::energyAbsorption(Character& target)
 
 void DarkLord::worldHeartDestruction(Character& target)
 {
-    int staminaCost = 60;
-    int manaCost = 35;
+    int staminaCost = 70;
+    int manaCost = 50;
 
     if (getStamina() >= staminaCost && getMana() >= manaCost)
     {
-        int damage = 60;
+        int damage = 90 + rand() % 16;
         Screen::displayCharacterByCharacter(name + " направляет разрушительную атаку на фундамент мира, нанося урон " + target.getName() + ".\n");
         target.takeDamage(damage);
 
@@ -1244,7 +1243,7 @@ void DarkLord::worldHeartDestruction(Character& target)
 
 void DarkLord::manaDrain(Character& target)
 {
-    int manaDamage = 25; // Урон по мане
+    int manaDamage = 30 + rand() % 16;
 
     Screen::displayCharacterByCharacter(name + " воплощает тьму в атаке, высасывая энергию из " + target.getName() + ", истощая его ману.\n");
     target.setMana(target.getMana() - manaDamage);
@@ -1294,7 +1293,7 @@ DarkElf::DarkElf() : Character() {}
 DarkElf::DarkElf(std::string name, int health, int stamina, int mana)
     : Character(name, health, stamina, mana, nullptr, nullptr, "") 
 {
-    experience = 50;
+    experience = 100;
 }
 
 DarkElf::~DarkElf() {}
@@ -1357,11 +1356,11 @@ void DarkElf::attack(Character& target)
 
 void DarkElf::shadowStrike(Character& target)
 {
-    int manaCost = 15;
+    int manaCost = 60;
 
     if (getMana() >= manaCost)
     {
-        int damage = 25;
+        int damage = 80 + rand() % 21;
         Screen::displayCharacterByCharacter(getName() + " выползает из тени и наносит скрытный удар " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -1373,10 +1372,10 @@ void DarkElf::shadowStrike(Character& target)
 }
 
 void DarkElf::darkArrow(Character& target) {
-    int staminaCost = 20;
+    int staminaCost = 50;
 
     if (getStamina() >= staminaCost) {
-        int damage = 30;
+        int damage = 90 + rand() % 11;
         Screen::displayCharacterByCharacter(getName() + " выстреливает тёмной стрелой в " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseStamina(staminaCost);
@@ -1388,11 +1387,11 @@ void DarkElf::darkArrow(Character& target) {
 
 void DarkElf::venomousArrow(Character& target)
 {
-    int manaCost = 20;
+    int manaCost = 65;
 
     if (getMana() >= manaCost)
     {
-        int damage = 30;
+        int damage = 90 + rand() % 11;
         Screen::displayCharacterByCharacter(getName() + " выпускает стрелу, покрытую ядом, в сторону " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -1405,11 +1404,11 @@ void DarkElf::venomousArrow(Character& target)
 
 void DarkElf::shadowStep(Character& target)
 {
-    int manaCost = 25;
+    int manaCost = 80;
 
     if (getMana() >= manaCost)
     {
-        int damage = 35;
+        int damage = 95 + rand() % 6;
         Screen::displayCharacterByCharacter(getName() + " мгновенно перемещается в тень и атакует " + target.getName() + "!\n");
         target.takeDamage(damage);
         decreaseMana(manaCost);
@@ -1422,11 +1421,11 @@ void DarkElf::shadowStep(Character& target)
 
 void DarkElf::bloodRitual(Character& target)
 {
-    int manaCost = 25;
+    int manaCost = 50;
 
     if (getMana() >= manaCost)
     {
-        int damage = 30;
+        int damage = 95 + rand() % 6;
         int healing = damage / 2;
 
         Screen::displayCharacterByCharacter(getName() + " проводит кровавый обряд, направляя древние силы против " + target.getName() + "!\n");

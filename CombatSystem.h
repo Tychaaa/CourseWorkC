@@ -16,6 +16,7 @@ class CombatSystem
 {
 private:
     bool isTraining; // Пременная для определение тренировочного боя
+    bool playerGetBonus = false; // Переменная для определение бонуса
 
     // Переменные для сохранения предыдущих характеристик игрока
     int prevMaxPlayerHealth;

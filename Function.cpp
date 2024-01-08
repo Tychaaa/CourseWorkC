@@ -729,12 +729,12 @@ void chapter_two(Character& character)
 // Улучшенеи персонажа перед финалом
 void characterUpgrade(Character& character)
 {
-    character.setHealth(350);
-    character.setMaxHealth(350);
-    character.setStamina(300);
-    character.setMaxStamina(300);
-    character.setMana(300);
-    character.setMaxMana(300);
+    character.setHealth(420);
+    character.setMaxHealth(420);
+    character.setStamina(360);
+    character.setMaxStamina(360);
+    character.setMana(360);
+    character.setMaxMana(360);
     character.setLevel(50);
 
     string className = character.getClassType();
@@ -744,28 +744,28 @@ void characterUpgrade(Character& character)
     Magic* newMagic = nullptr;
 
     if (className == "Воин") {
-        newWeapon = new Weapon("Героический Меч Защитника", 60, 80);
-        newMagic = new Magic("Неукротимый Гнев", 50, 60);
+        newWeapon = new Weapon("Героический Меч Защитника", 90, 80);
+        newMagic = new Magic("Неукротимый Гнев", 80, 60);
     }
     else if (className == "Маг") {
-        newWeapon = new Weapon("Архимагический Жезл Стихий", 40, 40);
-        newMagic = new Magic("Взрыв Астральных Пламеней", 70, 70);
+        newWeapon = new Weapon("Архимагический Жезл Стихий", 70, 40);
+        newMagic = new Magic("Взрыв Астральных Пламеней", 100, 70);
     }
     else if (className == "Вор") {
-        newWeapon = new Weapon("Клинок Скрытной Тени", 70, 65);
-        newMagic = new Magic("Спектральный Перехват", 60, 65);
+        newWeapon = new Weapon("Клинок Скрытной Тени", 100, 65);
+        newMagic = new Magic("Спектральный Перехват", 90, 65);
     }
     else if (className == "Бродяга") {
-        newWeapon = new Weapon("Стальные Кастеты Паука", 60, 60);
-        newMagic = new Magic("Техника Волкобой", 65, 65);
+        newWeapon = new Weapon("Стальные Кастеты Паука", 90, 60);
+        newMagic = new Magic("Техника Волкобой", 95, 65);
     }
     else if (className == "Жрец") {
-        newWeapon = new Weapon("Священный Жезл", 60, 50);
-        newMagic = new Magic("Божественное Пламя", 60, 85);
+        newWeapon = new Weapon("Священный Жезл", 90, 50);
+        newMagic = new Magic("Божественное Пламя", 90, 85);
     }
     else if (className == "Рыцарь") {
-        newWeapon = new Weapon("Меч Паладина Света", 75, 65);
-        newMagic = new Magic("Луч Солнца", 55, 50);
+        newWeapon = new Weapon("Меч Паладина Света", 105, 65);
+        newMagic = new Magic("Луч Солнца", 85, 50);
     }
 
     // Устанавливаем новые улучшенные оружие и магию герою
@@ -959,40 +959,41 @@ void finalFight(Character& character)
     // Бой с Суккуб Малина
     Screen::displayDialog("Рассказчик", "Теперь на арену выходит Суккуб Малина!");
     Screen::displayDialog("Суккуб Малина", "О, мой милый герой, я видела твой путь через тьму и свет.");
-    Screen::displayDialog("Главный герой", "Твои обманчивые слова не помогут тебе в этой битве, Малина!");
+    Screen::displayDialog(character.getName(), "Твои обманчивые слова не помогут тебе в этой битве, Малина!");
     Screen::displayDialog("Суккуб Малина", "О, я не собираюсь убеждать тебя. Давай окунемся в танец страсти и смерти!");
     fight.startGame(character, succubus);
 
     // Бой с Ведьмой Лилит
     Screen::displayDialog("Рассказчик", "Следующая на подмогу приходит Ведьма Лилит!");
     Screen::displayDialog("Ведьма Лилит", "Ты думаешь, что можешь победить меня, чужеземец? Ты заблуждаешься.");
-    Screen::displayDialog("Главный герой", "Твои зловещие заговоры не остановят меня. Приготовься к своему поражению!");
+    Screen::displayDialog(character.getName(), "Твои зловещие заговоры не остановят меня. Приготовься к своему поражению!");
     Screen::displayDialog("Ведьма Лилит", "Смелые слова. Позволь мне увидеть, на что ты способен!");
     fight.startGame(character, witch);
 
     // Бой с Зачаровательницей Морганой
     Screen::displayDialog("Рассказчик", "Теперь в бой вступает Зачаровательница Моргана!");
     Screen::displayDialog("Зачаровательница Моргана", "Ты, чужеземец, наступил на святую землю. Ты заплатишь за свою дерзость.");
-    Screen::displayDialog("Главный герой", "Твои чары не пугают меня. Я докажу, что тьма не может поглотить свет!");
+    Screen::displayDialog(character.getName(), "Твои чары не пугают меня. Я докажу, что тьма не может поглотить свет!");
     Screen::displayDialog("Зачаровательница Моргана", "Твои слова бесполезны. Готовься к поражению!");
     fight.startGame(character, enchantress);
 
     // Бой с Темной эльфийкой Аделлией
     Screen::displayDialog("Рассказчик", "На последнем этапе боя появляется Темная эльфийка Аделлия!");
     Screen::displayDialog("Темная эльфийка Аделлия", "Ты смеешь встать на пути Владыки Тьмы? Ты поплатишься за свою дерзость!");
-    Screen::displayDialog("Главный герой", "Твои тени не смогут поглотить свет моей силы. Я завершу это!");
+    Screen::displayDialog(character.getName(), "Твои тени не смогут поглотить свет моей силы. Я завершу это!");
     Screen::displayDialog("Темная эльфийка Аделлия", "Смешно. Но в этот раз ты не уйдешь от своей участи.");
     fight.startGame(character, darkElf);
 
     // Бой с Главным боссом - Владыка Тьмы Вергилий
     Screen::displayDialog("Рассказчик", "И, наконец, на арене появляется Владыка Тьмы Вергилий, главный босс этой истории!");
     Screen::displayDialog("Владыка Тьмы Вергилий", "Так, ты добрался до меня, смертный. Но твой путь заканчивается здесь.");
-    Screen::displayDialog("Главный герой", "Вергилий, твоя тень не затмит свет моего меча. Я пришел завершить твои злодеяния!");
+    Screen::displayDialog(character.getName(), "Вергилий, твоя тень не затмит свет моего меча. Я пришел завершить твои злодеяния!");
     Screen::displayDialog("Владыка Тьмы Вергилий", "Ты смеешь бросить вызов мне, Владыке Тьмы? Ты будешь последним, кто увидит свет.");
-    Screen::displayDialog("Главный герой", "Вергилий, твоя тень могущественна, но я не позволю ей поглотить этот мир!");
+    Screen::displayDialog(character.getName(), "Вергилий, твоя тень могущественна, но я не позволю ей поглотить этот мир!");
     Screen::displayDialog("Владыка Тьмы Вергилий", "Ты лишь маленький светоч во мраке. Твоя сила исчезнет перед моей тьмой.");
-    Screen::displayDialog("Главный герой", "Мрак не может победить свет, Вергилий. Мой меч пронзит твою тень, и тьма будет побеждена!");
+    Screen::displayDialog(character.getName(), "Мрак не может победить свет, Вергилий. Мой меч пронзит твою тень, и тьма будет побеждена!");
     Screen::displayDialog("Владыка Тьмы Вергилий", "Ты говоришь много, смертный. Но я покажу тебе истинную силу тьмы!");
+    fight.startGame(character, darklord);
 }
 
 // Функция для выбора концовки игры
@@ -1007,13 +1008,12 @@ void chooseGameEnding(Character& character)
     Screen::displayDialog("Владыка Тьмы Вергилий", "Сделай свой выбор, смертный, и помни, что тьма всегда найдет путь в твое сердце.");
 
     // Получаем выбор игрока
-    Screen::displayText("Выберите вариант завершения игры:");
+    Screen::displayText("\nВыберите вариант завершения игры:");
     this_thread::sleep_for(chrono::milliseconds(1500));
     Screen::displayText("1. Убить Владыку Тьмы и освободить мир.");
     this_thread::sleep_for(chrono::milliseconds(1500));
     Screen::displayText("2. Занять место Владыки Тьмы и захватить этот мир.");
     this_thread::sleep_for(chrono::milliseconds(1500));
-    cout << "Ваш выбор: ";
 
     // Получаем выбор игрока
     int choice;
@@ -1048,35 +1048,35 @@ void chooseGameEnding(Character& character)
 void goodEnding(Character& character)
 {
     Screen::displayDialog("Рассказчик", "Свет побеждает тьму! С мощным мечом " + character.getName() + " сразил Владыку Тьмы, освободив мир от его власти.");
-    this_thread::sleep_for(chrono::milliseconds(1000));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", "Мрак разгоняется, и природа начинает пробуждаться. Люди вновь увидели светлое будущее благодаря герою " + character.getName() + ".");
-    this_thread::sleep_for(chrono::milliseconds(1000));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", character.getName() + " становится легендой, о которой рассказывают вокруг костра. Его подвиги войдут в историю как символ надежды и силы.");
-    this_thread::sleep_for(chrono::milliseconds(1000));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", "Герой принимает благодарность народа и отправляется в новые приключения, но его имя останется в сердцах тех, кого он спас.");
-    this_thread::sleep_for(chrono::milliseconds(1000));
+    this_thread::sleep_for(chrono::milliseconds(500));
 }
 
 // Функция для "плохой" концовки
 void badEnding(Character& character)
 {
     Screen::displayDialog("Рассказчик", "В поисках силы, " + character.getName() + " решает воспользоваться темной магией Владыки Тьмы.");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", "Мощь тьмы охватывает " + character.getName() + ". Он становится новым Владыкой Тьмы, господствуя над миром.");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", "Мир погружается во мрак, и тьма охватывает все вокруг. Надежда угасает, а страх преобразуется в подчинение.");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", "Герой " + character.getName() + " становится тем, от чего он стремился защитить мир. Новый Владыка Тьмы правит адским королевством.");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    this_thread::sleep_for(chrono::milliseconds(500));
 
     Screen::displayDialog("Рассказчик", "И закончилась история, но не так, как надеялись жители этого мира. Вечная ночь поглотила свет и надежду.");
-    this_thread::sleep_for(chrono::milliseconds(1500));
+    this_thread::sleep_for(chrono::milliseconds(500));
 }
 
 // Функция для создания оружия и магии в зависимости от класса
@@ -1380,7 +1380,9 @@ void createEmerdealNPC(Location emerdeal, Character character)
 // Финальные титры
 void displayFinalCredits()
 {
-    Screen::displayText("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
+    gameTitle();
+
+    Screen::displayText("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
     this_thread::sleep_for(chrono::milliseconds(500));
     Screen::displayText("                                       END OF GAME\n");
     this_thread::sleep_for(chrono::milliseconds(500));

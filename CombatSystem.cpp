@@ -181,11 +181,10 @@ void CombatSystem::enemyTurn(Character& player, Character& enemy)
 // Проверка на победу: проверка условий победы или поражения игрока и противника
 bool CombatSystem::checkVictory(Character& player, Character& enemy)
 {
-    bool playerGetBonus = false;
-
     if (player.getHealth() <= 0)
     {
-        if (isTraining) {
+        if (isTraining) 
+        {
             cout << "\nСмерть... горькая тишина опустилась на битву. Тело героя лежит бездыханное, но что-то внутри него еще борется..." << endl;
             this_thread::sleep_for(chrono::milliseconds(1000));
             cout << "\nОкончание тренировочного боя.\n" << endl;
